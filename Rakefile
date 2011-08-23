@@ -23,6 +23,7 @@ desc "replace all vim configs"
 task :vim do
 
   items do |name, path|
+    next if IGNORE.include?(name)
     next unless name.match(/vim/)
     drop(name, true)
   end
