@@ -5,7 +5,8 @@ PATH = File.expand_path(File.dirname(__FILE__)) + '/'
 IGNORE = [
   'Rakefile',
   'README.md',
-  'bundle.rb'
+  'bundle.rb',
+  'vimux.png'
 ]
 
 desc "install the dot files into user's home directory"
