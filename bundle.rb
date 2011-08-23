@@ -30,7 +30,7 @@ bundles = {
  'zencoding-vim'  => 'https://github.com/mattn/zencoding-vim.git',
  'taglist.vim'    => 'https://github.com/vim-scripts/taglist.vim.git',
  'ack.vim'        => 'https://github.com/mileszs/ack.vim.git',
- 'vim-javascript' => 'git@github.com:mephux/vim-javascript.git'
+ 'vim-javascript' => 'https://github.com/mephux/vim-javascript.git'
 }
 
 bundles.each do |name, path|
