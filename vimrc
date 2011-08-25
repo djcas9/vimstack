@@ -1,22 +1,34 @@
 " Mephux
-"
-set shell=/bin/sh
 
-set nocompatible                  " Must come first because it changes other 
-                                  " options.
+set shell=/bin/sh
+set nocompatible                   " Must come first because it changes other
+                                   " options.
 set autoread
-set nolazyredraw                  " turn off lazy redraw
+set nolazyredraw                   " turn off lazy redraw
 set winfixwidth
 
 " Setup Pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+filetype plugin indent on         " Turn on file type detection.
 syntax on                         " syntax highlighting
+
 
 "some stuff to get the mouse going in term
 set mouse=a
 set ttymouse=xterm2
+
+set synmaxcol=2048                " Syntax coloring lines that are too 
+                                  " long just slows down the world
+
+" I don't like it when the matching parens are automatically highlighted
+" let loaded_matchparen = 1
+
+" Highlight the current line and column
+" Don't do this - It makes window redraws painfully slow
+" set nocursorline
+" set nocursorcolumn
 
 set autoindent                    " automatic indent new lines
 set smartindent                   " be smart about it
@@ -39,8 +51,6 @@ set t_Co=256                      " 256 colors
 set background=dark
 colorscheme epix
 
-filetype plugin indent on         " Turn on file type detection.
-
 " Folding settings
 set foldmethod=indent
 set foldnestmax=3                 " deepest fold is 3 levels
@@ -49,7 +59,10 @@ set nofoldenable                  " dont fold by default
 " Set encoding
 set encoding=utf-8
 
-set showcmd                       " Display incomplete commands.
+
+" Don't show the current command int he lower right corner.  In OSX, if this is
+" set and lazyredraw is set then it's slow as molasses, so we unset this
+set showcmd " Display incomplete commands.
 
 set showmode                      " Display the mode you're in.
 
@@ -87,9 +100,49 @@ set nobackup                      " Don't make a backup before overwriting a
 set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
+" Maps
+" ====
+
+" Hide the mouse pointer while typing
+set mousehide
+
+" Set up the gui cursor to look nice
+"set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+
+" Allow the cursor to go in to 'invalid' places
+set virtualedit=all
+
+" When the page starts to scroll, keep the cursor 8 lines from the top and 8
+" lines from the bottom
+set scrolloff=8
+
+" Disable encryption (:X)
+" set key=
+
+" Wipe out all buffers
+nmap <silent> ,wa :1,9000bwipeout<cr>
+
+" put the vim directives for my file editing settings in
+nmap <silent> ,vi ovim:set ts=2 sts=2 sw=2:<CR>vim600:fdm=marker fdl=1 fdc=0:<ESC>
+
+" Turn off that stupid highlight search
+nmap <silent> ,n :nohls<CR>
+
+" set text wrapping toggles
+nmap <silent> ,ww :set invwrap<CR>:set wrap?<CR>
+
+" Search the current file for the word under the cursor and display matches
+nmap <silent> ,gw :vimgrep /<C-r><C-w>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
+
+" Search the current file for the WORD under the cursor and display matches
+nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR
+
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 map <C-\> :tnext<CR>
+
+" Underline the current line with '='
+nmap <silent> ,ul :t.\|s/./=/g\|:nohls<cr>
 
 " Zencoding Keymap
 let g:user_zen_expandabbr_key = '<D-e>'
@@ -117,9 +170,6 @@ au BufRead,BufNewFile *.ejs set ft=html
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
 
-" jQuery
-" au BufRead,BufNewFile *.js set ft=javascript syntax=jquery
-
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -139,7 +189,7 @@ let g:syntastic_quiet_warnings=1
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
 if has("gui_macvim")
   let macvim_hig_shift_movement = 1
-  set selection=exclusive
+  " set selection=exclusive
   set selectmode=
 endif
 
