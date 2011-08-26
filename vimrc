@@ -110,7 +110,7 @@ set mousehide
 "set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
 " Allow the cursor to go in to 'invalid' places
-set virtualedit=all
+" set virtualedit=all
 
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8
 " lines from the bottom
