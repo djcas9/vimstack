@@ -4,7 +4,7 @@ set shell=/bin/sh
 set nocompatible                   " Must come first because it changes other
                                    " options.
 set autoread
-set nolazyredraw                   " turn off lazy redraw
+" set nolazyredraw                 " turn off lazy redraw
 set winfixwidth
 
 " Setup Pathogen
@@ -105,9 +105,6 @@ set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
 " Hide the mouse pointer while typing
 set mousehide
-
-" Set up the gui cursor to look nice
-"set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
 " Allow the cursor to go in to 'invalid' places
 " set virtualedit=all
