@@ -4,10 +4,11 @@ set shell=/bin/sh
 set nocompatible                   " Must come first because it changes other
                                    " options.
 set autoread
-" set nolazyredraw                 " turn off lazy redraw
+set lazyredraw                     " turn ON lazy redraw
 set winfixwidth
 
 " Setup Pathogen
+filetype off                       " force reloading *after* pathogen loaded
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
@@ -58,7 +59,6 @@ set nofoldenable                  " dont fold by default
 
 " Set encoding
 set encoding=utf-8
-
 
 " Don't show the current command int he lower right corner.  In OSX, if this is
 " set and lazyredraw is set then it's slow as molasses, so we unset this
@@ -195,7 +195,14 @@ match LongLineWarning '\%>80v.\+'
 "nerdtree settings
 map <Leader>p :NERDTree<Enter>
 let g:NERDTreeMouseMode = 2
+
+let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+let NERDTreeShowBookmarks=0
 let g:NERDTreeWinSize = 30
+let NERDTreeHighlightCursorline=1
+
+let NERDTreeShowFiles=1 " Show hidden files, too
+let NERDTreeShowHidden=1
 
 map <Leader>z :GundoToggle<Enter>
 let g:gundo_width = 60
@@ -282,3 +289,6 @@ nmap <leader>l :set list!<CR>
  
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
+
+" Strip all trailing whitespace from a file, using ,w
+nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>

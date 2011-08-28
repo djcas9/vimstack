@@ -4,7 +4,6 @@ path = File.expand_path(File.dirname(File.dirname(__FILE__)))
 Dir.chdir(path)
 
 bundles = {
-    'vim-ragtag' =>             'https://github.com/tpope/vim-ragtag.git' ,
    'bufexplorer' =>  'https://github.com/vim-scripts/bufexplorer.zip.git' ,
    'delimitMate' =>         'https://github.com/Raimondi/delimitMate.git' ,
  'nerdcommenter' =>     'https://github.com/scrooloose/nerdcommenter.git' ,
@@ -30,7 +29,8 @@ bundles = {
  'zencoding-vim' =>          'https://github.com/mattn/zencoding-vim.git' ,
    'taglist.vim' =>      'https://github.com/vim-scripts/taglist.vim.git' ,
        'ack.vim' =>              'https://github.com/mileszs/ack.vim.git' ,
-'vim-javascript' =>        'https://github.com/mephux/vim-javascript.git'
+'vim-javascript' =>        'https://github.com/mephux/vim-javascript.git' ,
+    'vim-ragtag' =>             'https://github.com/tpope/vim-ragtag.git'
 }
 
 bundles.each do |name, path|
