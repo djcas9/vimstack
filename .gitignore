@@ -3,3 +3,4 @@
 vim/tmp
 *.swp
 vim/NERDTreeBookmarks
+vim/tmp/*
