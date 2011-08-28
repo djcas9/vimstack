@@ -7,7 +7,6 @@ Dir.chdir(path)
 bundles = {
    'bufexplorer' =>  'https://github.com/vim-scripts/bufexplorer.zip.git' ,
    'delimitMate' =>         'https://github.com/Raimondi/delimitMate.git' ,
-
  'nerdcommenter' =>     'https://github.com/scrooloose/nerdcommenter.git' ,
   'snipmate.vim' =>        'https://github.com/msanders/snipmate.vim.git' ,
        'tabular' =>            'https://github.com/godlygeek/tabular.git' ,
@@ -25,7 +24,6 @@ bundles = {
 'vim-afterimage' =>         'https://github.com/tpope/vim-afterimage.git' ,
    'vim-endwise' =>            'https://github.com/tpope/vim-endwise.git' ,
        'vim-git' =>                'https://github.com/tpope/vim-git.git' ,
-
       'vim-rake' =>               'https://github.com/tpope/vim-rake.git' ,
      'vim-rspec' =>                'https://github.com/taq/vim-rspec.git' ,
   'vim-surround' =>           'https://github.com/tpope/vim-surround.git' ,
@@ -36,8 +34,7 @@ bundles = {
     'vim-ragtag' =>             'https://github.com/tpope/vim-ragtag.git'
 }
 
+# Add Submodule
 bundles.each do |name, path|
   `git submodule add #{path} vim/bundle/#{name}`
 end
-
-STDOUT.puts 'DONE!'
