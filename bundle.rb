@@ -5,6 +5,7 @@ Dir.chdir(path)
 
 # Vim Plugin Repos
 bundles = {
+   'vim-bundler' =>            'https://github.com/tpope/vim-bundler.git' ,
    'bufexplorer' =>  'https://github.com/vim-scripts/bufexplorer.zip.git' ,
    'delimitMate' =>         'https://github.com/Raimondi/delimitMate.git' ,
  'nerdcommenter' =>     'https://github.com/scrooloose/nerdcommenter.git' ,
@@ -31,7 +32,8 @@ bundles = {
    'taglist.vim' =>      'https://github.com/vim-scripts/taglist.vim.git' ,
        'ack.vim' =>              'https://github.com/mileszs/ack.vim.git' ,
 'vim-javascript' =>        'https://github.com/mephux/vim-javascript.git' ,
-    'vim-ragtag' =>             'https://github.com/tpope/vim-ragtag.git'
+    'vim-ragtag' =>             'https://github.com/tpope/vim-ragtag.git' ,
+    'vim-pastie' =>             'https://github.com/tpope/vim-pastie.git'
 }
 
 # Add Submodule

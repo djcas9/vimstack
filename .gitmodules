@@ -109,4 +109,9 @@
 [submodule "vim/bundle/vim-ragtag"]
 	path = vim/bundle/vim-ragtag
 	url = https://github.com/tpope/vim-ragtag.git
-
+[submodule "vim/bundle/vim-pastie"]
+	path = vim/bundle/vim-pastie
+	url = https://github.com/tpope/vim-pastie.git
+[submodule "vim/bundle/vim-bundler"]
+	path = vim/bundle/vim-bundler
+	url = https://github.com/tpope/vim-bundler.git
