@@ -31,7 +31,7 @@ bundles = {
        'ack.vim' =>              'https://github.com/mileszs/ack.vim.git' ,
 'vim-javascript' =>        'https://github.com/mephux/vim-javascript.git' ,
     'vim-ragtag' =>             'https://github.com/tpope/vim-ragtag.git'
-}
+};
 
 bundles.each do |name, path|
   `git submodule add #{path} vim/bundle/#{name}`

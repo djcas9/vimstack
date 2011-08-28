@@ -36,7 +36,7 @@ task :update do
   items('vim/bundle/*') do |name, path|
     Dir.chdir(path)
     STDOUT.puts "Checking for #{name} updates"
-    `git pull origin master`
+    `git pull origin master` # > /dev/null 2>&1
   end
 
 end
