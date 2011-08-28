@@ -70,7 +70,6 @@ set hidden                        " Handle multiple buffers better.
 
 " Tab completion
 set wildmode=list:longest,list:full
-
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 
 set wildmenu                      " Enhanced command line completion.
