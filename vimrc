@@ -1,4 +1,4 @@
-" Mephux
+" Mephux <dustin.webber[at]gmail.com>
 
 set shell=/bin/sh
 set nocompatible                   " Must come first because it changes other
@@ -15,12 +15,10 @@ call pathogen#helptags()
 filetype plugin indent on         " Turn on file type detection.
 syntax on                         " syntax highlighting
 
-
 "some stuff to get the mouse going in term
 set mouse=a
 set ttymouse=xterm2
-
-set synmaxcol=2048                " Syntax coloring lines that are too 
+set synmaxcol=2048                " Syntax coloring lines that are too
                                   " long just slows down the world
 
 " I don't like it when the matching parens are automatically highlighted
@@ -79,7 +77,7 @@ set wildmenu                      " Enhanced command line completion.
 
 set ignorecase                    " Case-insensitive searching.
 
-set smartcase                     " But case-sensitive if expression contains 
+set smartcase                     " But case-sensitive if expression contains
                                   " a capital letter.
 
 set number                        " Show line numbers.
@@ -95,9 +93,11 @@ set title                         " Set the terminal's title
 
 set visualbell                    " No beeping.
 
-set nobackup                      " Don't make a backup before overwriting a 
-                                  " file.
-set nowritebackup                 " And again.
+" Don't make a backup before overwriting a file.
+set nobackup
+
+set nowritebackup
+
 set directory+=,$HOME/.vim/tmp/  " Keep swap files in one location
 
 " Maps
@@ -195,22 +195,26 @@ match LongLineWarning '\%>80v.\+'
 "nerdtree settings
 map <Leader>p :NERDTree<Enter>
 let g:NERDTreeMouseMode = 2
-
 let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
 let NERDTreeShowBookmarks=0
 let g:NERDTreeWinSize = 30
 let NERDTreeHighlightCursorline=1
 
-let NERDTreeShowFiles=1 " Show hidden files, too
+" Show hidden files, too
+let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 
+" Gundo Change View
 map <Leader>z :GundoToggle<Enter>
 let g:gundo_width = 60
 let g:gundo_preview_height = 40
 let g:gundo_right = 1
 
+" Buffer Explorer
 map <leader>b :BufExplorer<Enter>
-set pastetoggle=<Leader>1          	" pastetoggle (sane indentation on pastes)
+
+" pastetoggle (sane indentation on pastes)
+set pastetoggle=<Leader>1
 
 " Run Ruby Code
 nmap <D-r> :update<CR>:!ruby %<Enter>
@@ -240,7 +244,7 @@ set showcmd
 set laststatus=2                  " Show the status line all the time
 
 " Status Line Setup
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ 
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\
 
 " Git branch and status
 set statusline+=%{fugitive#statusline()}
@@ -254,26 +258,12 @@ set statusline+=%*
 set statusline+=%=%-10(\ %l,%c-%v\ %)
 set statusline+=\ %P "percent through file
 
-
 if exists(":Tabularize")
   nmap <Leader>a= :Tabularize /=<CR>
   vmap <Leader>a= :Tabularize /=<CR>
   nmap <Leader>a: :Tabularize /:\zs<CR>
   vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
-
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
- 
-function! s:align()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    normal! 0
-    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  endif
-endfunction
 
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
@@ -286,7 +276,7 @@ endfunc
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
- 
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
