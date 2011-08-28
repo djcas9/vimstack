@@ -52,6 +52,12 @@ hi Directory        guifg=#bcc7cc     guibg=NONE        gui=BOLD      ctermfg=cy
 hi Menu             guifg=#383838     guibg=#111111     gui=NONE      cterm=NONE
 hi WildMenu         guifg=#FFFFFF     guibg=#313131     gui=bold      cterm=NONE
 
+" Vim Diff
+hi DiffText         guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi DiffChange       guifg=#FFFFFF     guibg=#28527d     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi DiffDelete       guifg=#FFFFFF     guibg=#743136     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi DiffAdd          guifg=#FFFFFF     guibg=#476b40     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+
 if version >= 700 " Vim 7.x specific colors
   hi CursorLine     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE      cterm=BOLD
   hi CursorColumn   guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE      cterm=BOLD
