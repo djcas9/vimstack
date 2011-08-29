@@ -1,11 +1,15 @@
-" Mephux
+" Mephux <dustin.webber[at]gmail.com>
+" ~/.VIMRC
+
+set noerrorbells
+set visualbell
 autocmd VimEnter * set vb t_vb=
 
-syntax on " syntax highlighting
-set t_Co=256 " 256 colors
+syntax on                         " syntax highlighting
+set t_Co=256                      " 256 colors
 set background=dark
 colorscheme epix
-set cursorline  				" highlight current line
+set cursorline  				          " highlight current line
 
 set spell
 set wfh
@@ -76,7 +80,7 @@ if has("gui_macvim")
   imap <D-M-Right> <Esc> <C-w>l
   map <D-M-Left> <C-w>h
   imap <D-M-Left> <C-w>h
- 
+
 endif
 
 
@@ -108,7 +112,7 @@ function s:CdIfDirectory(directory)
 
   " Allows reading from stdin
   " ex: git diff | mvim -R -
-  if strlen(a:directory) == 0 
+  if strlen(a:directory) == 0
     return
   endif
 

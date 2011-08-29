@@ -1,11 +1,8 @@
 " Mephux <dustin.webber[at]gmail.com>
+" ~/.VIMRC
 
+set nocompatible                   " Must come first because it changes others
 set shell=/bin/sh
-set nocompatible                   " Must come first because it changes other
-                                   " options.
-set autoread
-set lazyredraw                     " turn ON lazy redraw
-set winfixwidth
 
 " Setup Pathogen
 filetype off                       " force reloading *after* pathogen loaded
@@ -21,13 +18,32 @@ set ttymouse=xterm2
 set synmaxcol=2048                " Syntax coloring lines that are too
                                   " long just slows down the world
 
+set t_Co=256                      " 256 colors
+set background=dark
+colorscheme epix
+match LongLineWarning '\%>80v.\+'
+
+set autoread
+set winfixwidth
+set ttyfast                      " you have a fast terminal
+set ttyscroll=3
+set lazyredraw                   " avoid scrolling problems
+
+" Windowing settings
+set equalalways                 " keep windows equal when splitting (default)
+set eadirection=both            " ver/hor/both - where does equalalways apply
+set winheight=6	                " height of current window
+
+set showcmd
+set laststatus=2                  " Show the status line all the time
+
 " I don't like it when the matching parens are automatically highlighted
 " let loaded_matchparen = 1
 
 " Highlight the current line and column
 " Don't do this - It makes window redraws painfully slow
-" set nocursorline
-" set nocursorcolumn
+set nocursorline
+set nocursorcolumn
 
 set autoindent                    " automatic indent new lines
 set smartindent                   " be smart about it
@@ -46,26 +62,13 @@ if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
-set t_Co=256                      " 256 colors
-set background=dark
-colorscheme epix
-
 " Folding settings
 set foldmethod=indent
 set foldnestmax=3                 " deepest fold is 3 levels
 set nofoldenable                  " dont fold by default
-
-" Set encoding
-set encoding=utf-8
-
-" Don't show the current command int he lower right corner.  In OSX, if this is
-" set and lazyredraw is set then it's slow as molasses, so we unset this
-set showcmd " Display incomplete commands.
-
+set encoding=utf-8                " Set encoding
 set showmode                      " Display the mode you're in.
-
 set backspace=indent,eol,start    " Intuitive backspacing.
-
 set hidden                        " Handle multiple buffers better.
 
 " Tab completion
@@ -73,31 +76,29 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 
 set wildmenu                      " Enhanced command line completion.
-
 set ignorecase                    " Case-insensitive searching.
-
 set smartcase                     " But case-sensitive if expression contains
                                   " a capital letter.
 
 set number                        " Show line numbers.
 set ruler                         " Show cursor position.
-
 set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
 
-" set wrap                          " Turn on line wrapping.
+" set wrap                        " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
+" Terminal settings
+set vb t_vb=		                  " shut off bell entirely; see also .gvimrc
 set title                         " Set the terminal's title
-
 set visualbell                    " No beeping.
 
 " Don't make a backup before overwriting a file.
 set nobackup
-
 set nowritebackup
-
-set directory+=,$HOME/.vim/tmp/  " Keep swap files in one location
+" Keep swap files in one location
+" +=,$HOME/.vim/tmp/
+set directory=$HOME/.vim/tmp/,.
 
 " Maps
 " ====
@@ -150,15 +151,19 @@ if has("autocmd")
 endif
 
 " Source the vimrc file after saving it
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+" This can get really slow when making quick changes.
+"if has("autocmd")
+  "autocmd bufwritepost .vimrc source $MYVIMRC
+  "autocmd bufwritepost .gvimrc source $MYVIMRC
+"endif
 
 " Edit .vimrc
 nmap <leader>v :tabedit $MYVIMRC<CR>
+" Edit .gvimrc
+nmap <leader>g :tabedit $MYGVIMRC<CR>
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
 " Node/EJS
 au BufRead,BufNewFile *.ejs set ft=html
@@ -186,10 +191,8 @@ let g:syntastic_quiet_warnings=1
 if has("gui_macvim")
   let macvim_hig_shift_movement = 1
   " set selection=exclusive
-  set selectmode=
+  " set selectmode=
 endif
-
-match LongLineWarning '\%>80v.\+'
 
 "nerdtree settings
 map <Leader>p :NERDTree<Enter>
@@ -201,7 +204,7 @@ let NERDTreeHighlightCursorline=1
 
 " Show hidden files, too
 let NERDTreeShowFiles=1
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden=0
 
 " Gundo Change View
 map <Leader>z :GundoToggle<Enter>
@@ -220,11 +223,6 @@ nmap <D-r> :update<CR>:!ruby %<Enter>
 vmap <D-r> :update<CR>:!ruby %<Enter>
 imap <D-r> <Esc>:update<CR>:!ruby %<Enter>
 
-" Hex View
-nmap <leader>h :%!xxd<CR>
-" Undo Hex View
-nnoremap <leader>hh :%!xxd -r<CR>
-
 " Force Save
 cmap w!! w !sudo tee % >/dev/null
 
@@ -233,14 +231,8 @@ cmap w!! w !sudo tee % >/dev/null
 autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd filetype svn,*commit* setlocal spell
 
-" Rspec
-nmap <Leader>r <Esc>:Rake spec<CR>
-
 " Wrap Word
 nmap <leader>w ysW
-
-set showcmd
-set laststatus=2                  " Show the status line all the time
 
 " Status Line Setup
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\

@@ -3,7 +3,10 @@
 path = File.expand_path(File.dirname(File.dirname(__FILE__)))
 Dir.chdir(path)
 
-# Vim Plugin Repos
+# ++++++++++++++++ #
+# Vim Plugin Repos #  
+# ++++++++++++++++ #
+
 bundles = {
    'vim-bundler' =>            'https://github.com/tpope/vim-bundler.git' ,
    'bufexplorer' =>  'https://github.com/vim-scripts/bufexplorer.zip.git' ,
@@ -33,10 +36,13 @@ bundles = {
        'ack.vim' =>              'https://github.com/mileszs/ack.vim.git' ,
 'vim-javascript' =>        'https://github.com/mephux/vim-javascript.git' ,
     'vim-ragtag' =>             'https://github.com/tpope/vim-ragtag.git' ,
-    'vim-pastie' =>             'https://github.com/tpope/vim-pastie.git'
+    'vim-pastie' =>             'https://github.com/tpope/vim-pastie.git' ,
+       'matchit' =>      'https://github.com/vim-scripts/matchit.zip.git'
 }
 
+# 
 # Add Submodule
+#
 bundles.each do |name, path|
   `git submodule add #{path} vim/bundle/#{name}`
 end
