@@ -3,7 +3,7 @@
 
 set noerrorbells
 set visualbell
-autocmd VimEnter * set vb t_vb=
+" autocmd VimEnter * set vb t_vb=
 
 syntax on                         " syntax highlighting
 set t_Co=256                      " 256 colors

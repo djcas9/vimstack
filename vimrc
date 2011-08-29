@@ -100,9 +100,6 @@ set nowritebackup
 " +=,$HOME/.vim/tmp/
 set directory=$HOME/.vim/tmp/,.
 
-" Maps
-" ====
-
 " Hide the mouse pointer while typing
 set mousehide
 
