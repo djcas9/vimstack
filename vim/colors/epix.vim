@@ -73,7 +73,7 @@ if version >= 700 " Vim 7.x specific colors
   hi PmenuSbar      guifg=#1e1e1e     guibg=#1e1e1e     gui=NONE      ctermfg=black       ctermbg=white     cterm=NONE
   hi PmenuThumb     guifg=#8e8e8e     guibg=#3e3e3e     gui=NONE      ctermfg=black       ctermbg=white     cterm=NONE
 
-  hi Search         guifg=#bbbbbb     guibg=#2b2b2b     gui=underline ctermfg=NONE        ctermbg=NONE	    cterm=underline   guisp=#848484
+  hi Search         guifg=#ffffff     guibg=#983f98     gui=bold      ctermfg=NONE        ctermbg=NONE	    cterm=bold   guisp=#848484
   hi ColorColumn    guifg=NONE        guibg=#111111     gui=NONE      ctermfg=NONE        ctermbg=NONE      cterm=NONE
 endif
 

@@ -40,11 +40,6 @@ set laststatus=2                  " Show the status line all the time
 " I don't like it when the matching parens are automatically highlighted
 " let loaded_matchparen = 1
 
-" Highlight the current line and column
-" Don't do this - It makes window redraws painfully slow
-set nocursorline
-set nocursorcolumn
-
 set autoindent                    " automatic indent new lines
 set smartindent                   " be smart about it
 set nowrap                        " do not wrap lines
@@ -270,3 +265,8 @@ set listchars=tab:▸\ ,eol:¬
 
 " Strip all trailing whitespace from a file, using ,w
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+
+" Highlight the current line and column
+" Don't do this - It makes window redraws painfully slow
+set nocursorline
+set nocursorcolumn
