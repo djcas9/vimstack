@@ -144,10 +144,10 @@ endif
 
 " Source the vimrc file after saving it
 " This can get really slow when making quick changes.
-"if has("autocmd")
-  "autocmd bufwritepost .vimrc source $MYVIMRC
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
   "autocmd bufwritepost .gvimrc source $MYVIMRC
-"endif
+endif
 
 " Edit .vimrc
 nmap <leader>v :tabedit $MYVIMRC<CR>
@@ -211,9 +211,15 @@ map <leader>b :BufExplorer<Enter>
 set pastetoggle=<Leader>1
 
 " Run Ruby Code
-nmap <D-r> :update<CR>:!ruby %<Enter>
-vmap <D-r> :update<CR>:!ruby %<Enter>
-imap <D-r> <Esc>:update<CR>:!ruby %<Enter>
+" nmap <D-r> :update<CR>:!ruby %<Enter>
+" vmap <D-r> :update<CR>:!ruby %<Enter>
+" imap <D-r> <Esc>:update<CR>:!ruby %<Enter>
+
+nmap <D-b> :SCCompile<cr> 
+
+nmap <D-r> :update<CR>:SCCompileRun<cr>
+vmap <D-r> :update<CR>:SCCompileRun<cr>
+imap <D-r> <Esc>:SCCompileRun<cr>
 
 " Force Save
 cmap w!! w !sudo tee % >/dev/null

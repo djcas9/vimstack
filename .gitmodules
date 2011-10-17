@@ -130,3 +130,6 @@
 [submodule "vim/bundle/snipmate-snippets"]
 	path = vim/bundle/snipmate-snippets
 	url = https://github.com/honza/snipmate-snippets.git
+[submodule "vim/bundle/SingleCompile"]
+	path = vim/bundle/SingleCompile
+	url = https://github.com/vim-scripts/SingleCompile.git

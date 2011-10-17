@@ -36,7 +36,11 @@ bundles = {
     'vim-javascript' =>        'https://github.com/mephux/vim-javascript.git' ,
         'vim-ragtag' =>             'https://github.com/tpope/vim-ragtag.git' ,
         'vim-pastie' =>             'https://github.com/tpope/vim-pastie.git' ,
+     'SingleCompile' =>    'https://github.com/vim-scripts/SingleCompile.git' ,
            'matchit' =>      'https://github.com/vim-scripts/matchit.zip.git' ,
+
+  # Snipmate Deps
+
       'vim-snipmate' =>          'https://github.com/garbas/vim-snipmate.git' ,
           'tlib_vim' =>              'https://github.com/tomtom/tlib_vim.git' ,
 'vim-addon-mw-utils' => 'https://github.com/MarcWeber/vim-addon-mw-utils.git' ,
