@@ -133,3 +133,6 @@
 [submodule "vim/bundle/SingleCompile"]
 	path = vim/bundle/SingleCompile
 	url = https://github.com/vim-scripts/SingleCompile.git
+[submodule "vim/bundle/vim-yard"]
+	path = vim/bundle/vim-yard
+	url = https://github.com/postmodern/vim-yard.git

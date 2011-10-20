@@ -38,6 +38,7 @@ bundles = {
         'vim-pastie' =>             'https://github.com/tpope/vim-pastie.git' ,
      'SingleCompile' =>    'https://github.com/vim-scripts/SingleCompile.git' ,
            'matchit' =>      'https://github.com/vim-scripts/matchit.zip.git' ,
+          'vim-yard' =>          'https://github.com/postmodern/vim-yard.git' ,
 
   # Snipmate Deps
 
