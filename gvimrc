@@ -1,5 +1,5 @@
 " Mephux <dustin.webber[at]gmail.com>
-" ~/.VIMRC
+" ~/.GVIMRC
 
 set noerrorbells
 set visualbell

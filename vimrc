@@ -129,6 +129,8 @@ nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 map <C-\> :tnext<CR>
+" TagBar
+map <Leader>o :TagbarToggle<CR>
 
 " Underline the current line with '='
 nmap <silent> ,ul :t.\|s/./=/g\|:nohls<cr>
@@ -142,17 +144,20 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
-" Source the vimrc file after saving it
-" This can get really slow when making quick changes.
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-  "autocmd bufwritepost .gvimrc source $MYVIMRC
-endif
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Edit .vimrc
-nmap <leader>v :tabedit $MYVIMRC<CR>
 " Edit .gvimrc
 nmap <leader>g :tabedit $MYGVIMRC<CR>
+
+" Source the vimrc file after saving it
+" This can get really slow when making quick changes.
+
+"if has("autocmd")
+"  autocmd bufwritepost .vimrc source $MYVIMRC
+  "autocmd bufwritepost .gvimrc source $MYVIMRC
+"endif
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
@@ -182,7 +187,7 @@ let g:syntastic_quiet_warnings=1
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
 if has("gui_macvim")
   let macvim_hig_shift_movement = 1
-  " set selection=exclusive
+  set selection=exclusive
   " set selectmode=
 endif
 

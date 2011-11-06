@@ -10,6 +10,7 @@ IGNORE = [
 ]
 
 BUNDLES = {
+            'tagbar' =>                  'git://github.com/majutsushi/tagbar' ,
        'vim-bundler' =>            'https://github.com/tpope/vim-bundler.git' ,
        'bufexplorer' =>  'https://github.com/vim-scripts/bufexplorer.zip.git' ,
        'delimitMate' =>         'https://github.com/Raimondi/delimitMate.git' ,
@@ -47,7 +48,7 @@ BUNDLES = {
       'vim-snipmate' =>          'https://github.com/garbas/vim-snipmate.git' ,
           'tlib_vim' =>              'https://github.com/tomtom/tlib_vim.git' ,
 'vim-addon-mw-utils' => 'https://github.com/MarcWeber/vim-addon-mw-utils.git' ,
- 'snipmate-snippets' =>      'https://github.com/honza/snipmate-snippets.git'
+ 'snipmate-snippets' =>     'https://github.com/mephux/snipmate-snippets.git'
 }
 
 desc "install the dot files into user's home directory"
