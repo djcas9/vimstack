@@ -132,3 +132,6 @@
 [submodule "vim/bundle/vim-yard"]
 	path = vim/bundle/vim-yard
 	url = https://github.com/postmodern/vim-yard.git
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
+	url = git://github.com/majutsushi/tagbar
