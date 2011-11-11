@@ -1,6 +1,4 @@
 .DS_Store
 *.netrwhist
-vim/tmp
 *.swp
 vim/NERDTreeBookmarks
-vim/tmp/*
