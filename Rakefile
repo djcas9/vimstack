@@ -90,7 +90,8 @@ task :update do
   items('vim/bundle/*') do |name, path|
     Dir.chdir(path)
     puts "[OK] #{name}"
-    `git pull origin master > /dev/null 2>&1` 
+    `git pull origin master` # > /dev/null 2>&1` 
+    puts "\n"
   end
 
   puts "\n"
