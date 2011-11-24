@@ -42,6 +42,7 @@ BUNDLES = {
      'SingleCompile' =>    'https://github.com/vim-scripts/SingleCompile.git' ,
            'matchit' =>      'https://github.com/vim-scripts/matchit.zip.git' ,
           'vim-yard' =>          'https://github.com/postmodern/vim-yard.git' ,
+     'vim-extradite' =>           'https://github.com/int3/vim-extradite.git' ,
 
   # Snipmate Deps
 

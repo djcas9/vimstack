@@ -1,5 +1,4 @@
 " Mephux <dustin.webber[at]gmail.com>
-" ~/.VIMRC
 
 set nocompatible                   " Must come first because it changes others
 set shell=/bin/sh
@@ -12,10 +11,9 @@ call pathogen#helptags()
 filetype plugin indent on         " Turn on file type detection.
 syntax on                         " syntax highlighting
 
-"some stuff to get the mouse going in term
-set mouse=a
-set ttymouse=xterm2
-set synmaxcol=2048                " Syntax coloring lines that are too
+" set mouse=a                     " some stuff to get the mouse going in term
+" set ttymouse=xterm2
+" set synmaxcol=2048              " Syntax coloring lines that are too
                                   " long just slows down the world
 
 set t_Co=256                      " 256 colors
@@ -38,7 +36,7 @@ set showcmd
 set laststatus=2                  " Show the status line all the time
 
 " I don't like it when the matching parens are automatically highlighted
-" let loaded_matchparen = 1
+let loaded_matchparen = 1
 
 set autoindent                    " automatic indent new lines
 set smartindent                   " be smart about it
@@ -49,12 +47,23 @@ set tabstop=2
 set expandtab                     " expand tabs to spaces
 set nosmarttab                    " no tabs
 set formatoptions+=n              " support for numbered/bullet lists
-set textwidth=80                  " wrap at 80 chars by default
+"set textwidth=80                  " wrap at 80 chars by default
 set virtualedit=block             " allow virtual edit in visual block mode
 
 " Mark the ideal max text width
 if exists('+colorcolumn')
   set colorcolumn=80
+endif
+
+
+" MacVIM shift+arrow-keys behavior (required in .vimrc)
+if has("gui_macvim")
+  " Automatically resize splits when resizing MacVim window
+  autocmd VimResized * wincmd =
+
+  let macvim_hig_shift_movement = 1
+  set selection=exclusive
+  " set selectmode=
 endif
 
 " Folding settings
@@ -63,6 +72,8 @@ set foldnestmax=3                 " deepest fold is 3 levels
 set nofoldenable                  " dont fold by default
 set encoding=utf-8                " Set encoding
 set showmode                      " Display the mode you're in.
+set modeline
+set modelines=10
 set backspace=indent,eol,start    " Intuitive backspacing.
 set hidden                        " Handle multiple buffers better.
 
@@ -98,6 +109,17 @@ set directory=$HOME/.vim/tmp/,.
 " Hide the mouse pointer while typing
 set mousehide
 
+" Without setting this, ZoomWin restores windows in a way that causes
+" equalalways behavior to be triggered the next time CommandT is used.
+" This is likely a bludgeon to solve some other issue, but it works
+set noequalalways
+
+" Command-T configuration
+let g:CommandTMaxHeight=20
+
+" :Extradite - Git log viewer
+map <Leader>o :Extradite!<CR>
+
 " Allow the cursor to go in to 'invalid' places
 " set virtualedit=all
 
@@ -130,10 +152,15 @@ nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 map <C-\> :tnext<CR>
 " TagBar
-map <Leader>o :TagbarToggle<CR>
+" map <Leader>o :TagbarToggle<CR>
 
 " Underline the current line with '='
 nmap <silent> ,ul :t.\|s/./=/g\|:nohls<cr>
+
+
+" CHANGE DEFAULT ALT+LEFT/RIGHT
+nmap <A-Left> b
+nmap <A-Right> w
 
 " Zencoding Keymap
 let g:user_zen_expandabbr_key = '<D-e>'
@@ -167,6 +194,7 @@ au BufRead,BufNewFile *.ejs set ft=html
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
+"autocmd BufRead *.rb so syntax/yard.vim
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -184,15 +212,9 @@ vmap <C-Down> ]egv
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=1
 
-" MacVIM shift+arrow-keys behavior (required in .vimrc)
-if has("gui_macvim")
-  let macvim_hig_shift_movement = 1
-  set selection=exclusive
-  " set selectmode=
-endif
-
 "nerdtree settings
 map <Leader>p :NERDTree<Enter>
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 let g:NERDTreeMouseMode = 2
 let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
 let NERDTreeShowBookmarks=0
