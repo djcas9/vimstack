@@ -49,7 +49,7 @@ set tabstop=2
 set expandtab                     " expand tabs to spaces
 set nosmarttab                    " no tabs
 set formatoptions+=n              " support for numbered/bullet lists
-set textwidth=80                  " wrap at 80 chars by default
+" set textwidth=80                  " wrap at 80 chars by default
 set virtualedit=block             " allow virtual edit in visual block mode
 
 " Mark the ideal max text width
