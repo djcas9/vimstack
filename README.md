@@ -4,11 +4,11 @@
 
 `git clone https://github.com/mephux/vimux.git`
 
-`rake update`
+`rake install`
 
 # OR
 
-`git clone https://github.com/mephux/vimux.git && cd vimux && rake update`
+`git clone https://github.com/mephux/vimux.git && cd vimux && rake install`
 
 ## Update / Link
 
