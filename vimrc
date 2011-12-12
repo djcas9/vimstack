@@ -34,7 +34,8 @@ set lazyredraw                    " avoid scrolling problems
 " Windowing settings
 set equalalways                   " keep windows equal when splitting (default)
 set eadirection=both              " ver/hor/both - where does equalalways apply
-set winheight=6	                  " height of current window
+set winheight=10                  " height of current window
+set winwidth=80                   " width of current window
 
 set showcmd
 set laststatus=2                  " Show the status line all the time
@@ -196,8 +197,12 @@ let g:gundo_width = 60
 let g:gundo_preview_height = 40
 let g:gundo_right = 1
 
-" Buffer Explorer
-map <leader>b :BufExplorer<Enter>
+" BuffergatorToggle
+let g:buffergator_viewport_split_policy = "B"
+let g:buffergator_autoexpand_on_split = 0
+let g:buffergator_suppress_keymaps = 1
+let g:buffergator_split_size = 20
+map <leader>b :BuffergatorToggle<Enter>
 
 nmap <D-b> :SCCompile<cr> 
 nmap <D-r> :update<CR>:SCCompileRun<cr>

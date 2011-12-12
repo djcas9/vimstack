@@ -109,3 +109,12 @@
 [submodule "vim/bundle/vim-snipmate"]
 	path = vim/bundle/vim-snipmate
 	url = https://github.com/garbas/vim-snipmate.git
+[submodule "vim/bundle/vim-buffergator"]
+	path = vim/bundle/vim-buffergator
+	url = https://github.com/jeetsukumaran/vim-buffergator.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/css-color"]
+	path = vim/bundle/css-color
+	url = https://github.com/skammer/vim-css-color
