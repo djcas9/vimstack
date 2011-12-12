@@ -59,18 +59,20 @@ task :clean do
   end
 end
 
-desc "install the dot files into user's home directory"
+desc "Install Vimux"
 task :install do
+  puts "\n"
+  Rake::Task["bundle"].invoke
+  
+  puts "\n"
+  Rake::Task["update"].invoke
 
-  items do |name, path|
-    next if IGNORE.include?(name)
-    drop(name)
-  end
-
+  puts "\n"
+  Rake::Task["link"].invoke
 end
 
-desc "replace all vim configs"
-task :vim do
+desc "Link Vim configs to home dir"
+task :link do
 
   puts "[~] Linking Vim files"
   Dir.chdir(PATH)
@@ -91,9 +93,7 @@ end
 desc "Update Vim Plugins"
 task :update do
 
-  Rake::Task["bundle"].invoke
-
-  puts "[~] Updating Submodules"
+  puts "[~] Updating Vim plugins"
 
   items('vim/bundle/*') do |name, path|
     Dir.chdir(path)
@@ -102,9 +102,6 @@ task :update do
     puts "\n"
   end
 
-  puts "\n"
-
-  Rake::Task["vim"].invoke
 end
 
 # Helpers
@@ -157,8 +154,7 @@ end
 def bundle
   #Dir.chdir(PATH)
 
-  puts "\n[~] Updating Submodule Index"
-  bar = ProgressBar.new(BUNDLES.size)
+ puts "\n[~] Updating Submodule Index"
 
   # 
   # Add Submodule

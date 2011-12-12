@@ -29,11 +29,11 @@ map <A-Left> b
 vmap <S-M-Right> e
 vmap <S-M-Left> b
 
-imap <S-M-Right> <ESC> ve
-imap <S-M-Left> <ESC> vb
+imap <S-M-Right> <ESC> ve<C-g>
+imap <S-M-Left> <ESC> vb<C-g>
 
-nmap <S-M-Right> ve
-nmap <S-M-Left> vb
+nmap <S-M-Right> ve<C-g>
+nmap <S-M-Left> vb<C-g>
 
 if has("gui_macvim")
   " Fullscreen takes up entire screen
