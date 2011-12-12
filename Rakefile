@@ -163,7 +163,7 @@ def bundle
   # Add Submodule
   #
   BUNDLES.each do |name, path|
-    `git submodule add #{path} vim/bundle/#{name} > /dev/null 2>&1`
+    `git submodule add -f #{path} vim/bundle/#{name} > /dev/null 2>&1`
     puts "[OK] #{name}"
   end
 

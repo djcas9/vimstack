@@ -2,7 +2,8 @@
 
 ## Install
 
-`git clone --recursive https://github.com/mephux/vimux.git`
+`git clone https://github.com/mephux/vimux.git`
+`rake update`
 
 ## Update/Link
 
