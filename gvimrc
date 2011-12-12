@@ -3,7 +3,6 @@
 
 set noerrorbells
 set visualbell
-" autocmd VimEnter * set vb t_vb=
 
 syntax on                         " syntax highlighting
 set t_Co=256                      " 256 colors
@@ -23,12 +22,18 @@ set guioptions-=r                 " Don't show right scrollbar
 set guioptions-=l                 " Don't show left scrollbar
 
 " CHANGE DEFAULT ALT+LEFT/RIGHT
+map <A-Right> e
 map <A-Left> b
-map <A-Right> w
 
 " Change Shift Select
-vmap <S-M-Left> B
-vmap <S-M-Right> E
+vmap <S-M-Right> e
+vmap <S-M-Left> b
+
+imap <S-M-Right> <ESC> ve
+imap <S-M-Left> <ESC> vb
+
+nmap <S-M-Right> ve
+nmap <S-M-Left> vb
 
 if has("gui_macvim")
   " Fullscreen takes up entire screen
@@ -82,12 +87,19 @@ if has("gui_macvim")
   " Command-Option-ArrowKey to switch viewports
   map <D-M-Up> <C-w>k
   imap <D-M-Up> <Esc> <C-w>k
+  
   map <D-M-Down> <C-w>j
   imap <D-M-Down> <Esc> <C-w>j
+  
   map <D-M-Right> <C-w>l
   imap <D-M-Right> <Esc> <C-w>l
+  
   map <D-M-Left> <C-w>h
   imap <D-M-Left> <C-w>h
+
+  " Move with ctrl+shift+(right/left)
+  map <C-S-Right> <C-W>l
+  map <C-S-Left> <C-w>h
 else
   " Ctrl-T for Command-T
   map <C-t> :CommandT<CR>
@@ -248,7 +260,7 @@ function Edit(file)
     wincmd p
   endif
 
-  execute "e " . fnameescape(a:file)
+  execute "e " . fnameescape(a:file) 
 
 ruby << RUBY
   destination = File.expand_path(VIM.evaluate(%{system("dirname " . shellescape(a:file, 1))}))

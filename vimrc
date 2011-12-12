@@ -183,10 +183,6 @@ au BufNewFile,BufRead *.json set ft=javascript
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" Markers
-" nmap <C-Up> <C-O>
-" nmap <C-Down> <C-o>
-
 " Bubble multiple lines
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
