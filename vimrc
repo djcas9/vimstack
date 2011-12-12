@@ -4,6 +4,8 @@
 set nocompatible                   " Must come first because it changes others
 set shell=/bin/sh
 
+set encoding=utf-8
+
 " Setup Pathogen
 filetype off                       " force reloading *after* pathogen loaded
 call pathogen#runtime_append_all_bundles()
@@ -65,14 +67,12 @@ if has("gui_macvim")
 
   let macvim_hig_shift_movement = 1
   set selection=exclusive
-  " set selectmode=
 endif
 
 " Folding settings
 set foldmethod=indent
 set foldnestmax=3                 " deepest fold is 3 levels
 set nofoldenable                  " dont fold by default
-set encoding=utf-8                " Set encoding
 set showmode                      " Display the mode you're in.
 set modeline
 set modelines=10
@@ -122,11 +122,6 @@ let g:CommandTMaxHeight=20
 " :Extradite - Git log viewer
 map <Leader>o :Extradite!<CR>
 
-" Allow the cursor to go in to 'invalid' places
-set vb t_vb=		                  " shut off bell entirely; see also .gvimrc
-set title                         " Set the terminal's title
-set visualbell                    " No beeping.
-
 " Don't make a backup before overwriting a file.
 set nobackup
 set nowritebackup
@@ -144,6 +139,12 @@ set noequalalways
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gg :topleft 100 :split Gemfile<cr>
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+" http://vimcasts.org/e/14
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
 " :Extradite - Git log viewer
 map <Leader>o :Extradite!<CR>
@@ -155,40 +156,8 @@ map <Leader>o :Extradite!<CR>
 " lines from the bottom
 set scrolloff=8
 
-" Disable encryption (:X)
-" set key=
-
-" Wipe out all buffers
-nmap <silent> ,wa :1,9000bwipeout<cr>
-
-" put the vim directives for my file editing settings in
-nmap <silent> ,vi ovim:set ts=2 sts=2 sw=2:<CR>vim600:fdm=marker fdl=1 fdc=0:<ESC>
-
-" Turn off that stupid highlight search
-nmap <silent> ,n :nohls<CR>
-
-" set text wrapping toggles
-nmap <silent> ,ww :set invwrap<CR>:set wrap?<CR>
-
-" Search the current file for the word under the cursor and display matches
-nmap <silent> ,gw :vimgrep /<C-r><C-w>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
-
-" Search the current file for the WORD under the cursor and display matches
-nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR
-
-" CTags
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-map <C-\> :tnext<CR>
-" TagBar
-" map <Leader>o :TagbarToggle<CR>
-
-" Underline the current line with '='
-nmap <silent> ,ul :t.\|s/./=/g\|:nohls<cr>
-
-
-" CHANGE DEFAULT ALT+LEFT/RIGHT
-nmap <A-Left> b
-nmap <A-Right> w
+" clear the search buffer when hitting return
+:nnoremap <CR> :nohlsearch<cr>
 
 " Zencoding Keymap
 let g:user_zen_expandabbr_key = '<D-e>'
@@ -205,14 +174,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Edit .gvimrc
 nmap <leader>g :tabedit $MYGVIMRC<CR>
-
-" Source the vimrc file after saving it
-" This can get really slow when making quick changes.
-
-"if has("autocmd")
-"  autocmd bufwritepost .vimrc source $MYVIMRC
-  "autocmd bufwritepost .gvimrc source $MYVIMRC
-"endif
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
@@ -236,23 +197,6 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
-" Enable syntastic syntax checking
-let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=1
-
-"nerdtree settings
-map <Leader>p :NERDTree<Enter>
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-let g:NERDTreeMouseMode = 2
-let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
-let NERDTreeShowBookmarks=0
-let g:NERDTreeWinSize = 30
-let NERDTreeHighlightCursorline=1
-
-" Show hidden files, too
-let NERDTreeShowFiles=1
-let NERDTreeShowHidden=0
-
 " Gundo Change View
 map <Leader>z :GundoToggle<Enter>
 let g:gundo_width = 60
@@ -264,11 +208,6 @@ map <leader>b :BufExplorer<Enter>
 
 " pastetoggle (sane indentation on pastes)
 set pastetoggle=<Leader>1
-
-" Run Ruby Code
-" nmap <D-r> :update<CR>:!ruby %<Enter>
-" vmap <D-r> :update<CR>:!ruby %<Enter>
-" imap <D-r> <Esc>:update<CR>:!ruby %<Enter>
 
 nmap <D-b> :SCCompile<cr> 
 
@@ -309,15 +248,6 @@ if exists(":Tabularize")
   vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
 
-" Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
@@ -331,3 +261,7 @@ nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 " Don't do this - It makes window redraws painfully slow
 set nocursorline
 set nocursorcolumn
+
+" CHANGE DEFAULT ALT+LEFT/RIGHT
+nmap <A-Left> b
+nmap <A-Right> w
