@@ -42,11 +42,22 @@ BUNDLES = {
 
   # Snipmate Deps
 
-      'vim-snipmate' => 'https://github.com/garbas/vim-snipmate.git',
+      'vim-snipmate' => 'git://github.com/garbas/vim-snipmate.git',
           'tlib_vim' => 'https://github.com/tomtom/tlib_vim.git',
 'vim-addon-mw-utils' => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
  'snipmate-snippets' => 'https://github.com/mephux/snipmate-snippets.git'
 }
+
+desc "Clean"
+task :clean do
+  items = BUNDLES.keys
+  items.each do |item|
+    puts "Removed vim/bundle/#{item}"
+    `git rm -rf --cached vim/bundle/#{item} > /dev/null 2>&1`
+    `git config --remove-section submodule.vim/bundle/#{item} > /dev/null 2>&1`
+    `rm -rf vim/bundle/#{item} > /dev/null 2>&1`
+  end
+end
 
 desc "install the dot files into user's home directory"
 task :install do

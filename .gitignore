@@ -5,3 +5,6 @@ vim/NERDTreeBookmarks
 
 !vim/tmp/.gitkeep
 vim/tmp/
+
+vim/bundle/
+.gitmodules
