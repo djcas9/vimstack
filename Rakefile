@@ -10,22 +10,18 @@ IGNORE = [
 ]
 
 BUNDLES = {
-            'tagbar' =>                  'git://github.com/majutsushi/tagbar' ,
        'vim-bundler' =>            'https://github.com/tpope/vim-bundler.git' ,
        'bufexplorer' =>  'https://github.com/vim-scripts/bufexplorer.zip.git' ,
        'delimitMate' =>         'https://github.com/Raimondi/delimitMate.git' ,
      'nerdcommenter' =>     'https://github.com/scrooloose/nerdcommenter.git' ,
-           'tabular' =>            'https://github.com/godlygeek/tabular.git' ,
          'vim-align' =>             'https://github.com/tsaleh/vim-align.git' ,
       'vim-fugitive' =>           'https://github.com/tpope/vim-fugitive.git' ,
-      'vim-markdown' =>      'https://github.com/plasticboy/vim-markdown.git' ,
         'vim-repeat' =>             'https://github.com/tpope/vim-repeat.git' ,
           'vim-ruby' =>            'https://github.com/vim-ruby/vim-ruby.git' ,
          'vim-rails' =>              'https://github.com/tpope/vim-rails.git' ,
     'vim-unimpaired' =>         'https://github.com/tpope/vim-unimpaired.git' ,
          'gundo.vim' =>                'https://github.com/sjl/gundo.vim.git' ,
           'supertab' =>            'https://github.com/ervandew/supertab.git' ,
-    'vim-afterimage' =>         'https://github.com/tpope/vim-afterimage.git' ,
        'vim-endwise' =>            'https://github.com/tpope/vim-endwise.git' ,
            'vim-git' =>                'https://github.com/tpope/vim-git.git' ,
           'vim-rake' =>               'https://github.com/tpope/vim-rake.git' ,
@@ -39,6 +35,7 @@ BUNDLES = {
            'matchit' =>      'https://github.com/vim-scripts/matchit.zip.git' ,
           'vim-yard' =>          'https://github.com/postmodern/vim-yard.git' ,
      'vim-extradite' =>           'https://github.com/int3/vim-extradite.git' ,
+          'yankring' =>     'https://github.com/vim-scripts/YankRing.vim.git' ,
 
   # Snipmate Deps
 

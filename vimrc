@@ -1,4 +1,4 @@
-" Mephux <dustin.webber[at]gmail.com>
+" Mephux <dustin.webber[at]gmail.com> 
 " ~/.VIMRC
 
 set nocompatible                   " Must come first because it changes others
@@ -7,7 +7,7 @@ set shell=/bin/sh
 set encoding=utf-8
 
 " Setup Pathogen
-filetype off                       " force reloading *after* pathogen loaded
+filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
@@ -27,20 +27,17 @@ match LongLineWarning '\%>80v.\+'
 
 set autoread
 set winfixwidth
-set ttyfast                      " you have a fast terminal
+set ttyfast                       " you have a fast terminal
 set ttyscroll=3
-set lazyredraw                   " avoid scrolling problems
+set lazyredraw                    " avoid scrolling problems
 
 " Windowing settings
-set equalalways                 " keep windows equal when splitting (default)
-set eadirection=both            " ver/hor/both - where does equalalways apply
-set winheight=6	                " height of current window
+set equalalways                   " keep windows equal when splitting (default)
+set eadirection=both              " ver/hor/both - where does equalalways apply
+set winheight=6	                  " height of current window
 
 set showcmd
 set laststatus=2                  " Show the status line all the time
-
-" I don't like it when the matching parens are automatically highlighted
-" let loaded_matchparen = 1
 
 set autoindent                    " automatic indent new lines
 set smartindent                   " be smart about it
@@ -50,8 +47,7 @@ set shiftwidth=2                  " ..
 set tabstop=2
 set expandtab                     " expand tabs to spaces
 set nosmarttab                    " no tabs
-set formatoptions+=n              " support for numbered/bullet lists
-" set textwidth=80                  " wrap at 80 chars by default
+set formatoptions=qrn1            " support for numbered/bullet lists
 set virtualedit=block             " allow virtual edit in visual block mode
 
 " Mark the ideal max text width
@@ -59,23 +55,23 @@ if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
+" Save on blur
+au FocusLost * :wa
+
+" Awk
+nnoremap <leader>a :Ack<Space>
 
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
 if has("gui_macvim")
-  " Automatically resize splits when resizing MacVim window
-  autocmd VimResized * wincmd =
-
   let macvim_hig_shift_movement = 1
   set selection=exclusive
 endif
 
-" Folding settings
-set foldmethod=indent
+set foldmethod=indent             " Folding settings
 set foldnestmax=3                 " deepest fold is 3 levels
 set nofoldenable                  " dont fold by default
 set showmode                      " Display the mode you're in.
-set modeline
-set modelines=10
+set modelines=0
 set backspace=indent,eol,start    " Intuitive backspacing.
 set hidden                        " Handle multiple buffers better.
 
@@ -101,12 +97,14 @@ set vb t_vb=		                  " shut off bell entirely; see also .gvimrc
 set title                         " Set the terminal's title
 set visualbell                    " No beeping.
 
+set undofile
+set undodir=~/.vim/tmp/undo//     " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap//   " swap files
+
 " Don't make a backup before overwriting a file.
 set nobackup
 set nowritebackup
-" Keep swap files in one location
-" +=,$HOME/.vim/tmp/
-set directory=$HOME/.vim/tmp/,.
 
 " Hide the mouse pointer while typing
 set mousehide
@@ -149,9 +147,6 @@ map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 " :Extradite - Git log viewer
 map <Leader>o :Extradite!<CR>
 
-" Allow the cursor to go in to 'invalid' places
-" set virtualedit=all
-
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8
 " lines from the bottom
 set scrolloff=8
@@ -183,15 +178,13 @@ au BufRead,BufNewFile *.ejs set ft=html
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
-"autocmd BufRead *.rb so syntax/yard.vim
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" Unimpaired configuration
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
+" Markers
+" nmap <C-Up> <C-O>
+" nmap <C-Down> <C-o>
 
 " Bubble multiple lines
 vmap <C-Up> [egv
@@ -206,11 +199,7 @@ let g:gundo_right = 1
 " Buffer Explorer
 map <leader>b :BufExplorer<Enter>
 
-" pastetoggle (sane indentation on pastes)
-set pastetoggle=<Leader>1
-
 nmap <D-b> :SCCompile<cr> 
-
 nmap <D-r> :update<CR>:SCCompileRun<cr>
 vmap <D-r> :update<CR>:SCCompileRun<cr>
 imap <D-r> <Esc>:SCCompileRun<cr>
@@ -222,9 +211,6 @@ cmap w!! w !sudo tee % >/dev/null
 " autocmd FileType ruby set foldmethod=syntax
 autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd filetype svn,*commit* setlocal spell
-
-" Wrap Word
-nmap <leader>w ysW
 
 " Status Line Setup
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\
@@ -241,13 +227,6 @@ set statusline+=%*
 set statusline+=%=%-10(\ %l,%c-%v\ %)
 set statusline+=\ %P "percent through file
 
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-endif
-
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
@@ -257,11 +236,17 @@ set listchars=tab:▸\ ,eol:¬
 " Strip all trailing whitespace from a file, using ,w
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
-" Highlight the current line and column
-" Don't do this - It makes window redraws painfully slow
-set nocursorline
+" Highlight the current line and column Don't do this - It makes window
+" redraws painfully slow
+set nocursorline 
 set nocursorcolumn
 
-" CHANGE DEFAULT ALT+LEFT/RIGHT
-nmap <A-Left> b
-nmap <A-Right> w
+" Remove Ex mode Replace with a format helper
+nnoremap Q gqip
+
+augroup ft_javascript
+    au!
+
+    au FileType javascript setlocal foldmethod=marker
+    au FileType javascript setlocal foldmarker={,}
+augroup END

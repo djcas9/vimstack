@@ -14,15 +14,26 @@ set cursorline  				          " highlight current line
 set spell
 set wfh
 set wfw
-
 set guifont=Monaco:h12
-"set guifont=Menlo:h13
 set antialias                     " MacVim: smooth fonts.
+
 set encoding=utf-8                " Use UTF-8 everywhere.
 set guioptions-=T                 " Hide toolbar.
 set guioptions-=r                 " Don't show right scrollbar
+set guioptions-=l                 " Don't show left scrollbar
+
+" CHANGE DEFAULT ALT+LEFT/RIGHT
+map <A-Left> b
+map <A-Right> w
+
+" Change Shift Select
+vmap <S-M-Left> B
+vmap <S-M-Right> E
 
 if has("gui_macvim")
+
+  " Automatically resize splits when resizing MacVim window
+  autocmd VimResized * wincmd =
 
   " Command-Return for fullscreen
   macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
