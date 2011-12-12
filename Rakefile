@@ -10,6 +10,7 @@ IGNORE = [
 ]
 
 BUNDLES = {
+
        'vim-bundler' =>            'https://github.com/tpope/vim-bundler.git' ,
        'bufexplorer' =>  'https://github.com/vim-scripts/bufexplorer.zip.git' ,
        'delimitMate' =>         'https://github.com/Raimondi/delimitMate.git' ,
@@ -33,7 +34,6 @@ BUNDLES = {
         'vim-ragtag' =>             'https://github.com/tpope/vim-ragtag.git' ,
      'SingleCompile' =>    'https://github.com/vim-scripts/SingleCompile.git' ,
            'matchit' =>      'https://github.com/vim-scripts/matchit.zip.git' ,
-          'vim-yard' =>          'https://github.com/postmodern/vim-yard.git' ,
      'vim-extradite' =>           'https://github.com/int3/vim-extradite.git' ,
           'yankring' =>     'https://github.com/vim-scripts/YankRing.vim.git' ,
 
