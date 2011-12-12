@@ -22,7 +22,7 @@ set guioptions-=r                 " Don't show right scrollbar
 set guioptions-=l                 " Don't show left scrollbar
 
 " CHANGE DEFAULT ALT+LEFT/RIGHT
-map <A-Right> e
+map <A-Right> w
 map <A-Left> b
 
 " Change Shift Select
