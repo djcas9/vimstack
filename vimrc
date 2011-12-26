@@ -21,6 +21,8 @@ set synmaxcol=2048                " Syntax coloring lines that are too
                                   " long just slows down the world
 
 set t_Co=256                      " 256 colors
+
+
 set background=dark
 colorscheme epix
 match LongLineWarning '\%>80v.\+'
@@ -56,8 +58,13 @@ if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
-" Save on blur
+" On Focus Lost
+" Enter normal mode
 au FocusLost * :wa
+
+" On Focus Lost
+" Enter normal mode
+au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
 " Awk
 nnoremap <leader>a :Ack<Space>
@@ -187,12 +194,6 @@ set backspace=indent,eol,start
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
-" Gundo Change View
-map <Leader>z :GundoToggle<Enter>
-let g:gundo_width = 60
-let g:gundo_preview_height = 40
-let g:gundo_right = 1
-
 " BuffergatorToggle
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_autoexpand_on_split = 0
@@ -251,3 +252,4 @@ augroup ft_javascript
     au FileType javascript setlocal foldmethod=marker
     au FileType javascript setlocal foldmarker={,}
 augroup END
+

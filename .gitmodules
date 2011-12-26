@@ -91,3 +91,6 @@
 [submodule "vim/bundle/snipmate-snippets"]
 	path = vim/bundle/snipmate-snippets
 	url = https://github.com/mephux/snipmate-snippets.git
+[submodule "vim/bundle/nodejs"]
+	path = vim/bundle/nodejs
+	url = https://github.com/mmalecki/vim-node.js
