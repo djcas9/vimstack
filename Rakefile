@@ -46,7 +46,7 @@ BUNDLES = {
 
   'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
  
-  'greplace' => 'https://github.com/vim-scripts/Greplace.vim',
+  'greplace' => 'https://github.com/vim-scripts/greplace.vim.git',
 
   # Snipmate Deps
 
