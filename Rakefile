@@ -37,6 +37,9 @@ BUNDLES = {
   'vim-extradite' => 'https://github.com/int3/vim-extradite.git',
   'yankring' => 'https://github.com/vim-scripts/YankRing.vim.git',
 
+
+  'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
+
   'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
   'css-color' => 'https://github.com/skammer/vim-css-color',
 

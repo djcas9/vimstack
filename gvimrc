@@ -18,7 +18,9 @@ set antialias                     " MacVim: smooth fonts.
 
 set encoding=utf-8                " Use UTF-8 everywhere.
 set guioptions-=T                 " Hide toolbar.
+set guioptions-=R
 set guioptions-=r                 " Don't show right scrollbar
+set guioptions-=L
 set guioptions-=l                 " Don't show left scrollbar
 
 " CHANGE DEFAULT ALT+LEFT/RIGHT
@@ -282,3 +284,4 @@ if exists("loaded_nerd_tree")
   call s:DefineCommand("mkdir", "Mkdir")
   cabbrev Edit! e!
 endif
+

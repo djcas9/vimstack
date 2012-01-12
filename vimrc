@@ -187,6 +187,18 @@ set backspace=indent,eol,start
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
+"nerdtree settings
+map <Leader>p :NERDTree<Enter>
+let g:NERDTreeMouseMode = 2
+let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+let NERDTreeShowBookmarks=0
+let g:NERDTreeWinSize = 30
+let NERDTreeHighlightCursorline=1
+
+" Show hidden files, too
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=0
+
 " Gundo Change View
 map <Leader>z :GundoToggle<Enter>
 let g:gundo_width = 60
@@ -204,6 +216,10 @@ nmap <D-b> :SCCompile<cr>
 nmap <D-r> :update<CR>:SCCompileRun<cr>
 vmap <D-r> :update<CR>:SCCompileRun<cr>
 imap <D-r> <Esc>:SCCompileRun<cr>
+
+" vim-pasta
+let g:pasta_disabled_filetypes = ['yaml']
+let g:pasta_enabled_filetypes = ['ruby', 'javascript', 'css', 'sh']
 
 " Force Save
 cmap w!! w !sudo tee % >/dev/null
@@ -251,3 +267,6 @@ augroup ft_javascript
     au FileType javascript setlocal foldmethod=marker
     au FileType javascript setlocal foldmarker={,}
 augroup END
+
+" Better ragtag default
+imap <D->> <C-X>=
