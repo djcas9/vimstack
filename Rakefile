@@ -21,7 +21,6 @@ BUNDLES = {
   'vim-ruby' => 'https://github.com/vim-ruby/vim-ruby.git',
   'vim-rails' => 'https://github.com/tpope/vim-rails.git',
   'vim-unimpaired' => 'https://github.com/tpope/vim-unimpaired.git',
-  'gundo.vim' => 'https://github.com/sjl/gundo.vim.git',
   'supertab' => 'https://github.com/ervandew/supertab.git',
   'vim-endwise' => 'https://github.com/tpope/vim-endwise.git',
   'vim-git' => 'https://github.com/tpope/vim-git.git',
@@ -30,18 +29,24 @@ BUNDLES = {
   'vim-surround' => 'https://github.com/tpope/vim-surround.git',
   'zencoding-vim' => 'https://github.com/mattn/zencoding-vim.git',
   'ack.vim' => 'https://github.com/mileszs/ack.vim.git',
+
+  # 
+  # Javascript 
+  #
   'vim-javascript' => 'https://github.com/mephux/vim-javascript.git',
+  'nodejs' => 'https://github.com/mmalecki/vim-node.js',
+  # 'vim-javascript' => 'https://github.com/mephux/vim-javascript.git',
+
   'vim-ragtag' => 'https://github.com/tpope/vim-ragtag.git',
   'SingleCompile' => 'https://github.com/vim-scripts/SingleCompile.git',
-  'matchit' => 'https://github.com/vim-scripts/matchit.zip.git',
   'vim-extradite' => 'https://github.com/int3/vim-extradite.git',
   'yankring' => 'https://github.com/vim-scripts/YankRing.vim.git',
-
 
   'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
 
   'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
-  'css-color' => 'https://github.com/skammer/vim-css-color',
+ 
+  'greplace' => 'https://github.com/vim-scripts/Greplace.vim',
 
   # Snipmate Deps
 

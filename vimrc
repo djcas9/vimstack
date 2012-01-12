@@ -21,6 +21,8 @@ set synmaxcol=2048                " Syntax coloring lines that are too
                                   " long just slows down the world
 
 set t_Co=256                      " 256 colors
+
+
 set background=dark
 colorscheme epix
 match LongLineWarning '\%>80v.\+'
@@ -56,8 +58,13 @@ if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
-" Save on blur
+" On Focus Lost
+" Enter normal mode
 au FocusLost * :wa
+
+" On Focus Lost
+" Enter normal mode
+au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
 " Awk
 nnoremap <leader>a :Ack<Space>

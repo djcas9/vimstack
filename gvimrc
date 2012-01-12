@@ -22,6 +22,8 @@ set guioptions-=R
 set guioptions-=r                 " Don't show right scrollbar
 set guioptions-=L
 set guioptions-=l                 " Don't show left scrollbar
+set guioptions-=R                 " Don't show right scrollbar
+set guioptions-=L                 " Don't show left scrollbar
 
 " CHANGE DEFAULT ALT+LEFT/RIGHT
 map <A-Right> w
@@ -31,11 +33,15 @@ map <A-Left> b
 vmap <S-M-Right> e
 vmap <S-M-Left> b
 
-imap <S-M-Right> <ESC> ve<C-g>
-imap <S-M-Left> <ESC> vb<C-g>
+imap <S-M-Right> <ESC>l<C-g><S-M-Right>
+imap <S-M-Left> <ESC><C-g><S-M-Left>
 
-nmap <S-M-Right> ve<C-g>
-nmap <S-M-Left> vb<C-g>
+nmap <S-M-Right> i<S-Right><C-g><S-M-Right>
+nmap <S-M-Left> a<S-Left><C-g><S-M-Left>
+
+" Buffer Navigation
+map <S-C-Right> :bn!<CR>
+map <S-C-Left> :bp!<CR>
 
 if has("gui_macvim")
   " Fullscreen takes up entire screen
@@ -56,6 +62,8 @@ if has("gui_macvim")
   map <D-e> :call StartTerm()<CR>
 
   " Command-/ to toggle comments
+  let g:NERDCreateDefaultMappings = 0
+  let g:NERDSpaceDelims = 1
   map <D-/> <plug>NERDCommenterToggle<CR>
   imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
 
@@ -99,9 +107,6 @@ if has("gui_macvim")
   map <D-M-Left> <C-w>h
   imap <D-M-Left> <C-w>h
 
-  " Move with ctrl+shift+(right/left)
-  map <C-S-Right> <C-W>l
-  map <C-S-Left> <C-w>h
 else
   " Ctrl-T for Command-T
   map <C-t> :CommandT<CR>
