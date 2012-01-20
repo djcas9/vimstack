@@ -22,7 +22,6 @@ set synmaxcol=2048                " Syntax coloring lines that are too
 
 set t_Co=256                      " 256 colors
 
-
 set background=dark
 colorscheme epix
 match LongLineWarning '\%>80v.\+'
@@ -60,7 +59,7 @@ endif
 
 " On Focus Lost
 " Enter normal mode
-au FocusLost * :wa
+"au FocusLost * :wa
 
 " On Focus Lost
 " Enter normal mode
@@ -122,8 +121,11 @@ set mousehide
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-" Command-T configuration
-let g:CommandTMaxHeight=20
+" CtrlP configuration
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
+" set wildignore+=.git\*,.hg\*,.svn\*                " for Windows
+" let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
 
 " :Extradite - Git log viewer
 map <Leader>o :Extradite!<CR>
@@ -143,11 +145,6 @@ set mousehide
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-" Command-T configuration
-let g:CommandTMaxHeight=20
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gg :topleft 100 :split Gemfile<cr>
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
