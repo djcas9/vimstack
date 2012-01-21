@@ -253,3 +253,27 @@ augroup ft_javascript
     au FileType javascript setlocal foldmarker={,}
 augroup END
 
+
+" Navigation
+" CHANGE DEFAULT ALT+LEFT/RIGHT
+map <M-Right> w
+map <M-Left> b
+
+map <S-A-Up> <S-[>
+map <S-A-Down> <S-]>
+
+" Change Shift Select
+vmap <S-A-Right> e
+vmap <S-A-Left> b
+
+imap <S-A-Right> <ESC>l<C-g><S-M-Right>
+imap <S-A-Left> <ESC><C-g><S-M-Left>
+
+nmap <S-A-Right> i<S-Right><C-g><S-M-Right>
+nmap <S-A-Left> a<S-Left><C-g><S-M-Left>
+
+" Buffer Navigation
+map <S-C-Right> :bn!<CR>
+map <S-C-Left> :bp!<CR>
+
+

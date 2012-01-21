@@ -31,8 +31,8 @@ map <A-Left> b
 vmap <S-M-Right> e
 vmap <S-M-Left> b
 
-imap <S-M-Right> <ESC>l<C-g><S-M-Right>
-imap <S-M-Left> <ESC><C-g><S-M-Left>
+imap <S-M-Right> <S-Right><C-g><S-M-Right>
+imap <S-M-Left> <S-Left><C-g><S-M-Left>
 
 nmap <S-M-Right> i<S-Right><C-g><S-M-Right>
 nmap <S-M-Left> a<S-Left><C-g><S-M-Left>
