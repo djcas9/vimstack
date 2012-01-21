@@ -30,18 +30,21 @@ BUNDLES = {
   'zencoding-vim' => 'https://github.com/mattn/zencoding-vim.git',
   'ack.vim' => 'https://github.com/mileszs/ack.vim.git',
 
-  # 
-  # Javascript 
-  #
+  # Javascript
+
   'vim-javascript' => 'https://github.com/mephux/vim-javascript.git',
   'nodejs' => 'https://github.com/mmalecki/vim-node.js',
-  # 'vim-javascript' => 'https://github.com/mephux/vim-javascript.git',
 
   'vim-ragtag' => 'https://github.com/tpope/vim-ragtag.git',
   'SingleCompile' => 'https://github.com/vim-scripts/SingleCompile.git',
   'vim-extradite' => 'https://github.com/int3/vim-extradite.git',
+  'yankring' => 'https://github.com/vim-scripts/YankRing.vim.git',
+
+  'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
   'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
-  
+  'greplace' => 'https://github.com/vim-scripts/greplace.vim.git',
+  'ctrlp' => 'https://github.com/kien/ctrlp.vim.git',
+
   # Snipmate Deps
 
   'vim-snipmate' => 'git://github.com/garbas/vim-snipmate.git',
@@ -84,7 +87,6 @@ task :link do
     next unless name.match(/vim/)
     drop(name, true)
   end
-
 end
 
 desc "Bundle Submodules"

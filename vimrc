@@ -22,7 +22,6 @@ set synmaxcol=2048                " Syntax coloring lines that are too
 
 set t_Co=256                      " 256 colors
 
-
 set background=dark
 colorscheme epix
 match LongLineWarning '\%>80v.\+'
@@ -60,7 +59,7 @@ endif
 
 " On Focus Lost
 " Enter normal mode
-au FocusLost * :wa
+"au FocusLost * :wa
 
 " On Focus Lost
 " Enter normal mode
@@ -122,8 +121,11 @@ set mousehide
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-" Command-T configuration
-let g:CommandTMaxHeight=20
+" CtrlP configuration
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
+" set wildignore+=.git\*,.hg\*,.svn\*                " for Windows
+" let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
 
 " :Extradite - Git log viewer
 map <Leader>o :Extradite!<CR>
@@ -143,11 +145,6 @@ set mousehide
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-" Command-T configuration
-let g:CommandTMaxHeight=20
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gg :topleft 100 :split Gemfile<cr>
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
@@ -194,6 +191,24 @@ set backspace=indent,eol,start
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
+"nerdtree settings
+map <Leader>p :NERDTree<Enter>
+let g:NERDTreeMouseMode = 2
+let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+let NERDTreeShowBookmarks=0
+let g:NERDTreeWinSize = 30
+let NERDTreeHighlightCursorline=1
+
+" Show hidden files, too
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=0
+
+" Gundo Change View
+map <Leader>z :GundoToggle<Enter>
+let g:gundo_width = 60
+let g:gundo_preview_height = 40
+let g:gundo_right = 1
+
 " BuffergatorToggle
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_autoexpand_on_split = 0
@@ -205,6 +220,10 @@ nmap <D-b> :SCCompile<cr>
 nmap <D-r> :update<CR>:SCCompileRun<cr>
 vmap <D-r> :update<CR>:SCCompileRun<cr>
 imap <D-r> <Esc>:SCCompileRun<cr>
+
+" vim-pasta
+let g:pasta_disabled_filetypes = ['yaml']
+let g:pasta_enabled_filetypes = ['ruby', 'javascript', 'css', 'sh']
 
 " Force Save
 cmap w!! w !sudo tee % >/dev/null
@@ -253,7 +272,6 @@ augroup ft_javascript
     au FileType javascript setlocal foldmarker={,}
 augroup END
 
-
 " Navigation
 " CHANGE DEFAULT ALT+LEFT/RIGHT
 map <M-Right> w
@@ -276,4 +294,5 @@ nmap <S-A-Left> a<S-Left><C-g><S-M-Left>
 map <S-C-Right> :bn!<CR>
 map <S-C-Left> :bp!<CR>
 
-
+" Better ragtag default
+imap <D->> <C-X>=

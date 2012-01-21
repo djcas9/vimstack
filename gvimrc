@@ -18,7 +18,9 @@ set antialias                     " MacVim: smooth fonts.
 
 set encoding=utf-8                " Use UTF-8 everywhere.
 set guioptions-=T                 " Hide toolbar.
+set guioptions-=R
 set guioptions-=r                 " Don't show right scrollbar
+set guioptions-=L
 set guioptions-=l                 " Don't show left scrollbar
 set guioptions-=R                 " Don't show right scrollbar
 set guioptions-=L                 " Don't show left scrollbar
@@ -47,8 +49,10 @@ if has("gui_macvim")
 
   " Command-T for CommandT
   macmenu &File.New\ Tab key=<D-T>
-  map <D-t> :CommandT<CR>
-  imap <D-t> <Esc>:CommandT<CR>
+  "map <D-t> :CommandT<CR>
+  "imap <D-t> <Esc>:CommandT<CR>
+  map <D-t> :CtrlP<CR>
+  imap <D-t> <Esc>:CtrlP<CR>
 
   " Command-Return for fullscreen
   macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
@@ -287,3 +291,4 @@ if exists("loaded_nerd_tree")
   call s:DefineCommand("mkdir", "Mkdir")
   cabbrev Edit! e!
 endif
+
