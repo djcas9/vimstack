@@ -121,6 +121,10 @@ set mousehide
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
+" delimitMate 
+" let loaded_delimitMate = 1
+" let delimitMate_excluded_ft = "javascript"
+
 " CtrlP configuration
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'

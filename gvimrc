@@ -43,6 +43,10 @@ nmap <S-M-Left> a<S-Left><C-g><S-M-Left>
 map <S-C-Right> :bn!<CR>
 map <S-C-Left> :bp!<CR>
 
+" QuickFix Navigation
+map <C-z> :cprevious<CR>
+map <C-x> :cnext<CR>
+
 if has("gui_macvim")
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
