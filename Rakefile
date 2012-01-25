@@ -22,6 +22,7 @@ BUNDLES = {
   'vim-rails' => 'https://github.com/tpope/vim-rails.git',
   'vim-unimpaired' => 'https://github.com/tpope/vim-unimpaired.git',
   'supertab' => 'https://github.com/ervandew/supertab.git',
+# 'vim-neocomplcache' => 'https://github.com/Shougo/neocomplcache.git',
   'vim-endwise' => 'https://github.com/tpope/vim-endwise.git',
   'vim-git' => 'https://github.com/tpope/vim-git.git',
   'vim-rake' => 'https://github.com/tpope/vim-rake.git',
