@@ -33,11 +33,33 @@ map <A-Left> b
 vmap <S-M-Right> e
 vmap <S-M-Left> b
 
-imap <S-M-Right> <ESC>l<C-g><S-M-Right>
-imap <S-M-Left> <ESC><C-g><S-M-Left>
+function MoveMetaLeft()
+  exe "normal \<s-m-left>"
+endfunction
 
-nmap <S-M-Right> i<S-Right><C-g><S-M-Right>
-nmap <S-M-Left> a<S-Left><C-g><S-M-Left>
+function MoveMetaRight()
+  let current = col(".")
+
+  if current == 1
+    exe "normal \<s-m-right>"
+  else
+    exe "normal l\<s-m-right>"
+  endif 
+endfunction
+
+function MoveMetaLeftInsert()
+  exe "startinsert \<s-left>\<c-g>\<s-m-left>"
+endfunction
+
+function MoveMetaRightInsert()
+  exe "startinsert \<s-right>\<c-g>\<s-m-right>"
+endfunction
+
+imap <S-M-Right> <ESC>:call MoveMetaRight()<CR>
+imap <S-M-Left> <ESC>:call MoveMetaLeft()<CR>
+
+nmap <S-M-Right> i<S-Right><S-M-Right>
+nmap <S-M-Left> a<S-Left><S-M-Left>
 
 " Buffer Navigation
 map <S-C-Right> :bn!<CR>
