@@ -58,8 +58,8 @@ endfunction
 imap <S-M-Right> <ESC>:call MoveMetaRight()<CR>
 imap <S-M-Left> <ESC>:call MoveMetaLeft()<CR>
 
-nmap <S-M-Right> i<S-Right><S-M-Right>
-nmap <S-M-Left> a<S-Left><S-M-Left>
+nmap <S-M-Right> i<S-Right><c-g><S-M-Right>
+nmap <S-M-Left> a<S-Left><c-g><S-M-Left>
 
 " Buffer Navigation
 map <S-C-Right> :bn!<CR>
@@ -73,10 +73,8 @@ if has("gui_macvim")
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
 
-  " Command-T for CommandT
+  " Command-T for CTRLp
   macmenu &File.New\ Tab key=<D-T>
-  "map <D-t> :CommandT<CR>
-  "imap <D-t> <Esc>:CommandT<CR>
   map <D-t> :CtrlP<CR>
   imap <D-t> <Esc>:CtrlP<CR>
 

@@ -94,3 +94,9 @@
 [submodule "vim/bundle/snipmate-snippets"]
 	path = vim/bundle/snipmate-snippets
 	url = https://github.com/mephux/snipmate-snippets.git
+[submodule "vim/bundle/vim-ruby-debugger"]
+	path = vim/bundle/vim-ruby-debugger
+	url = https://github.com/astashov/vim-ruby-debugger.git
+[submodule "vim/bundle/vim-smartusline"]
+	path = vim/bundle/vim-smartusline
+	url = https://github.com/molok/vim-smartusline.git

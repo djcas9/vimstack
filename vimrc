@@ -248,9 +248,19 @@ set statusline+=%#error#
 set statusline+=%{&paste?'[paste]':''}
 set statusline+=%*
 
+" Ruby Debug Status Line
+" set statusline+=%{ruby_debugger#statusline()}
+
 " Column/Line Information
 set statusline+=%=%-10(\ %l,%c-%v\ %)
 set statusline+=\ %P "percent through file
+
+" Smartusline
+let g:smartusline_string_to_highlight = '(%n) %f '
+let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
+let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=58 ctermfg=black'
+let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
+let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black'
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -279,3 +289,15 @@ augroup END
 " Better ragtag default
 imap <D->> <C-X>=
 
+" Ruby Debug
+" let g:ruby_debugger_progname = 'mvim'
+" map <Leader>B  :call g:RubyDebugger.toggle_breakpoint()<CR>
+" map <Leader>V  :call g:RubyDebugger.open_variables()<CR>
+" map <Leader>M  :call g:RubyDebugger.open_breakpoints()<CR>
+" map <Leader>T  :call g:RubyDebugger.open_frames()<CR>
+" map <Leader>S  :call g:RubyDebugger.step()<CR>
+" map <Leader>F  :call g:RubyDebugger.finish()<CR>
+" map <Leader>N  :call g:RubyDebugger.next()<CR>
+" map <Leader>C  :call g:RubyDebugger.continue()<CR>
+" map <Leader>E  :call g:RubyDebugger.exit()<CR>
+" map <Leader>D  :call g:RubyDebugger.remove_breakpoints()<CR>

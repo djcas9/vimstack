@@ -10,7 +10,8 @@ IGNORE = [
 ]
 
 BUNDLES = {
-
+  'vim-smartusline' => 'https://github.com/molok/vim-smartusline.git',
+# 'vim-ruby-debugger' => 'https://github.com/astashov/vim-ruby-debugger.git',
   'vim-bundler' => 'https://github.com/tpope/vim-bundler.git',
   'vim-buffergator' => 'https://github.com/jeetsukumaran/vim-buffergator.git',
   'delimitMate' => 'https://github.com/Raimondi/delimitMate.git',
@@ -67,7 +68,6 @@ end
 
 desc "Install Vimux"
 task :install do
-  puts "\n"
   Rake::Task["bundle"].invoke
   
   puts "\n"
