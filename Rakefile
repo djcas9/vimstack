@@ -11,6 +11,7 @@ IGNORE = [
 
 BUNDLES = {
 
+  'vim-handlebars' => 'https://github.com/nono/vim-handlebars.git',
   'vim-bundler' => 'https://github.com/tpope/vim-bundler.git',
   'vim-buffergator' => 'https://github.com/jeetsukumaran/vim-buffergator.git',
   'delimitMate' => 'https://github.com/Raimondi/delimitMate.git',
@@ -52,6 +53,7 @@ BUNDLES = {
   'tlib_vim' => 'https://github.com/tomtom/tlib_vim.git',
   'vim-addon-mw-utils' => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
   'snipmate-snippets' => 'https://github.com/mephux/snipmate-snippets.git'
+
 }
 
 desc "Clean"
