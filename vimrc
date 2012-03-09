@@ -1,4 +1,4 @@
-" Mephux <dustin.webber[at]gmail.com> 
+" Mephux <dustin.webber[at]gmail.com>
 " ~/.VIMRC
 
 set nocompatible                   " Must come first because it changes others
@@ -36,7 +36,7 @@ set lazyredraw                    " avoid scrolling problems
 set equalalways                   " keep windows equal when splitting (default)
 set eadirection=both              " ver/hor/both - where does equalalways apply
 set winheight=10                  " height of current window
-set winwidth=80                   " width of current window
+set winwidth=85                   " width of current window
 
 set showcmd
 set laststatus=2                  " Show the status line all the time
@@ -121,7 +121,7 @@ set mousehide
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-" delimitMate 
+" delimitMate
 " let loaded_delimitMate = 1
 " let delimitMate_excluded_ft = "javascript"
 
@@ -188,6 +188,9 @@ au BufRead,BufNewFile *.ejs set ft=html
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
 
+" Add NASL
+au BufNewFile,BufRead *.nasl set ft=nasl
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -220,7 +223,7 @@ let g:buffergator_suppress_keymaps = 1
 let g:buffergator_split_size = 20
 map <leader>b :BuffergatorToggle<Enter>
 
-nmap <D-b> :SCCompile<cr> 
+nmap <D-b> :SCCompile<cr>
 nmap <D-r> :update<CR>:SCCompileRun<cr>
 vmap <D-r> :update<CR>:SCCompileRun<cr>
 imap <D-r> <Esc>:SCCompileRun<cr>
@@ -237,11 +240,19 @@ cmap w!! w !sudo tee % >/dev/null
 autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd filetype svn,*commit* setlocal spell
 
+" Smartusline
+let g:smartusline_string_to_highlight = '%f'
+let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
+let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=58 ctermfg=black'
+let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
+let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black'
+
 " Status Line Setup
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\
+set statusline=[%n]\ %<%f\ %h%w%m%r%y
+"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\
 
 " Git branch and status
-set statusline+=%{fugitive#statusline()}
+set statusline+=\ %{fugitive#statusline()}
 
 " Display a warning if &paste is set
 set statusline+=%#error#
@@ -255,13 +266,6 @@ set statusline+=%*
 set statusline+=%=%-10(\ %l,%c-%v\ %)
 set statusline+=\ %P "percent through file
 
-" Smartusline
-let g:smartusline_string_to_highlight = '(%n) %f '
-let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
-let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=58 ctermfg=black'
-let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
-let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black'
-
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
@@ -273,7 +277,7 @@ nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Highlight the current line and column Don't do this - It makes window
 " redraws painfully slow
-set nocursorline 
+set nocursorline
 set nocursorcolumn
 
 " Remove Ex mode Replace with a format helper
@@ -285,24 +289,6 @@ augroup ft_javascript
     au FileType javascript setlocal foldmethod=marker
     au FileType javascript setlocal foldmarker={,}
 augroup END
-
-" Navigation
-" CHANGE DEFAULT ALT+LEFT/RIGHT
-map <M-Right> w
-map <M-Left> b
-
-map <S-A-Up> <S-[>
-map <S-A-Down> <S-]>
-
-" Change Shift Select
-vmap <S-A-Right> e
-vmap <S-A-Left> b
-
-imap <S-A-Right> <ESC>l<C-g><S-M-Right>
-imap <S-A-Left> <ESC><C-g><S-M-Left>
-
-nmap <S-A-Right> i<S-Right><C-g><S-M-Right>
-nmap <S-A-Left> a<S-Left><C-g><S-M-Left>
 
 " Buffer Navigation
 map <S-C-Right> :bn!<CR>

@@ -10,13 +10,11 @@ IGNORE = [
 ]
 
 BUNDLES = {
-<<<<<<< HEAD
 
+  'vim-nasl' => 'https://github.com/mephux/nasl.vim.git',
   'vim-handlebars' => 'https://github.com/nono/vim-handlebars.git',
-=======
   'vim-smartusline' => 'https://github.com/molok/vim-smartusline.git',
 # 'vim-ruby-debugger' => 'https://github.com/astashov/vim-ruby-debugger.git',
->>>>>>> 3b81ecaceabd3a1e6319dcd48a2c252f69f40f8b
   'vim-bundler' => 'https://github.com/tpope/vim-bundler.git',
   'vim-buffergator' => 'https://github.com/jeetsukumaran/vim-buffergator.git',
   'delimitMate' => 'https://github.com/Raimondi/delimitMate.git',
