@@ -103,3 +103,9 @@
 [submodule "vim/bundle/vim-nasl"]
 	path = vim/bundle/vim-nasl
 	url = https://github.com/mephux/nasl.vim.git
+[submodule "vim/bundle/vim-smartinput"]
+	path = vim/bundle/vim-smartinput
+	url = https://github.com/kana/vim-smartinput.git
+[submodule "vim/bundle/vim-tagbar"]
+	path = vim/bundle/vim-tagbar
+	url = https://github.com/majutsushi/tagbar.git

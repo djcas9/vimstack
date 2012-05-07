@@ -57,16 +57,16 @@ if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
-" On Focus Lost
-" Enter normal mode
-"au FocusLost * :wa
+" Yank text to the OS X clipboard
+map <leader>y "*y
+map <leader>yy "*Y
+
+" Preserve indentation while pasting text from the OS X clipboard
+" noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " On Focus Lost
 " Enter normal mode
-au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
-
-" Awk
-nnoremap <leader>a :Ack<Space>
+" au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
 if has("gui_macvim")
@@ -121,37 +121,31 @@ set mousehide
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-" delimitMate
-" let loaded_delimitMate = 1
-" let delimitMate_excluded_ft = "javascript"
-
 " CtrlP configuration
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
-" set wildignore+=.git\*,.hg\*,.svn\*                " for Windows
-" let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
 
 " :Extradite - Git log viewer
 map <Leader>o :Extradite!<CR>
 
+" Awk
+nnoremap <leader>f :Ack<Space>
+
 " Don't make a backup before overwriting a file.
 set nobackup
 set nowritebackup
+
 " Keep swap files in one location
 " +=,$HOME/.vim/tmp/
 set directory=$HOME/.vim/tmp/,.
 
 " Hide the mouse pointer while typing
-set mousehide
+" set mousehide
 
 " Without setting this, ZoomWin restores windows in a way that causes
 " equalalways behavior to be triggered the next time CommandT is used.
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
-
-" http://vimcasts.org/e/14
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
 " :Extradite - Git log viewer
 map <Leader>o :Extradite!<CR>
@@ -163,9 +157,6 @@ set scrolloff=8
 " clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
 
-" Zencoding Keymap
-let g:user_zen_expandabbr_key = '<D-e>'
-
 " Remember last location in file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -176,9 +167,6 @@ endif
 nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Edit .gvimrc
-nmap <leader>g :tabedit $MYGVIMRC<CR>
-
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
@@ -188,17 +176,17 @@ au BufRead,BufNewFile *.ejs set ft=html
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
 
-" Add NASL
-au BufNewFile,BufRead *.nasl set ft=nasl
-
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
 " Bubble multiple lines
-vmap <C-Up> [egv
 vmap <C-Down> ]egv
+vmap <C-Up> [egv
 
-"nerdtree settings
+" Tagbar
+map <Leader>t <ESC>:TagbarToggle<cr>
+
+" Nerdtree settings
 map <Leader>p :NERDTree<Enter>
 let g:NERDTreeMouseMode = 2
 let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
@@ -210,12 +198,6 @@ let NERDTreeHighlightCursorline=1
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=0
 
-" Gundo Change View
-map <Leader>z :GundoToggle<Enter>
-let g:gundo_width = 60
-let g:gundo_preview_height = 40
-let g:gundo_right = 1
-
 " BuffergatorToggle
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_autoexpand_on_split = 0
@@ -223,14 +205,14 @@ let g:buffergator_suppress_keymaps = 1
 let g:buffergator_split_size = 20
 map <leader>b :BuffergatorToggle<Enter>
 
-nmap <D-b> :SCCompile<cr>
-nmap <D-r> :update<CR>:SCCompileRun<cr>
-vmap <D-r> :update<CR>:SCCompileRun<cr>
-imap <D-r> <Esc>:SCCompileRun<cr>
+nmap <Leader>B :SCCompile<cr>
+nmap <Leader>r :update<CR>:SCCompileRun<cr>
+vmap <Leader>r :update<CR>:SCCompileRun<cr>
+imap <Leader>r <Esc>:SCCompileRun<cr>
 
 " vim-pasta
 let g:pasta_disabled_filetypes = ['yaml']
-let g:pasta_enabled_filetypes = ['ruby', 'javascript', 'css', 'sh']
+" let g:pasta_enabled_filetypes = ['ruby', 'javascript', 'css', 'sh']
 
 " Force Save
 cmap w!! w !sudo tee % >/dev/null
@@ -249,7 +231,6 @@ let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=lightgreen cter
 
 " Status Line Setup
 set statusline=[%n]\ %<%f\ %h%w%m%r%y
-"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\
 
 " Git branch and status
 set statusline+=\ %{fugitive#statusline()}
@@ -258,9 +239,6 @@ set statusline+=\ %{fugitive#statusline()}
 set statusline+=%#error#
 set statusline+=%{&paste?'[paste]':''}
 set statusline+=%*
-
-" Ruby Debug Status Line
-" set statusline+=%{ruby_debugger#statusline()}
 
 " Column/Line Information
 set statusline+=%=%-10(\ %l,%c-%v\ %)
@@ -286,16 +264,23 @@ nnoremap Q gqip
 augroup ft_javascript
     au!
 
-    au FileType javascript setlocal foldmethod=marker
-    au FileType javascript setlocal foldmarker={,}
+au FileType javascript setlocal foldmethod=marker
+au FileType javascript setlocal foldmarker={,}
 augroup END
 
-" Buffer Navigation
-map <S-C-Right> :bn!<CR>
-map <S-C-Left> :bp!<CR>
+nmap <C-j> }
+nmap <C-K> {
+nmap <C-h> b
+nmap <C-l> e
 
-" Better ragtag default
-imap <D->> <C-X>=
+" Command-/ to toggle comments
+let g:NERDCreateDefaultMappings = 0
+let g:NERDSpaceDelims = 1
+map <Leader>c <plug>NERDCommenterToggle<CR>
+
+" QuickFix Navigation
+map <c-z> :cprevious<CR>
+map <c-x> :cnext<CR>
 
 " Ruby Debug
 " let g:ruby_debugger_progname = 'mvim'
@@ -308,4 +293,4 @@ imap <D->> <C-X>=
 " map <Leader>N  :call g:RubyDebugger.next()<CR>
 " map <Leader>C  :call g:RubyDebugger.continue()<CR>
 " map <Leader>E  :call g:RubyDebugger.exit()<CR>
-" map <Leader>D  :call g:RubyDebugger.remove_breakpoints()<CR>
+

@@ -33,9 +33,6 @@ map <A-Left> b
 vmap <S-M-Right> e
 vmap <S-M-Left> b
 
-"imap <S-M-Right> <S-Right><C-g><S-M-Right>
-"imap <S-M-Left> <S-Left><C-g><S-M-Left>
-
 function MoveMetaLeft()
   exe "normal \<s-m-left>"
 endfunction
@@ -73,6 +70,10 @@ map <C-z> :cprevious<CR>
 map <C-x> :cnext<CR>
 
 if has("gui_macvim")
+
+  " Zencoding Keymap
+  let g:user_zen_expandabbr_key = '<D-e>'
+
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
 

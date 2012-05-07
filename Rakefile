@@ -10,14 +10,13 @@ IGNORE = [
 ]
 
 BUNDLES = {
-
-  'vim-nasl' => 'https://github.com/mephux/nasl.vim.git',
+  'vim-tagbar' => 'https://github.com/majutsushi/tagbar.git',
   'vim-handlebars' => 'https://github.com/nono/vim-handlebars.git',
   'vim-smartusline' => 'https://github.com/molok/vim-smartusline.git',
-# 'vim-ruby-debugger' => 'https://github.com/astashov/vim-ruby-debugger.git',
   'vim-bundler' => 'https://github.com/tpope/vim-bundler.git',
   'vim-buffergator' => 'https://github.com/jeetsukumaran/vim-buffergator.git',
-  'delimitMate' => 'https://github.com/Raimondi/delimitMate.git',
+  'vim-smartinput' => 'https://github.com/kana/vim-smartinput.git',
+# 'delimitMate' => 'https://github.com/Raimondi/delimitMate.git',
   'nerdcommenter' => 'https://github.com/scrooloose/nerdcommenter.git',
   'vim-align' => 'https://github.com/tsaleh/vim-align.git',
   'vim-fugitive' => 'https://github.com/tpope/vim-fugitive.git',
@@ -36,15 +35,13 @@ BUNDLES = {
   'ack.vim' => 'https://github.com/mileszs/ack.vim.git',
 
   # Javascript
-
   'vim-javascript' => 'https://github.com/mephux/vim-javascript.git',
   'nodejs' => 'https://github.com/mmalecki/vim-node.js',
 
+  # Other
   'vim-ragtag' => 'https://github.com/tpope/vim-ragtag.git',
   'SingleCompile' => 'https://github.com/vim-scripts/SingleCompile.git',
   'vim-extradite' => 'https://github.com/int3/vim-extradite.git',
-  'yankring' => 'https://github.com/vim-scripts/YankRing.vim.git',
-
   'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
   'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
   'greplace' => 'https://github.com/vim-scripts/greplace.vim.git',
@@ -56,11 +53,15 @@ BUNDLES = {
   'tlib_vim' => 'https://github.com/tomtom/tlib_vim.git',
   'vim-addon-mw-utils' => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
   'snipmate-snippets' => 'https://github.com/mephux/snipmate-snippets.git'
-
 }
 
 desc "Clean"
 task :clean do
+
+  puts "Removing old vim configs"
+  `rm -rf ~/.vim*`
+  `rm -rf ~/.gvim*`
+
   items = BUNDLES.keys
   items.each do |item|
     puts "Removed vim/bundle/#{item}"
@@ -73,9 +74,6 @@ end
 desc "Install Vimux"
 task :install do
   Rake::Task["bundle"].invoke
-  
-  puts "\n"
-  Rake::Task["update"].invoke
 
   puts "\n"
   Rake::Task["link"].invoke
