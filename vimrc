@@ -270,8 +270,15 @@ augroup END
 
 nmap <C-j> }
 nmap <C-K> {
-nmap <C-h> b
-nmap <C-l> e
+
+nmap <C-Left> ^
+nmap <C-Right> $
+
+nmap <A-Left> b
+nmap <A-Right> w
+
+nmap <A-Up> {
+nmap <A-Down> } 
 
 " Command-/ to toggle comments
 let g:NERDCreateDefaultMappings = 0
@@ -294,3 +301,9 @@ map <c-x> :cnext<CR>
 " map <Leader>C  :call g:RubyDebugger.continue()<CR>
 " map <Leader>E  :call g:RubyDebugger.exit()<CR>
 
+map [1;5A <C-Up>
+map [1;5B <C-Down>
+map [1;2D <S-Left>
+map [1;2C <S-Right>
+cmap [1;2D <S-Left>
+cmap [1;2C <S-Right>
