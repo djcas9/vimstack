@@ -20,6 +20,8 @@ set ttymouse=xterm2
 set synmaxcol=2048                " Syntax coloring lines that are too
                                   " long just slows down the world
 
+set viminfo='20,\"80              " read/write a .viminfo file, don't store more
+
 set t_Co=256                      " 256 colors
 
 set background=dark
@@ -71,8 +73,15 @@ map <leader>yy "*Y
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
 if has("gui_macvim")
   let macvim_hig_shift_movement = 1
-  set selection=exclusive
+
+  " Zencoding Keymap - MacOSX
+  let g:user_zen_expandabbr_key = '<D-e>'
+else
+  " Zencoding Keymap - Linux/Windows/Terminal
+  let g:user_zen_expandabbr_key = '<C-e>'
 endif
+
+set selection=exclusive           " Select
 
 set foldmethod=indent             " Folding settings
 set foldnestmax=3                 " deepest fold is 3 levels
@@ -122,7 +131,7 @@ set mousehide
 set noequalalways
 
 " CtrlP configuration
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
 
 " :Extradite - Git log viewer
@@ -163,9 +172,17 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
+" SnipMate
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {} 
+let g:snipMate.scope_aliases['handlebars'] = 'html'
+
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>ac :tabedit ~/.vim/autocorrect.vim<CR>
+source ~/.vim/autocorrect.vim
+nmap <silent> <leader>ss :tabedit ~/.vim/bundle/snipmate-snippets/snippets/_.snippets<CR>
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
@@ -193,6 +210,8 @@ let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
 let NERDTreeShowBookmarks=0
 let g:NERDTreeWinSize = 30
 let NERDTreeHighlightCursorline=1
+nmap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
+
 
 " Show hidden files, too
 let NERDTreeShowFiles=1
@@ -268,18 +287,6 @@ au FileType javascript setlocal foldmethod=marker
 au FileType javascript setlocal foldmarker={,}
 augroup END
 
-nmap <C-j> }
-nmap <C-K> {
-
-nmap <C-Left> ^
-nmap <C-Right> $
-
-nmap <A-Left> b
-nmap <A-Right> w
-
-nmap <A-Up> {
-nmap <A-Down> } 
-
 " Command-/ to toggle comments
 let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1
@@ -288,6 +295,94 @@ map <Leader>c <plug>NERDCommenterToggle<CR>
 " QuickFix Navigation
 map <c-z> :cprevious<CR>
 map <c-x> :cnext<CR>
+
+" Quickfix (open/close using <leader>f)
+nmap <silent> <leader>f :QFix<CR>
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+    unlet g:qfix_win
+  else
+    copen 10
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+
+" Use the damn hjkl keys
+" map <up> <nop>
+" map <down> <nop>
+" map <left> <nop>
+" map <right> <nop>
+
+" make p in Visual mode replace the selected text with the yank register
+" vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
+
+" Quick yanking to the end of the line
+nmap Y ^y$
+
+" Folding
+nnoremap <Space> za
+vnoremap <Space> za
+
+" highlight conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" shortcut to jump to next conflict marker
+nmap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+
+" Creating underline/overline headings for markup languages
+" Inspired by http://sphinx.pocoo.org/rest.html#sections
+nnoremap <leader>1 yyPVr=jyypVr=
+nnoremap <leader>2 yyPVr*jyypVr*
+nnoremap <leader>3 yypVr=
+nnoremap <leader>4 yypVr-
+nnoremap <leader>5 yypVr^
+nnoremap <leader>6 yypVr"
+
+" Keep search matches in the middle of the window and pulse the line when moving
+" to them.
+nnoremap n n:call PulseCursorLine()<cr>
+nnoremap N N:call PulseCursorLine()<cr>
+
+function! PulseCursorLine()
+    let current_window = winnr()
+
+    windo set nocursorline
+    execute current_window . 'wincmd w'
+
+    setlocal cursorline
+
+    redir => old_hi
+        silent execute 'hi CursorLine'
+    redir END
+    let old_hi = split(old_hi, '\n')[0]
+    let old_hi = substitute(old_hi, 'xxx', '', '')
+
+    hi CursorLine guibg=#3a3a3a
+    redraw
+    sleep 20m
+
+    hi CursorLine guibg=#4a4a4a
+    redraw
+    sleep 30m
+
+    hi CursorLine guibg=#3a3a3a
+    redraw
+    sleep 30m
+
+    hi CursorLine guibg=#2a2a2a
+    redraw
+    sleep 20m
+
+    execute 'hi ' . old_hi
+
+    windo set cursorline
+    execute current_window . 'wincmd w'
+endfunction
+
+" Git Stuff
+nmap <leader>gs :Gstatus<CR><C-w>20+
 
 " Ruby Debug
 " let g:ruby_debugger_progname = 'mvim'
@@ -301,9 +396,23 @@ map <c-x> :cnext<CR>
 " map <Leader>C  :call g:RubyDebugger.continue()<CR>
 " map <Leader>E  :call g:RubyDebugger.exit()<CR>
 
-map [1;5A <C-Up>
-map [1;5B <C-Down>
-map [1;2D <S-Left>
-map [1;2C <S-Right>
-cmap [1;2D <S-Left>
-cmap [1;2C <S-Right>
+" Nav Hacks
+map <C-c> <plug>NERDCommenterToggle<CR>
+map <Leader>w <ESC>:w<CR>
+
+nmap <silent> <C-Left> e
+nmap <silent> <C-Right> w
+nmap <silent> <C-Up> {
+nmap <silent> <C-Down> }
+
+nmap <silent> <C-A> ^
+nmap <silent> <C-E> $
+nmap <silent> <M-Up> G
+nmap <silent> <M-Down> gg
+
+vmap <silent> <C-Left> b
+vmap <silent> <C-Right> w
+vmap <silent> <C-Up> {
+vmap <silent> <C-Down> }
+" Nav Hacks End
+

@@ -10,6 +10,7 @@ IGNORE = [
 ]
 
 BUNDLES = {
+  'vim-iterm' => 'https://github.com/sjl/vitality.vim.git',
   'vim-tagbar' => 'https://github.com/majutsushi/tagbar.git',
   'vim-handlebars' => 'https://github.com/nono/vim-handlebars.git',
   'vim-smartusline' => 'https://github.com/molok/vim-smartusline.git',

@@ -109,3 +109,6 @@
 [submodule "vim/bundle/vim-tagbar"]
 	path = vim/bundle/vim-tagbar
 	url = https://github.com/majutsushi/tagbar.git
+[submodule "vim/bundle/vim-iterm"]
+	path = vim/bundle/vim-iterm
+	url = https://github.com/sjl/vitality.vim.git
