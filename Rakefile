@@ -116,6 +116,12 @@ end
 
 desc "Update Vim Plugins"
 task :update do
+  `git submodule init`
+  `git submodule update`
+end
+
+desc "[OLD] Update Vim Plugins"
+task :update_old do
 
   puts "[~] Updating Vim plugins"
 
