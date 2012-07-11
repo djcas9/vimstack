@@ -112,3 +112,15 @@
 [submodule "vim/bundle/vim-iterm"]
 	path = vim/bundle/vim-iterm
 	url = https://github.com/sjl/vitality.vim.git
+[submodule "vim/bundle/vim-webapi"]
+	path = vim/bundle/vim-webapi
+	url = https://github.com/mattn/webapi-vim.git
+[submodule "vim/bundle/vim-vroom"]
+	path = vim/bundle/vim-vroom
+	url = https://github.com/skalnik/vim-vroom.git
+[submodule "vim/bundle/vim-zoomwin"]
+	path = vim/bundle/vim-zoomwin
+	url = https://github.com/vim-scripts/ZoomWin.git
+[submodule "vim/bundle/vim-easymotion"]
+	path = vim/bundle/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion.git

@@ -36,8 +36,8 @@ set lazyredraw                    " avoid scrolling problems
 
 " Windowing settings
 set equalalways                   " keep windows equal when splitting (default)
-set eadirection=both              " ver/hor/both - where does equalalways apply
-set winheight=10                  " height of current window
+set eadirection=hor               " ver/hor/both - where does equalalways apply
+" set winheight=10                  " height of current window
 set winwidth=85                   " width of current window
 
 set showcmd
@@ -71,17 +71,46 @@ map <leader>yy "*Y
 " au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
-if has("gui_macvim")
-  let macvim_hig_shift_movement = 1
+if has("gui")
 
-  " Zencoding Keymap - MacOSX
-  let g:user_zen_expandabbr_key = '<D-e>'
+  if has("gui_macvim")
+    let macvim_hig_shift_movement = 1
+    " Zencoding Keymap - MacOSX
+    let g:user_zen_expandabbr_key = '<D-e>'
+  endif
+
+  set selection=exclusive           " Select
+
 else
   " Zencoding Keymap - Linux/Windows/Terminal
   let g:user_zen_expandabbr_key = '<C-e>'
+
+  map <Leader>w <ESC>:w<CR>
+
+  nmap <silent> <M-Left> b
+  nmap <silent> <M-Right> w
+  nmap <silent> <M-Up> {
+  nmap <silent> <M-Down> }
+
+  nmap <silent> <C-A> ^
+  nmap <silent> <C-E> $
+
+  nmap <silent> <C-Up> gg
+  nmap <silent> <C-Down> G
+  
+  nmap <silent> <C-Left> ^
+  nmap <silent> <C-Right> $
+
+  vmap <silent> <C-Left> b
+  vmap <silent> <C-Right> w
+
+  vmap <silent> <C-Up> gg
+  vmap <silent> <C-Down> G
+  " Nav Hacks End
 endif
 
-set selection=exclusive           " Select
+" Nav Hacks
+map <C-c> <plug>NERDCommenterToggle<CR>
 
 set foldmethod=indent             " Folding settings
 set foldnestmax=3                 " deepest fold is 3 levels
@@ -197,8 +226,8 @@ au BufNewFile,BufRead *.json set ft=javascript
 set backspace=indent,eol,start
 
 " Bubble multiple lines
-vmap <C-Down> ]egv
-vmap <C-Up> [egv
+" vmap <C-Down> ]egv
+" vmap <C-Up> [egv
 
 " Tagbar
 map <Leader>t <ESC>:TagbarToggle<cr>
@@ -395,24 +424,4 @@ nmap <leader>gs :Gstatus<CR><C-w>20+
 " map <Leader>N  :call g:RubyDebugger.next()<CR>
 " map <Leader>C  :call g:RubyDebugger.continue()<CR>
 " map <Leader>E  :call g:RubyDebugger.exit()<CR>
-
-" Nav Hacks
-map <C-c> <plug>NERDCommenterToggle<CR>
-map <Leader>w <ESC>:w<CR>
-
-nmap <silent> <C-Left> e
-nmap <silent> <C-Right> w
-nmap <silent> <C-Up> {
-nmap <silent> <C-Down> }
-
-nmap <silent> <C-A> ^
-nmap <silent> <C-E> $
-nmap <silent> <M-Up> G
-nmap <silent> <M-Down> gg
-
-vmap <silent> <C-Left> b
-vmap <silent> <C-Right> w
-vmap <silent> <C-Up> {
-vmap <silent> <C-Down> }
-" Nav Hacks End
 

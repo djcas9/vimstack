@@ -9,15 +9,24 @@ IGNORE = [
   'vimux.png'
 ]
 
+PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle; 
+  curl -so ~/.vim/autoload/pathogen.vim \
+  https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim 
+}
+
 BUNDLES = {
-  'vim-iterm' => 'https://github.com/sjl/vitality.vim.git',
+
+  'vim-easymotion' => 'https://github.com/Lokaltog/vim-easymotion.git',
+  'vim-vroom' => 'https://github.com/skalnik/vim-vroom.git',
+  'vim-zoomwin' => 'https://github.com/vim-scripts/ZoomWin.git',
   'vim-tagbar' => 'https://github.com/majutsushi/tagbar.git',
   'vim-handlebars' => 'https://github.com/nono/vim-handlebars.git',
   'vim-smartusline' => 'https://github.com/molok/vim-smartusline.git',
   'vim-bundler' => 'https://github.com/tpope/vim-bundler.git',
   'vim-buffergator' => 'https://github.com/jeetsukumaran/vim-buffergator.git',
   'vim-smartinput' => 'https://github.com/kana/vim-smartinput.git',
-# 'delimitMate' => 'https://github.com/Raimondi/delimitMate.git',
+
+  # 'delimitMate' => 'https://github.com/Raimondi/delimitMate.git',
   'nerdcommenter' => 'https://github.com/scrooloose/nerdcommenter.git',
   'vim-align' => 'https://github.com/tsaleh/vim-align.git',
   'vim-fugitive' => 'https://github.com/tpope/vim-fugitive.git',
@@ -26,7 +35,8 @@ BUNDLES = {
   'vim-rails' => 'https://github.com/tpope/vim-rails.git',
   'vim-unimpaired' => 'https://github.com/tpope/vim-unimpaired.git',
   'supertab' => 'https://github.com/ervandew/supertab.git',
-# 'vim-neocomplcache' => 'https://github.com/Shougo/neocomplcache.git',
+  
+  # 'vim-neocomplcache' => 'https://github.com/Shougo/neocomplcache.git',
   'vim-endwise' => 'https://github.com/tpope/vim-endwise.git',
   'vim-git' => 'https://github.com/tpope/vim-git.git',
   'vim-rake' => 'https://github.com/tpope/vim-rake.git',
@@ -49,7 +59,6 @@ BUNDLES = {
   'ctrlp' => 'https://github.com/kien/ctrlp.vim.git',
 
   # Snipmate Deps
-
   'vim-snipmate' => 'git://github.com/garbas/vim-snipmate.git',
   'tlib_vim' => 'https://github.com/tomtom/tlib_vim.git',
   'vim-addon-mw-utils' => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
@@ -76,7 +85,8 @@ desc "Install Vimux"
 task :install do
   Rake::Task["bundle"].invoke
 
-  puts "\n"
+  system PATHOGEN
+
   Rake::Task["link"].invoke
 end
 
@@ -160,8 +170,6 @@ def link_file(file)
 end
 
 def bundle
-  #Dir.chdir(PATH)
-
  puts "\n[~] Updating Submodule Index"
 
   # 

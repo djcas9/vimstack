@@ -167,6 +167,7 @@ endif
 map <Leader>= <C-w>=
 imap <Leader>= <Esc> <C-w>=f
 
+
 " Project Tree
 if exists("loaded_nerd_tree")
   augroup AuNERDTreeCmd
@@ -319,4 +320,3 @@ if exists("loaded_nerd_tree")
   call s:DefineCommand("mkdir", "Mkdir")
   cabbrev Edit! e!
 endif
-
