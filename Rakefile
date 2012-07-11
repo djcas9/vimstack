@@ -16,6 +16,8 @@ PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle;
 
 BUNDLES = {
 
+  'vim-tabular' => 'https://github.com/godlygeek/tabular.git',
+
   'vim-easymotion' => 'https://github.com/Lokaltog/vim-easymotion.git',
   'vim-vroom' => 'https://github.com/skalnik/vim-vroom.git',
   'vim-zoomwin' => 'https://github.com/vim-scripts/ZoomWin.git',
@@ -63,6 +65,7 @@ BUNDLES = {
   'tlib_vim' => 'https://github.com/tomtom/tlib_vim.git',
   'vim-addon-mw-utils' => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
   'snipmate-snippets' => 'https://github.com/mephux/snipmate-snippets.git'
+
 }
 
 desc "Clean"
@@ -105,6 +108,7 @@ task :link do
   items do |name, path|
     next if IGNORE.include?(name)
     next unless name.match(/vim/)
+
     drop(name, true)
   end
 end
@@ -178,9 +182,7 @@ end
 def bundle
  puts "\n[~] Updating Submodule Index"
 
-  # 
   # Add Submodule
-  #
   BUNDLES.each do |name, path|
     `git submodule add #{path} vim/bundle/#{name}` # > /dev/null 2>&1`
     puts "[OK] #{name}"
