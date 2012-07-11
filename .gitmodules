@@ -1,3 +1,15 @@
+[submodule "vim/bundle/vim-easymotion"]
+	path = vim/bundle/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion.git
+[submodule "vim/bundle/vim-vroom"]
+	path = vim/bundle/vim-vroom
+	url = https://github.com/skalnik/vim-vroom.git
+[submodule "vim/bundle/vim-zoomwin"]
+	path = vim/bundle/vim-zoomwin
+	url = https://github.com/vim-scripts/ZoomWin.git
+[submodule "vim/bundle/vim-tagbar"]
+	path = vim/bundle/vim-tagbar
+	url = https://github.com/majutsushi/tagbar.git
 [submodule "vim/bundle/vim-handlebars"]
 	path = vim/bundle/vim-handlebars
 	url = https://github.com/nono/vim-handlebars.git
@@ -10,9 +22,9 @@
 [submodule "vim/bundle/vim-buffergator"]
 	path = vim/bundle/vim-buffergator
 	url = https://github.com/jeetsukumaran/vim-buffergator.git
-[submodule "vim/bundle/delimitMate"]
-	path = vim/bundle/delimitMate
-	url = https://github.com/Raimondi/delimitMate.git
+[submodule "vim/bundle/vim-smartinput"]
+	path = vim/bundle/vim-smartinput
+	url = https://github.com/kana/vim-smartinput.git
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
@@ -73,9 +85,6 @@
 [submodule "vim/bundle/vim-extradite"]
 	path = vim/bundle/vim-extradite
 	url = https://github.com/int3/vim-extradite.git
-[submodule "vim/bundle/yankring"]
-	path = vim/bundle/yankring
-	url = https://github.com/vim-scripts/YankRing.vim.git
 [submodule "vim/bundle/vim-pasta"]
 	path = vim/bundle/vim-pasta
 	url = https://github.com/sickill/vim-pasta.git
@@ -100,27 +109,3 @@
 [submodule "vim/bundle/snipmate-snippets"]
 	path = vim/bundle/snipmate-snippets
 	url = https://github.com/mephux/snipmate-snippets.git
-[submodule "vim/bundle/vim-nasl"]
-	path = vim/bundle/vim-nasl
-	url = https://github.com/mephux/nasl.vim.git
-[submodule "vim/bundle/vim-smartinput"]
-	path = vim/bundle/vim-smartinput
-	url = https://github.com/kana/vim-smartinput.git
-[submodule "vim/bundle/vim-tagbar"]
-	path = vim/bundle/vim-tagbar
-	url = https://github.com/majutsushi/tagbar.git
-[submodule "vim/bundle/vim-iterm"]
-	path = vim/bundle/vim-iterm
-	url = https://github.com/sjl/vitality.vim.git
-[submodule "vim/bundle/vim-webapi"]
-	path = vim/bundle/vim-webapi
-	url = https://github.com/mattn/webapi-vim.git
-[submodule "vim/bundle/vim-vroom"]
-	path = vim/bundle/vim-vroom
-	url = https://github.com/skalnik/vim-vroom.git
-[submodule "vim/bundle/vim-zoomwin"]
-	path = vim/bundle/vim-zoomwin
-	url = https://github.com/vim-scripts/ZoomWin.git
-[submodule "vim/bundle/vim-easymotion"]
-	path = vim/bundle/vim-easymotion
-	url = https://github.com/Lokaltog/vim-easymotion.git

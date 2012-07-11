@@ -74,7 +74,6 @@ task :clean do
 
   items = BUNDLES.keys
   items.each do |item|
-    puts "Removed vim/bundle/#{item}"
     `git rm -rf --cached vim/bundle/#{item} > /dev/null 2>&1`
     `git config --remove-section submodule.vim/bundle/#{item} > /dev/null 2>&1`
     `rm -rf vim/bundle/#{item} > /dev/null 2>&1`
@@ -83,10 +82,17 @@ end
 
 desc "Install Vimux"
 task :install do
+
+  # Clean
+  Rake::Task["clean"].invoke
+
+  # Install
   Rake::Task["bundle"].invoke
 
+  # Install Pathogen
   system PATHOGEN
 
+  # Link Files
   Rake::Task["link"].invoke
 end
 
@@ -176,7 +182,7 @@ def bundle
   # Add Submodule
   #
   BUNDLES.each do |name, path|
-    `git submodule add -f #{path} vim/bundle/#{name} > /dev/null 2>&1`
+    `git submodule add #{path} vim/bundle/#{name}` # > /dev/null 2>&1`
     puts "[OK] #{name}"
   end
 
