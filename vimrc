@@ -89,8 +89,12 @@ else
 
   nmap <silent> <M-Left> b
   nmap <silent> <M-Right> w
+
   nmap <silent> <M-Up> {
   nmap <silent> <M-Down> }
+
+  vmap <silent> <M-Up> {
+  vmap <silent> <M-Down> }
 
   nmap <silent> <C-A> ^
   nmap <silent> <C-E> $
@@ -424,4 +428,11 @@ nmap <leader>gs :Gstatus<CR><C-w>20+
 " map <Leader>N  :call g:RubyDebugger.next()<CR>
 " map <Leader>C  :call g:RubyDebugger.continue()<CR>
 " map <Leader>E  :call g:RubyDebugger.exit()<CR>
+
+" Control-F for Ack
+map <C-F> :Ack<space>
+
+" Control-m/n to increase/decrease indentation
+vmap <C-m> >gv
+vmap <C-n> <gv
 

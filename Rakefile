@@ -16,57 +16,74 @@ PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle;
 
 BUNDLES = {
 
-  'vim-tabular' => 'https://github.com/godlygeek/tabular.git',
+  'vim-tabular'         => 'https://github.com/godlygeek/tabular.git',
+  'vim-easymotion'      => 'https://github.com/Lokaltog/vim-easymotion.git',
+  'vim-vroom'           => 'https://github.com/skalnik/vim-vroom.git',
+  'vim-zoomwin'         => 'https://github.com/vim-scripts/ZoomWin.git',
+  'vim-tagbar'          => 'https://github.com/majutsushi/tagbar.git',
+  'vim-handlebars'      => 'https://github.com/nono/vim-handlebars.git',
+  'vim-smartusline'     => 'https://github.com/molok/vim-smartusline.git',
+  'vim-bundler'         => 'https://github.com/tpope/vim-bundler.git',
+  'vim-buffergator'     => 'https://github.com/jeetsukumaran/vim-buffergator.git',
+  'vim-smartinput'      => 'https://github.com/kana/vim-smartinput.git',
 
-  'vim-easymotion' => 'https://github.com/Lokaltog/vim-easymotion.git',
-  'vim-vroom' => 'https://github.com/skalnik/vim-vroom.git',
-  'vim-zoomwin' => 'https://github.com/vim-scripts/ZoomWin.git',
-  'vim-tagbar' => 'https://github.com/majutsushi/tagbar.git',
-  'vim-handlebars' => 'https://github.com/nono/vim-handlebars.git',
-  'vim-smartusline' => 'https://github.com/molok/vim-smartusline.git',
-  'vim-bundler' => 'https://github.com/tpope/vim-bundler.git',
-  'vim-buffergator' => 'https://github.com/jeetsukumaran/vim-buffergator.git',
-  'vim-smartinput' => 'https://github.com/kana/vim-smartinput.git',
+  # 'delimitMate'       => 'https://github.com/Raimondi/delimitMate.git',
+  'nerdcommenter'       => 'https://github.com/scrooloose/nerdcommenter.git',
+  'vim-align'           => 'https://github.com/tsaleh/vim-align.git',
+  'vim-fugitive'        => 'https://github.com/tpope/vim-fugitive.git',
+  'vim-repeat'          => 'https://github.com/tpope/vim-repeat.git',
+  'vim-ruby'            => 'https://github.com/vim-ruby/vim-ruby.git',
+  'vim-rails'           => 'https://github.com/tpope/vim-rails.git',
+  'vim-unimpaired'      => 'https://github.com/tpope/vim-unimpaired.git',
+  'supertab'            => 'https://github.com/ervandew/supertab.git',
 
-  # 'delimitMate' => 'https://github.com/Raimondi/delimitMate.git',
-  'nerdcommenter' => 'https://github.com/scrooloose/nerdcommenter.git',
-  'vim-align' => 'https://github.com/tsaleh/vim-align.git',
-  'vim-fugitive' => 'https://github.com/tpope/vim-fugitive.git',
-  'vim-repeat' => 'https://github.com/tpope/vim-repeat.git',
-  'vim-ruby' => 'https://github.com/vim-ruby/vim-ruby.git',
-  'vim-rails' => 'https://github.com/tpope/vim-rails.git',
-  'vim-unimpaired' => 'https://github.com/tpope/vim-unimpaired.git',
-  'supertab' => 'https://github.com/ervandew/supertab.git',
-  
   # 'vim-neocomplcache' => 'https://github.com/Shougo/neocomplcache.git',
-  'vim-endwise' => 'https://github.com/tpope/vim-endwise.git',
-  'vim-git' => 'https://github.com/tpope/vim-git.git',
-  'vim-rake' => 'https://github.com/tpope/vim-rake.git',
-  'vim-rspec' => 'https://github.com/taq/vim-rspec.git',
-  'vim-surround' => 'https://github.com/tpope/vim-surround.git',
-  'zencoding-vim' => 'https://github.com/mattn/zencoding-vim.git',
-  'ack.vim' => 'https://github.com/mileszs/ack.vim.git',
+  'vim-endwise'         => 'https://github.com/tpope/vim-endwise.git',
+  'vim-git'             => 'https://github.com/tpope/vim-git.git',
+  'vim-rake'            => 'https://github.com/tpope/vim-rake.git',
+  'vim-rspec'           => 'https://github.com/taq/vim-rspec.git',
+  'vim-surround'        => 'https://github.com/tpope/vim-surround.git',
+  'zencoding-vim'       => 'https://github.com/mattn/zencoding-vim.git',
+  'ack.vim'             => 'https://github.com/mileszs/ack.vim.git',
 
   # Javascript
-  'vim-javascript' => 'https://github.com/mephux/vim-javascript.git',
-  'nodejs' => 'https://github.com/mmalecki/vim-node.js',
+  'vim-javascript'      => 'https://github.com/mephux/vim-javascript.git',
+  'nodejs'              => 'https://github.com/mmalecki/vim-node.js',
 
   # Other
-  'vim-ragtag' => 'https://github.com/tpope/vim-ragtag.git',
-  'SingleCompile' => 'https://github.com/vim-scripts/SingleCompile.git',
-  'vim-extradite' => 'https://github.com/int3/vim-extradite.git',
-  'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
-  'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
-  'greplace' => 'https://github.com/vim-scripts/greplace.vim.git',
-  'ctrlp' => 'https://github.com/kien/ctrlp.vim.git',
+  'vim-ragtag'          => 'https://github.com/tpope/vim-ragtag.git',
+  'SingleCompile'       => 'https://github.com/vim-scripts/SingleCompile.git',
+  'vim-extradite'       => 'https://github.com/int3/vim-extradite.git',
+  'vim-pasta'           => 'https://github.com/sickill/vim-pasta.git',
+  # 'nerdtree'            => 'https://github.com/scrooloose/nerdtree.git',
+  'greplace'            => 'https://github.com/vim-scripts/greplace.vim.git',
+  'ctrlp'               => 'https://github.com/kien/ctrlp.vim.git',
 
   # Snipmate Deps
-  'vim-snipmate' => 'git://github.com/garbas/vim-snipmate.git',
-  'tlib_vim' => 'https://github.com/tomtom/tlib_vim.git',
-  'vim-addon-mw-utils' => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
-  'snipmate-snippets' => 'https://github.com/mephux/snipmate-snippets.git'
+  'vim-snipmate'        => 'git://github.com/garbas/vim-snipmate.git',
+  'tlib_vim'            => 'https://github.com/tomtom/tlib_vim.git',
+  'vim-addon-mw-utils'  => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
+  'snipmate-snippets'   => 'https://github.com/mephux/snipmate-snippets.git'
 
 }
+
+def current_submodules
+  unless @modules
+    @modules = []
+    data = `git submodule`
+    data.each_line do |line|
+      r = line.split(' ')
+      @modules.push(r[1])  
+    end
+  end
+
+  @modules
+end
+
+def diff_submodule
+  # current_submodules - BUNDLES.keys  
+  current_submodules.map { |x| x.split('/')[2] } - BUNDLES.keys
+end
 
 desc "Clean"
 task :clean do
@@ -75,11 +92,12 @@ task :clean do
   `rm -rf ~/.vim*`
   `rm -rf ~/.gvim*`
 
-  items = BUNDLES.keys
+  items = current_submodules
   items.each do |item|
-    `git rm -rf --cached vim/bundle/#{item} > /dev/null 2>&1`
-    `git config --remove-section submodule.vim/bundle/#{item} > /dev/null 2>&1`
-    `rm -rf vim/bundle/#{item} > /dev/null 2>&1`
+    `git rm --cached --ignore-unmatch #{item}`
+    `git config -f .git/config --remove-section submodule.#{item}`
+    `git config -f .gitmodules --remove-section submodule.#{item}`
+    `rm -rf #{item}` #> /dev/null 2>&1`
   end
 end
 
@@ -94,6 +112,8 @@ task :install do
 
   # Install Pathogen
   system PATHOGEN
+
+  system "git submodule sync"
 
   # Link Files
   Rake::Task["link"].invoke

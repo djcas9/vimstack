@@ -88,9 +88,6 @@ if has("gui_macvim")
   " Command-Shift-F for Ack
   map <D-F> :Ack<space>
 
-  " Command-e for ConqueTerm
-  map <D-e> :call StartTerm()<CR>
-
   " Command-/ to toggle comments
   let g:NERDCreateDefaultMappings = 0
   let g:NERDSpaceDelims = 1
