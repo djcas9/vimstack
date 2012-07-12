@@ -115,6 +115,8 @@ task :install do
 
   system "git submodule sync"
 
+  puts "\n"
+
   # Link Files
   Rake::Task["link"].invoke
 end
