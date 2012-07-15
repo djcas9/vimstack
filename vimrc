@@ -2,8 +2,7 @@
 " ~/.VIMRC
 
 set nocompatible                   " Must come first because it changes others
-set shell=/bin/sh
-
+" set shell=/bin/sh
 set encoding=utf-8
 
 " Setup Pathogen
@@ -23,6 +22,7 @@ set synmaxcol=2048                " Syntax coloring lines that are too
 set viminfo='20,\"80              " read/write a .viminfo file, don't store more
 
 set t_Co=256                      " 256 colors
+set term=xterm
 
 set background=dark
 colorscheme epix
@@ -33,6 +33,10 @@ set winfixwidth
 set ttyfast                       " you have a fast terminal
 set ttyscroll=3
 set lazyredraw                    " avoid scrolling problems
+
+" Prevent Vim from clobbering the scrollback buffer. See
+" http://www.shallowsky.com/linux/noaltscreen.html
+set t_ti= t_te=
 
 " Windowing settings
 set equalalways                   " keep windows equal when splitting (default)
@@ -64,7 +68,7 @@ map <leader>y "*y
 map <leader>yy "*Y
 
 " Preserve indentation while pasting text from the OS X clipboard
-" noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " On Focus Lost
 " Enter normal mode
@@ -87,30 +91,52 @@ else
 
   map <Leader>w <ESC>:w<CR>
 
-  nmap <silent> <M-Left> b
-  nmap <silent> <M-Right> w
-
-  nmap <silent> <M-Up> {
-  nmap <silent> <M-Down> }
-
-  vmap <silent> <M-Up> {
-  vmap <silent> <M-Down> }
-
-  nmap <silent> <C-A> ^
-  nmap <silent> <C-E> $
-
-  nmap <silent> <C-Up> gg
-  nmap <silent> <C-Down> G
-  
-  nmap <silent> <C-Left> ^
-  nmap <silent> <C-Right> $
-
+  nmap <silent> <C-Left> b
+  nmap <silent> <C-Right> w
   vmap <silent> <C-Left> b
   vmap <silent> <C-Right> w
 
-  vmap <silent> <C-Up> gg
-  vmap <silent> <C-Down> G
-  " Nav Hacks End
+  nmap <silent> <C-h> b
+  nmap <silent> <C-l> w
+  vmap <silent> <C-h> b
+  vmap <silent> <C-l> w
+
+  nmap <silent> <C-j> }
+  nmap <silent> <C-k> {
+  vmap <silent> <C-j> {
+  vmap <silent> <C-k> }
+
+
+  nmap <silent> <C-Up> {
+  nmap <silent> <C-Down> }
+  vmap <silent> <C-Up> {
+  vmap <silent> <C-Down> }
+
+  " WHY WONT META KEYS WORK!#@#!@#
+
+  " nmap <silent> <C-k> {
+  " nmap <silent> <C-j> }
+  " vmap <silent> <C-k> {
+  " vmap <silent> <C-j> }
+
+  " nmap <silent> <C-A> ^
+  " nmap <silent> <C-E> $
+
+  " nmap <silent> <C-Left> ^
+  " nmap <silent> <C-Right> $
+  " vmap <silent> <C-Left> ^
+  " vmap <silent> <C-Right> $
+
+  " nmap <silent> <C-h> b
+  " nmap <silent> <C-l> w
+  " vmap <silent> <C-h> b
+  " vmap <silent> <C-l> w
+
+
+  " nmap <silent> <C-Up> gg
+  " nmap <silent> <C-Down> G
+  " vmap <silent> <C-Up> gg
+  " vmap <silent> <C-Down> G
 endif
 
 " Nav Hacks
@@ -148,8 +174,8 @@ set visualbell                    " No beeping.
 
 set undofile
 set undodir=~/.vim/tmp/undo//     " undo files
-set backupdir=~/.vim/tmp/backup// " backups
-set directory=~/.vim/tmp/swap//   " swap files
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " Don't make a backup before overwriting a file.
 set nobackup
@@ -182,7 +208,7 @@ set nowritebackup
 set directory=$HOME/.vim/tmp/,.
 
 " Hide the mouse pointer while typing
-" set mousehide
+set mousehide
 
 " Without setting this, ZoomWin restores windows in a way that causes
 " equalalways behavior to be triggered the next time CommandT is used.
@@ -207,7 +233,7 @@ endif
 
 " SnipMate
 let g:snipMate = {}
-let g:snipMate.scope_aliases = {} 
+let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['handlebars'] = 'html'
 
 " Quickly edit/reload the vimrc file
@@ -233,22 +259,21 @@ set backspace=indent,eol,start
 " vmap <C-Down> ]egv
 " vmap <C-Up> [egv
 
+
+
 " Tagbar
 map <Leader>t <ESC>:TagbarToggle<cr>
 
 " Nerdtree settings
-map <Leader>p :NERDTree<Enter>
-let g:NERDTreeMouseMode = 2
-let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
-let NERDTreeShowBookmarks=0
-let g:NERDTreeWinSize = 30
-let NERDTreeHighlightCursorline=1
-nmap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
-
-
-" Show hidden files, too
-let NERDTreeShowFiles=1
-let NERDTreeShowHidden=0
+" map <Leader>p :NERDTree<Enter>
+" let g:NERDTreeMouseMode = 2
+" let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+" let NERDTreeShowBookmarks=0
+" let g:NERDTreeWinSize = 30
+" let NERDTreeHighlightCursorline=1
+" nmap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
+" let NERDTreeShowFiles=1
+" let NERDTreeShowHidden=0
 
 " BuffergatorToggle
 let g:buffergator_viewport_split_policy = "B"
@@ -326,8 +351,8 @@ let g:NERDSpaceDelims = 1
 map <Leader>c <plug>NERDCommenterToggle<CR>
 
 " QuickFix Navigation
-map <c-z> :cprevious<CR>
-map <c-x> :cnext<CR>
+" map <c-z> :cprevious<CR>
+" map <c-x> :cnext<CR>
 
 " Quickfix (open/close using <leader>f)
 nmap <silent> <leader>f :QFix<CR>
@@ -435,4 +460,21 @@ map <C-F> :Ack<space>
 " Control-m/n to increase/decrease indentation
 vmap <C-m> >gv
 vmap <C-n> <gv
+
+" RENAME CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
+
+" Show the MD5 of the current buffer
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+command! -range Md5 :echo system('echo '.shellescape(join(getline(<line1>, <line2>), '\n')) . '| md5')
 

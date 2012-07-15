@@ -16,6 +16,8 @@ PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle;
 
 BUNDLES = {
 
+  'vim-pbcopy' => 'https://github.com/mortice/pbcopy.vim.git',
+
   'vim-tabular'         => 'https://github.com/godlygeek/tabular.git',
   'vim-easymotion'      => 'https://github.com/Lokaltog/vim-easymotion.git',
   'vim-vroom'           => 'https://github.com/skalnik/vim-vroom.git',
