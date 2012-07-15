@@ -106,7 +106,6 @@ else
   vmap <silent> <C-j> {
   vmap <silent> <C-k> }
 
-
   nmap <silent> <C-Up> {
   nmap <silent> <C-Down> }
   vmap <silent> <C-Up> {
