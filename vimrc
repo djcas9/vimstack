@@ -63,6 +63,8 @@ if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
+set clipboard=unnamed
+
 " Yank text to the OS X clipboard
 map <leader>y "*y
 map <leader>yy "*Y
@@ -75,7 +77,7 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 " au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
-if has("gui")
+if has("gui_running")
 
   if has("gui_macvim")
     let macvim_hig_shift_movement = 1
@@ -83,9 +85,10 @@ if has("gui")
     let g:user_zen_expandabbr_key = '<D-e>'
   endif
 
+else
+
   set selection=exclusive           " Select
 
-else
   " Zencoding Keymap - Linux/Windows/Terminal
   let g:user_zen_expandabbr_key = '<C-e>'
 
@@ -111,32 +114,8 @@ else
   vmap <silent> <C-Up> {
   vmap <silent> <C-Down> }
 
-  " WHY WONT META KEYS WORK!#@#!@#
-
-  " nmap <silent> <C-k> {
-  " nmap <silent> <C-j> }
-  " vmap <silent> <C-k> {
-  " vmap <silent> <C-j> }
-
-  " nmap <silent> <C-A> ^
-  " nmap <silent> <C-E> $
-
-  " nmap <silent> <C-Left> ^
-  " nmap <silent> <C-Right> $
-  " vmap <silent> <C-Left> ^
-  " vmap <silent> <C-Right> $
-
-  " nmap <silent> <C-h> b
-  " nmap <silent> <C-l> w
-  " vmap <silent> <C-h> b
-  " vmap <silent> <C-l> w
-
-
-  " nmap <silent> <C-Up> gg
-  " nmap <silent> <C-Down> G
-  " vmap <silent> <C-Up> gg
-  " vmap <silent> <C-Down> G
 endif
+
 
 " Nav Hacks
 map <C-c> <plug>NERDCommenterToggle<CR>
