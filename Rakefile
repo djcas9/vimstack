@@ -104,7 +104,7 @@ task :clean do
     `rm -rf #{item}` #> /dev/null 2>&1`
   end
 
-  `rm -rf vim/bundle/*`
+  # `rm -rf vim/bundle/*`
 end
 
 desc "Install Vimux"
@@ -119,7 +119,7 @@ task :install do
   # Install Pathogen
   system PATHOGEN
 
-  system "git submodule sync > /dev/null 2>&1"
+#  system "git submodule sync > /dev/null 2>&1"
 
   puts "\n"
 
@@ -219,6 +219,7 @@ def bundle
   # Add Submodule
   BUNDLES.each do |name, path|
     `git submodule add #{path} vim/bundle/#{name}` # > /dev/null 2>&1`
+    `cd vim/bundle/#{name} && git pull`
     puts "[OK] #{name}"
   end
 
