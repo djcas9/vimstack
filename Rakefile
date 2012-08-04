@@ -16,8 +16,10 @@ PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle;
 
 BUNDLES = {
 
-  'vim-pbcopy' => 'https://github.com/mortice/pbcopy.vim.git',
-  'vim-angry' => 'https://github.com/b4winckler/vim-angry.git',
+  'vim-dart'            => "https://github.com/bartekd/vim-dart.git",
+
+  # 'vim-pbcopy'        => 'https://github.com/mortice/pbcopy.vim.git',
+  # 'vim-angry'         => 'https://github.com/b4winckler/vim-angry.git',
 
   'vim-tabular'         => 'https://github.com/godlygeek/tabular.git',
   'vim-easymotion'      => 'https://github.com/Lokaltog/vim-easymotion.git',
@@ -57,7 +59,6 @@ BUNDLES = {
   'vim-ragtag'          => 'https://github.com/tpope/vim-ragtag.git',
   'SingleCompile'       => 'https://github.com/vim-scripts/SingleCompile.git',
   'vim-extradite'       => 'https://github.com/int3/vim-extradite.git',
-  # 'vim-pasta'           => 'https://github.com/sickill/vim-pasta.git',
   # 'nerdtree'            => 'https://github.com/scrooloose/nerdtree.git',
   'greplace'            => 'https://github.com/vim-scripts/greplace.vim.git',
   'ctrlp'               => 'https://github.com/kien/ctrlp.vim.git',
@@ -102,6 +103,8 @@ task :clean do
     `git config -f .gitmodules --remove-section submodule.#{item}`
     `rm -rf #{item}` #> /dev/null 2>&1`
   end
+
+  `rm -rf vim/bundle/*`
 end
 
 desc "Install Vimux"
@@ -116,7 +119,7 @@ task :install do
   # Install Pathogen
   system PATHOGEN
 
-  system "git submodule sync"
+  system "git submodule sync > /dev/null 2>&1"
 
   puts "\n"
 
