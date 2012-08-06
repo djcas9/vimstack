@@ -58,6 +58,9 @@ set nosmarttab                    " no tabs
 set formatoptions=qrn1            " support for numbered/bullet lists
 set virtualedit=block             " allow virtual edit in visual block mode
 
+" Man page support
+runtime ftplugin/man.vim
+
 " Mark the ideal max text width
 if exists('+colorcolumn')
   set colorcolumn=80
