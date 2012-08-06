@@ -67,8 +67,9 @@ BUNDLES = {
   'vim-snipmate'        => 'git://github.com/garbas/vim-snipmate.git',
   'tlib_vim'            => 'https://github.com/tomtom/tlib_vim.git',
   'vim-addon-mw-utils'  => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
-  'snipmate-snippets'   => 'https://github.com/mephux/snipmate-snippets.git'
+  'snipmate-snippets'   => 'https://github.com/mephux/snipmate-snippets.git',
 
+  'vim-man'             => 'https://github.com/mephux/vim-man.git'
 }
 
 def current_submodules

@@ -260,6 +260,7 @@ let g:buffergator_suppress_keymaps = 1
 let g:buffergator_split_size = 20
 map <leader>b :BuffergatorToggle<Enter>
 
+call SingleCompile#ChooseCompiler('c', 'cc')
 nmap <Leader>B :SCCompile<cr>
 nmap <Leader>r :update<CR>:SCCompileRun<cr>
 vmap <Leader>r :update<CR>:SCCompileRun<cr>
