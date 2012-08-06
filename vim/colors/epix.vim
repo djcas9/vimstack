@@ -28,7 +28,7 @@ hi Visual           guifg=NONE        guibg=#3f464d     gui=NONE      ctermfg=NO
 
 hi SpecialKey       guifg=#454545     guibg=black       gui=bold      ctermfg=black       ctermbg=NONE        cterm=NONE
 
-hi Ignore           guifg=gray        guibg=black       gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi Ignore           guifg=gray        guibg=black       gui=NONE      ctermfg=gray        ctermbg=black       cterm=NONE
 hi Question         guifg=#9e9e9e     guibg=#111111     gui=NONE      ctermfg=black       ctermbg=yellow      cterm=NONE
 
 " Spell
@@ -40,7 +40,7 @@ hi SpellBad         guibg=#111111     gui=undercurl     guisp=#8d8d8d ctermbg=NO
 hi Error            guifg=NONE        guibg=NONE        gui=NONE      ctermfg=white       ctermbg=red         cterm=NONE     guisp=#FF6C60
 hi ErrorMsg         guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
 hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
-hi LongLineWarning  guifg=NONE        guibg=#371F1C     gui=underline ctermfg=NONE        ctermbg=NONE	      cterm=underline
+hi LongLineWarning  guifg=NONE        guibg=#371F1C     gui=underline ctermfg=NONE        ctermbg=NONE 	      cterm=UNDERLINE
 
 " Message displayed in lower left, such as --INSERT--
 hi ModeMsg          guifg=#919191     guibg=#111111     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD
@@ -73,7 +73,7 @@ if version >= 700 " Vim 7.x specific colors
   hi PmenuSbar      guifg=#1e1e1e     guibg=#1e1e1e     gui=NONE      ctermfg=black       ctermbg=white     cterm=NONE
   hi PmenuThumb     guifg=#8e8e8e     guibg=#3e3e3e     gui=NONE      ctermfg=black       ctermbg=white     cterm=NONE
 
-  hi Search         guifg=#ffffff     guibg=#983f98     gui=bold      ctermfg=NONE        ctermbg=NONE	    cterm=bold   guisp=#848484
+  hi Search         guifg=#ffffff     guibg=#983f98     gui=bold      ctermfg=white       ctermbg=darkgray	cterm=bold   guisp=#848484
   hi ColorColumn    guifg=NONE        guibg=#111111     gui=NONE      ctermfg=NONE        ctermbg=NONE      cterm=NONE
 endif
 

@@ -26,7 +26,12 @@ set term=xterm
 
 set background=dark
 colorscheme epix
-match LongLineWarning '\%>80v.\+'
+
+" match LongLineWarning '\%>80v.\+'
+" match ErrorMsg '\%>80v.\+'
+
+" au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
+au BufWinEnter * let w:m2=matchadd('LongLineWarning', '\%>80v.\+', -1)
 
 set autoread
 set winfixwidth
