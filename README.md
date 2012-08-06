@@ -2,18 +2,13 @@
 
 ## Install
 
-`git clone https://github.com/mephux/vimux.git`
-
-`rake install`
-
-# OR
-
 `git clone https://github.com/mephux/vimux.git && cd vimux && rake install`
 
 ## Update / Link
 
-* `rake vim # symlink vimrc/gvim and vim/ to ~/.vimrc ~/.gvim and ~/.vim/`
-* `rake update # pull master from git submodules (vim plugins in vim/bundle)`
+* `rake install # Install plugins and link files to ~/.vim/ ~/.vimrc ~/.gvimrc`
+* `rake update 	# Update vim plugins`
+* `rake clean 	# Remove all plugins` 
 
 Default color scheme is epix.vim (my custom theme)
 
