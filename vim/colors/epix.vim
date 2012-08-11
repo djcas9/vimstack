@@ -63,7 +63,7 @@ hi DiffDelete       guifg=#FFFFFF     guibg=#5c3a3d     gui=NONE      ctermfg=NO
 hi DiffAdd          guifg=#FFFFFF     guibg=#3d5838     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 
 if version >= 700 " Vim 7.x specific colors
-  hi CursorLine     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=darkgray  cterm=BOLD
+  hi CursorLine     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE      cterm=BOLD
   hi CursorColumn   guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=darkgray  cterm=BOLD
   hi MatchParen     guifg=#f6f3e8     guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray  cterm=NONE
 

@@ -34,7 +34,6 @@ colorscheme epix
 au BufWinEnter * let w:m2=matchadd('LongLineWarning', '\%>80v.\+', -1)
 
 set autoread
-set winfixwidth
 set ttyfast                       " you have a fast terminal
 set ttyscroll=3
 set lazyredraw                    " avoid scrolling problems
@@ -44,10 +43,14 @@ set lazyredraw                    " avoid scrolling problems
 set t_ti= t_te=
 
 " Windowing settings
-set equalalways                   " keep windows equal when splitting (default)
+" set equalalways                   " keep windows equal when splitting (default)
+set winfixwidth
 set eadirection=hor               " ver/hor/both - where does equalalways apply
-" set winheight=10                  " height of current window
-set winwidth=85                   " width of current window
+set winwidth=85
+set winheight=10
+set winminheight=10
+set winheight=999
+
 
 set showcmd
 set laststatus=2                  " Show the status line all the time
@@ -107,6 +110,9 @@ else
   vmap <silent> <C-Left> b
   vmap <silent> <C-Right> w
 
+  imap <silent> <C-Left> <ESC>b
+  imap <silent> <C-Right> <ESC>w
+
   nmap <silent> <C-h> b
   nmap <silent> <C-l> w
   vmap <silent> <C-h> b
@@ -121,6 +127,9 @@ else
   nmap <silent> <C-Down> }
   vmap <silent> <C-Up> {
   vmap <silent> <C-Down> }
+
+  imap <silent> <C-Up> <ESC> {
+  imap <silent> <C-Down> <ESC>}
 
 endif
 
@@ -285,6 +294,8 @@ cmap w!! w !sudo tee % >/dev/null
 " autocmd FileType ruby set foldmethod=syntax
 autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd filetype svn,*commit* setlocal spell
+autocmd FileType c set sw=4 sts=4 et
+
 
 " Smartusline
 let g:smartusline_string_to_highlight = '%f'
