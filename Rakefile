@@ -9,6 +9,9 @@ IGNORE = [
   'vimux.png'
 ]
 
+#
+# Make sure pathogen is install
+#
 PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle; 
   curl -so ~/.vim/autoload/pathogen.vim \
   https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim 
@@ -16,11 +19,9 @@ PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle;
 
 BUNDLES = {
 
-  'vim-dart'            => "https://github.com/bartekd/vim-dart.git",
-
-  # 'vim-pbcopy'        => 'https://github.com/mortice/pbcopy.vim.git',
-  # 'vim-angry'         => 'https://github.com/b4winckler/vim-angry.git',
-
+  # 'vim-dart'            => "https://github.com/bartekd/vim-dart.git",
+  'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
+  
   'vim-tabular'         => 'https://github.com/godlygeek/tabular.git',
   'vim-easymotion'      => 'https://github.com/Lokaltog/vim-easymotion.git',
   'vim-vroom'           => 'https://github.com/skalnik/vim-vroom.git',
@@ -31,8 +32,6 @@ BUNDLES = {
   'vim-bundler'         => 'https://github.com/tpope/vim-bundler.git',
   'vim-buffergator'     => 'https://github.com/jeetsukumaran/vim-buffergator.git',
   'vim-smartinput'      => 'https://github.com/kana/vim-smartinput.git',
-
-  # 'delimitMate'       => 'https://github.com/Raimondi/delimitMate.git',
   'nerdcommenter'       => 'https://github.com/scrooloose/nerdcommenter.git',
   'vim-align'           => 'https://github.com/tsaleh/vim-align.git',
   'vim-fugitive'        => 'https://github.com/tpope/vim-fugitive.git',
@@ -41,8 +40,6 @@ BUNDLES = {
   'vim-rails'           => 'https://github.com/tpope/vim-rails.git',
   'vim-unimpaired'      => 'https://github.com/tpope/vim-unimpaired.git',
   'supertab'            => 'https://github.com/ervandew/supertab.git',
-
-  # 'vim-neocomplcache' => 'https://github.com/Shougo/neocomplcache.git',
   'vim-endwise'         => 'https://github.com/tpope/vim-endwise.git',
   'vim-git'             => 'https://github.com/tpope/vim-git.git',
   'vim-rake'            => 'https://github.com/tpope/vim-rake.git',
@@ -59,7 +56,6 @@ BUNDLES = {
   'vim-ragtag'          => 'https://github.com/tpope/vim-ragtag.git',
   'SingleCompile'       => 'https://github.com/vim-scripts/SingleCompile.git',
   'vim-extradite'       => 'https://github.com/int3/vim-extradite.git',
-  # 'nerdtree'            => 'https://github.com/scrooloose/nerdtree.git',
   'greplace'            => 'https://github.com/vim-scripts/greplace.vim.git',
   'ctrlp'               => 'https://github.com/kien/ctrlp.vim.git',
 
@@ -69,6 +65,7 @@ BUNDLES = {
   'vim-addon-mw-utils'  => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
   'snipmate-snippets'   => 'https://github.com/mephux/snipmate-snippets.git',
 
+  'nerdtree'            => 'https://github.com/scrooloose/nerdtree.git',
 }
 
 def current_submodules
@@ -85,7 +82,6 @@ def current_submodules
 end
 
 def diff_submodule
-  # current_submodules - BUNDLES.keys  
   current_submodules.map { |x| x.split('/')[2] } - BUNDLES.keys
 end
 
@@ -103,8 +99,6 @@ task :clean do
     `git config -f .gitmodules --remove-section submodule.#{item}`
     `rm -rf #{item}` #> /dev/null 2>&1`
   end
-
-  # `rm -rf vim/bundle/*`
 end
 
 desc "Install Vimux"
@@ -119,7 +113,7 @@ task :install do
   # Install Pathogen
   system PATHOGEN
 
-#  system "git submodule sync > /dev/null 2>&1"
+  # system "git submodule sync > /dev/null 2>&1"
 
   puts "\n"
 
@@ -181,6 +175,7 @@ def items(path='*', &block)
 end
 
 def drop(file, replace=false)
+
   if File.exist?(File.join(ENV['HOME'], ".#{file}"))
     if replace
       replace_file(file)

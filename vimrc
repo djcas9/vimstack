@@ -257,18 +257,18 @@ set backspace=indent,eol,start
 
 
 " Tagbar
-map <Leader>t <ESC>:TagbarToggle<cr>
+" map <Leader>t <ESC>:TagbarToggle<cr>
 
 " Nerdtree settings
-" map <Leader>p :NERDTree<Enter>
-" let g:NERDTreeMouseMode = 2
-" let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
-" let NERDTreeShowBookmarks=0
-" let g:NERDTreeWinSize = 30
-" let NERDTreeHighlightCursorline=1
+map <Leader>t :NERDTreeToggle<Enter>
+let g:NERDTreeMouseMode = 2
+let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+let NERDTreeShowBookmarks=0
+let g:NERDTreeWinSize = 30
+let NERDTreeHighlightCursorline=1
 " nmap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
-" let NERDTreeShowFiles=1
-" let NERDTreeShowHidden=0
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=0
 
 " BuffergatorToggle
 let g:buffergator_viewport_split_policy = "B"
