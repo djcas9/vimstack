@@ -13,23 +13,26 @@ IGNORE = [
 # Make sure pathogen is install
 #
 PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle; 
-  curl -so ~/.vim/autoload/pathogen.vim \
-  https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim 
-}
+              curl -so ~/.vim/autoload/pathogen.vim \
+              https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim 
+            }
 
 BUNDLES = {
+
+  # eunuch.vim: helpers for UNIX
+  'vim-eunuch' => 'https://github.com/tpope/vim-eunuch.git',
 
   # 'vim-dart'            => "https://github.com/bartekd/vim-dart.git",
   'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
   
   'vim-tabular'         => 'https://github.com/godlygeek/tabular.git',
-  'vim-easymotion'      => 'https://github.com/Lokaltog/vim-easymotion.git',
-  'vim-vroom'           => 'https://github.com/skalnik/vim-vroom.git',
-  'vim-zoomwin'         => 'https://github.com/vim-scripts/ZoomWin.git',
-  'vim-tagbar'          => 'https://github.com/majutsushi/tagbar.git',
+  # 'vim-easymotion'      => 'https://github.com/Lokaltog/vim-easymotion.git',
+  # 'vim-vroom'           => 'https://github.com/skalnik/vim-vroom.git',
+  # 'vim-zoomwin'         => 'https://github.com/vim-scripts/ZoomWin.git',
+  # 'vim-tagbar'          => 'https://github.com/majutsushi/tagbar.git',
   'vim-handlebars'      => 'https://github.com/nono/vim-handlebars.git',
   'vim-smartusline'     => 'https://github.com/molok/vim-smartusline.git',
-  'vim-bundler'         => 'https://github.com/tpope/vim-bundler.git',
+  # 'vim-bundler'         => 'https://github.com/tpope/vim-bundler.git',
   'vim-buffergator'     => 'https://github.com/jeetsukumaran/vim-buffergator.git',
   'vim-smartinput'      => 'https://github.com/kana/vim-smartinput.git',
   'nerdcommenter'       => 'https://github.com/scrooloose/nerdcommenter.git',
@@ -37,7 +40,7 @@ BUNDLES = {
   'vim-fugitive'        => 'https://github.com/tpope/vim-fugitive.git',
   'vim-repeat'          => 'https://github.com/tpope/vim-repeat.git',
   'vim-ruby'            => 'https://github.com/vim-ruby/vim-ruby.git',
-  'vim-rails'           => 'https://github.com/tpope/vim-rails.git',
+  # 'vim-rails'           => 'https://github.com/tpope/vim-rails.git',
   'vim-unimpaired'      => 'https://github.com/tpope/vim-unimpaired.git',
   'supertab'            => 'https://github.com/ervandew/supertab.git',
   'vim-endwise'         => 'https://github.com/tpope/vim-endwise.git',
@@ -51,6 +54,7 @@ BUNDLES = {
   # Javascript
   'vim-javascript'      => 'https://github.com/mephux/vim-javascript.git',
   'nodejs'              => 'https://github.com/mmalecki/vim-node.js',
+  'vim-go'              => 'https://github.com/uggedal/go-vim.git',
 
   # Other
   'vim-ragtag'          => 'https://github.com/tpope/vim-ragtag.git',
@@ -64,8 +68,8 @@ BUNDLES = {
   'tlib_vim'            => 'https://github.com/tomtom/tlib_vim.git',
   'vim-addon-mw-utils'  => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
   'snipmate-snippets'   => 'https://github.com/mephux/snipmate-snippets.git',
-
   'nerdtree'            => 'https://github.com/scrooloose/nerdtree.git',
+  'yankstack'           => 'https://github.com/maxbrunsfeld/vim-yankstack.git'
 }
 
 def current_submodules
