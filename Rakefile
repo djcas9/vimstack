@@ -19,6 +19,8 @@ PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle;
 
 BUNDLES = {
 
+  'vim-seek' => 'https://github.com/goldfeld/vim-seek.git',
+
   # eunuch.vim: helpers for UNIX
   'vim-eunuch' => 'https://github.com/tpope/vim-eunuch.git',
 

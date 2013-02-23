@@ -42,6 +42,9 @@ set lazyredraw                    " avoid scrolling problems
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
 
+" HTML Fix
+autocmd FileType html setlocal indentkeys-=*<Return>
+
 " Windowing settings
 " set equalalways                   " keep windows equal when splitting (default)
 set winfixwidth
