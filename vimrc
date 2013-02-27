@@ -172,7 +172,7 @@ set scrolloff=3                   " Show 3 lines of context around the cursor.
 set showbreak=↪\ \ 		" string to put before wrapped screen
                       " lines
 
-set cmdheight=2
+" set cmdheight=2
 
 " Terminal settings
 set vb t_vb=		                  " shut off bell entirely; see also .gvimrc

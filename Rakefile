@@ -21,8 +21,6 @@ BUNDLES = {
 
   # eunuch.vim: helpers for UNIX
   'vim-eunuch' => 'https://github.com/tpope/vim-eunuch.git',
-
-  # 'vim-dart'            => "https://github.com/bartekd/vim-dart.git",
   # 'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
   
   'vim-handlebars'      => 'https://github.com/nono/vim-handlebars.git',
@@ -61,8 +59,7 @@ BUNDLES = {
   'tlib_vim'            => 'https://github.com/tomtom/tlib_vim.git',
   'vim-addon-mw-utils'  => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
   'snipmate-snippets'   => 'https://github.com/mephux/snipmate-snippets.git',
-  'nerdtree'            => 'https://github.com/scrooloose/nerdtree.git',
-  'yankstack'           => 'https://github.com/maxbrunsfeld/vim-yankstack.git'
+  'nerdtree'            => 'https://github.com/scrooloose/nerdtree.git'
 }
 
 def current_submodules
