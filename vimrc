@@ -33,7 +33,7 @@ colorscheme epix
 " au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
 au BufWinEnter * let w:m2=matchadd('LongLineWarning', '\%>80v.\+', -1)
 
-set autoread
+set autoread			    " Automatically re-read files changed outside
 set ttyfast                       " you have a fast terminal
 set ttyscroll=3
 set lazyredraw                    " avoid scrolling problems
@@ -164,6 +164,15 @@ set hlsearch                      " Highlight matches.
 
 " set wrap                        " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
+
+"set linebreak			    " For lines longer than the window,
+                      " wrap intelligently. This doesn't
+                      " insert hard line breaks.
+
+set showbreak=↪\ \ 		" string to put before wrapped screen
+                      " lines
+
+set cmdheight=2
 
 " Terminal settings
 set vb t_vb=		                  " shut off bell entirely; see also .gvimrc

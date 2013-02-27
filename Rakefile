@@ -19,22 +19,14 @@ PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle;
 
 BUNDLES = {
 
-  'vim-seek' => 'https://github.com/goldfeld/vim-seek.git',
-
   # eunuch.vim: helpers for UNIX
   'vim-eunuch' => 'https://github.com/tpope/vim-eunuch.git',
 
   # 'vim-dart'            => "https://github.com/bartekd/vim-dart.git",
-  'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
+  # 'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
   
-  'vim-tabular'         => 'https://github.com/godlygeek/tabular.git',
-  # 'vim-easymotion'      => 'https://github.com/Lokaltog/vim-easymotion.git',
-  # 'vim-vroom'           => 'https://github.com/skalnik/vim-vroom.git',
-  # 'vim-zoomwin'         => 'https://github.com/vim-scripts/ZoomWin.git',
-  # 'vim-tagbar'          => 'https://github.com/majutsushi/tagbar.git',
   'vim-handlebars'      => 'https://github.com/nono/vim-handlebars.git',
   'vim-smartusline'     => 'https://github.com/molok/vim-smartusline.git',
-  # 'vim-bundler'         => 'https://github.com/tpope/vim-bundler.git',
   'vim-buffergator'     => 'https://github.com/jeetsukumaran/vim-buffergator.git',
   'vim-smartinput'      => 'https://github.com/kana/vim-smartinput.git',
   'nerdcommenter'       => 'https://github.com/scrooloose/nerdcommenter.git',
@@ -42,7 +34,6 @@ BUNDLES = {
   'vim-fugitive'        => 'https://github.com/tpope/vim-fugitive.git',
   'vim-repeat'          => 'https://github.com/tpope/vim-repeat.git',
   'vim-ruby'            => 'https://github.com/vim-ruby/vim-ruby.git',
-  # 'vim-rails'           => 'https://github.com/tpope/vim-rails.git',
   'vim-unimpaired'      => 'https://github.com/tpope/vim-unimpaired.git',
   'supertab'            => 'https://github.com/ervandew/supertab.git',
   'vim-endwise'         => 'https://github.com/tpope/vim-endwise.git',
@@ -100,7 +91,7 @@ task :clean do
 
   items = current_submodules
   items.each do |item|
-    `git rm --cached --ignore-unmatch #{item}`
+    `git rm --cached --ignore-unmatch -f #{item}`
     `git config -f .git/config --remove-section submodule.#{item}`
     `git config -f .gitmodules --remove-section submodule.#{item}`
     `rm -rf #{item}` #> /dev/null 2>&1`
