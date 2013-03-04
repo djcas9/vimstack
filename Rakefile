@@ -21,6 +21,8 @@ BUNDLES = {
 
   # eunuch.vim: helpers for UNIX
   'vim-eunuch' => 'https://github.com/tpope/vim-eunuch.git',
+
+  'vim-bro' => 'https://github.com/mephux/bro.vim.git',
   # 'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
   
   'vim-handlebars'      => 'https://github.com/nono/vim-handlebars.git',

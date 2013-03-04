@@ -29,9 +29,10 @@ colorscheme epix
 
 " match LongLineWarning '\%>80v.\+'
 " match ErrorMsg '\%>80v.\+'
-
-" au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
-au BufWinEnter * let w:m2=matchadd('LongLineWarning', '\%>80v.\+', -1)
+" au BufWinEnter * let w:m2=matchadd('LongLineWarning', '\%>80v.\+', -1)
+" match LongLineWarning /\%>81v.\+/
+" highlight OverLength ctermbg=red ctermfg=black cterm=NONE guibg=#FF6C60
+" highlight OverLength guifg=white guibg=#FF6C60 gui=BOLD ctermfg=white ctermbg=red cterm=NONE
 
 set autoread			    " Automatically re-read files changed outside
 set ttyfast                       " you have a fast terminal

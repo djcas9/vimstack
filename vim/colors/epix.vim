@@ -40,7 +40,7 @@ hi SpellBad         guibg=#111111     gui=undercurl     guisp=#8d8d8d ctermbg=NO
 hi Error            guifg=NONE        guibg=NONE        gui=NONE      ctermfg=white       ctermbg=red         cterm=NONE     guisp=#FF6C60
 hi ErrorMsg         guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
 hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
-hi LongLineWarning  guifg=NONE        guibg=#371F1C     gui=underline ctermfg=NONE        ctermbg=NONE 	      cterm=UNDERLINE
+" hi LongLineWarning  guifg=NONE        guibg=#371F1C     gui=underline ctermfg=white        ctermbg=red 	      cterm=NONE
 
 " Message displayed in lower left, such as --INSERT--
 hi ModeMsg          guifg=#919191     guibg=#111111     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD
@@ -64,7 +64,7 @@ hi DiffAdd          guifg=#FFFFFF     guibg=#3d5838     gui=NONE      ctermfg=NO
 
 if version >= 700 " Vim 7.x specific colors
   hi CursorLine     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE      cterm=BOLD
-  hi CursorColumn   guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=darkgray  cterm=BOLD
+  " hi CursorColumn   guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE      cterm=NONE
   hi MatchParen     guifg=#f6f3e8     guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray  cterm=NONE
 
   " Popup Menu
