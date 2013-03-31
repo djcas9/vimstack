@@ -17,7 +17,7 @@ syntax on                         " syntax highlighting
 set mouse=a
 set ttymouse=xterm2
 set synmaxcol=2048                " Syntax coloring lines that are too
-                                  " long just slows down the world
+" long just slows down the world
 
 set viminfo='20,\"80              " read/write a .viminfo file, don't store more
 
@@ -27,7 +27,7 @@ set term=xterm
 set background=dark
 colorscheme epix
 
-" match LongLineWarning '\%>80v.\+'
+match LongLineWarning '\%>80v.\+'
 " match ErrorMsg '\%>80v.\+'
 " au BufWinEnter * let w:m2=matchadd('LongLineWarning', '\%>80v.\+', -1)
 " match LongLineWarning /\%>81v.\+/
@@ -45,6 +45,7 @@ set t_ti= t_te=
 
 " HTML Fix
 autocmd FileType html setlocal indentkeys-=*<Return>
+nmap <Leader>= mzgg=G\`z
 
 " Windowing settings
 " set equalalways                   " keep windows equal when splitting (default)
@@ -83,6 +84,10 @@ set clipboard=unnamed
 " Yank text to the OS X clipboard
 map <leader>y "*y
 map <leader>yy "*Y
+
+" Git Gutter
+let g:gitgutter_enabled = 0
+map <leader>g :ToggleGitGutter<CR>
 
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
@@ -156,7 +161,7 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set wildmenu                      " Enhanced command line completion.
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains
-                                  " a capital letter.
+" a capital letter.
 
 set number                        " Show line numbers.
 set ruler                         " Show cursor position.
@@ -167,11 +172,11 @@ set hlsearch                      " Highlight matches.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
 "set linebreak			    " For lines longer than the window,
-                      " wrap intelligently. This doesn't
-                      " insert hard line breaks.
+" wrap intelligently. This doesn't
+" insert hard line breaks.
 
 set showbreak=↪\ \ 		" string to put before wrapped screen
-                      " lines
+" lines
 
 " set cmdheight=2
 
@@ -236,7 +241,7 @@ set scrolloff=8
 " Remember last location in file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
+        \| exe "normal g'\"" | endif
 endif
 
 " SnipMate
@@ -358,10 +363,10 @@ set nocursorcolumn
 nnoremap Q gqip
 
 augroup ft_javascript
-    au!
+  au!
 
-au FileType javascript setlocal foldmethod=marker
-au FileType javascript setlocal foldmarker={,}
+  au FileType javascript setlocal foldmethod=marker
+  au FileType javascript setlocal foldmarker={,}
 augroup END
 
 " Command-/ to toggle comments
@@ -423,39 +428,39 @@ nnoremap n n:call PulseCursorLine()<cr>
 nnoremap N N:call PulseCursorLine()<cr>
 
 function! PulseCursorLine()
-    let current_window = winnr()
+  let current_window = winnr()
 
-    windo set nocursorline
-    execute current_window . 'wincmd w'
+  windo set nocursorline
+  execute current_window . 'wincmd w'
 
-    setlocal cursorline
+  setlocal cursorline
 
-    redir => old_hi
-        silent execute 'hi CursorLine'
-    redir END
-    let old_hi = split(old_hi, '\n')[0]
-    let old_hi = substitute(old_hi, 'xxx', '', '')
+  redir => old_hi
+  silent execute 'hi CursorLine'
+  redir END
+  let old_hi = split(old_hi, '\n')[0]
+  let old_hi = substitute(old_hi, 'xxx', '', '')
 
-    hi CursorLine guibg=#3a3a3a
-    redraw
-    sleep 20m
+  hi CursorLine guibg=#3a3a3a
+  redraw
+  sleep 20m
 
-    hi CursorLine guibg=#4a4a4a
-    redraw
-    sleep 30m
+  hi CursorLine guibg=#4a4a4a
+  redraw
+  sleep 30m
 
-    hi CursorLine guibg=#3a3a3a
-    redraw
-    sleep 30m
+  hi CursorLine guibg=#3a3a3a
+  redraw
+  sleep 30m
 
-    hi CursorLine guibg=#2a2a2a
-    redraw
-    sleep 20m
+  hi CursorLine guibg=#2a2a2a
+  redraw
+  sleep 20m
 
-    execute 'hi ' . old_hi
+  execute 'hi ' . old_hi
 
-    windo set cursorline
-    execute current_window . 'wincmd w'
+  windo set cursorline
+  execute current_window . 'wincmd w'
 endfunction
 
 " Git Stuff
@@ -483,13 +488,13 @@ vmap <C-n> <gv
 " RENAME CURRENT FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
 endfunction
 map <leader>n :call RenameFile()<cr>
 
@@ -508,46 +513,46 @@ autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
 "lines, y is the median length of the long lines and z is the length of the
 "longest line
 function! StatuslineLongLineWarning()
-    if !exists("b:statusline_long_line_warning")
+  if !exists("b:statusline_long_line_warning")
 
-        if !&modifiable
-            let b:statusline_long_line_warning = ''
-            return b:statusline_long_line_warning
-        endif
-
-        let long_line_lens = s:LongLines()
-
-        if len(long_line_lens) > 0
-            let b:statusline_long_line_warning = "[" .
-                        \ '#' . len(long_line_lens) . "," .
-                        \ 'm' . s:Median(long_line_lens) . "," .
-                        \ '$' . max(long_line_lens) . "]"
-        else
-            let b:statusline_long_line_warning = ""
-        endif
+    if !&modifiable
+      let b:statusline_long_line_warning = ''
+      return b:statusline_long_line_warning
     endif
-    return b:statusline_long_line_warning
+
+    let long_line_lens = s:LongLines()
+
+    if len(long_line_lens) > 0
+      let b:statusline_long_line_warning = "[" .
+            \ '#' . len(long_line_lens) . "," .
+            \ 'm' . s:Median(long_line_lens) . "," .
+            \ '$' . max(long_line_lens) . "]"
+    else
+      let b:statusline_long_line_warning = ""
+    endif
+  endif
+  return b:statusline_long_line_warning
 endfunction
 
 "return a list containing the lengths of the long lines in this buffer
 function! s:LongLines()
-    let threshold = (&tw ? &tw : 80)
-    let spaces = repeat(" ", &ts)
-    let line_lens = map(getline(1,'$'), 'len(substitute(v:val, "\\t", spaces, "g"))')
-    return filter(line_lens, 'v:val > threshold')
+  let threshold = (&tw ? &tw : 80)
+  let spaces = repeat(" ", &ts)
+  let line_lens = map(getline(1,'$'), 'len(substitute(v:val, "\\t", spaces, "g"))')
+  return filter(line_lens, 'v:val > threshold')
 endfunction
 
 "find the median of the given array of numbers
 function! s:Median(nums)
-    let nums = sort(a:nums)
-    let l = len(nums)
+  let nums = sort(a:nums)
+  let l = len(nums)
 
-    if l % 2 == 1
-        let i = (l-1) / 2
-        return nums[i]
-    else
-        return (nums[l/2] + nums[(l/2)-1]) / 2
-    endif
+  if l % 2 == 1
+    let i = (l-1) / 2
+    return nums[i]
+  else
+    return (nums[l/2] + nums[(l/2)-1]) / 2
+  endif
 endfunction
 
 " Yank Stack

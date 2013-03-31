@@ -1,4 +1,5 @@
 require 'rake'
+require 'pathname'
 
 PATH = File.expand_path(File.dirname(__FILE__)) + '/'
 
@@ -12,19 +13,20 @@ IGNORE = [
 #
 # Make sure pathogen is install
 #
-PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle; 
+PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle;
               curl -so ~/.vim/autoload/pathogen.vim \
-              https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim 
+              https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
             }
 
 BUNDLES = {
-
+  'vim-expand' => 'https://github.com/terryma/vim-expand-region.git',
+  'git-gutter' => 'https://github.com/airblade/vim-gitgutter.git',
   # eunuch.vim: helpers for UNIX
   'vim-eunuch' => 'https://github.com/tpope/vim-eunuch.git',
 
   'vim-bro' => 'https://github.com/mephux/bro.vim.git',
   # 'vim-pasta' => 'https://github.com/sickill/vim-pasta.git',
-  
+
   'vim-handlebars'      => 'https://github.com/nono/vim-handlebars.git',
   'vim-smartusline'     => 'https://github.com/molok/vim-smartusline.git',
   'vim-buffergator'     => 'https://github.com/jeetsukumaran/vim-buffergator.git',
@@ -70,7 +72,7 @@ def current_submodules
     data = `git submodule`
     data.each_line do |line|
       r = line.split(' ')
-      @modules.push(r[1])  
+      @modules.push(r[1])
     end
   end
 
@@ -150,7 +152,7 @@ task :update_old do
   items('vim/bundle/*') do |name, path|
     Dir.chdir(path)
     puts "[OK] #{name}"
-    `git pull origin master` # > /dev/null 2>&1` 
+    `git pull origin master` # > /dev/null 2>&1`
     puts "\n"
   end
 
@@ -209,7 +211,8 @@ def bundle
 
   # Add Submodule
   BUNDLES.each do |name, path|
-    `git submodule add #{path} vim/bundle/#{name} --force` # > /dev/null 2>&1`
+    `mkdir -p #{File.join(Dir.pwd, 'vim/bundle/', name)}`
+    `git submodule add #{path} #{File.join(Dir.pwd, 'vim/bundle/', name)} > /dev/null 2>&1`
     `cd vim/bundle/#{name} && git pull --force`
     puts "[OK] #{name}"
   end

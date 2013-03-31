@@ -40,7 +40,13 @@ hi SpellBad         guibg=#111111     gui=undercurl     guisp=#8d8d8d ctermbg=NO
 hi Error            guifg=NONE        guibg=NONE        gui=NONE      ctermfg=white       ctermbg=red         cterm=NONE     guisp=#FF6C60
 hi ErrorMsg         guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
 hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
-" hi LongLineWarning  guifg=NONE        guibg=#371F1C     gui=underline ctermfg=white        ctermbg=red 	      cterm=NONE
+hi LongLineWarning  guifg=#FFFFFF     guibg=#371F1C     gui=underline ctermfg=1           ctermbg=red 	      cterm=NONE
+
+" Git Gutter
+hi SignColumn ctermbg=NONE
+hi lineAdded    guifg=#009900 guibg=NONE ctermfg=2 ctermbg=NONE
+hi lineModified guifg=#bbbb00 guibg=NONE ctermfg=3 ctermbg=NONE
+hi lineRemoved  guifg=#ff2222 guibg=NONE ctermfg=1 ctermbg=NONE
 
 " Message displayed in lower left, such as --INSERT--
 hi ModeMsg          guifg=#919191     guibg=#111111     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD

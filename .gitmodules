@@ -1,3 +1,0 @@
-[submodule "vim/bundle/vim-bro"]
-	path = vim/bundle/vim-bro
-	url = https://github.com/mephux/bro.vim.git
