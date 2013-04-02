@@ -63,7 +63,9 @@ BUNDLES = {
   'tlib_vim'            => 'https://github.com/tomtom/tlib_vim.git',
   'vim-addon-mw-utils'  => 'https://github.com/MarcWeber/vim-addon-mw-utils.git',
   'snipmate-snippets'   => 'https://github.com/mephux/snipmate-snippets.git',
-  'nerdtree'            => 'https://github.com/scrooloose/nerdtree.git'
+  'nerdtree'            => 'https://github.com/scrooloose/nerdtree.git',
+
+  'vim-indent-guides' => 'https://github.com/nathanaelkane/vim-indent-guides.git',
 }
 
 def current_submodules
@@ -209,11 +211,12 @@ end
 def bundle
  puts "\n[~] Updating Submodule Index"
 
+ `mkdir -p #{File.join(Dir.pwd, 'vim/bundle/')}`
+
   # Add Submodule
   BUNDLES.each do |name, path|
-    `mkdir -p #{File.join(Dir.pwd, 'vim/bundle/', name)}`
-    `git submodule add #{path} #{File.join(Dir.pwd, 'vim/bundle/', name)} > /dev/null 2>&1`
-    `cd vim/bundle/#{name} && git pull --force`
+    `git clone #{path} #{File.join(Dir.pwd, 'vim/bundle/', name)} > /dev/null 2>&1`
+    `cd vim/bundle/#{name} && git pull && cd ..`
     puts "[OK] #{name}"
   end
 

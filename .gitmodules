@@ -1,0 +1,105 @@
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-expand"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-expand
+	url = https://github.com/terryma/vim-expand-region.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/git-gutter"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/git-gutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-eunuch"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-bro"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-bro
+	url = https://github.com/mephux/bro.vim.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-handlebars"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-handlebars
+	url = https://github.com/nono/vim-handlebars.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-smartusline"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-smartusline
+	url = https://github.com/molok/vim-smartusline.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-buffergator"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-buffergator
+	url = https://github.com/jeetsukumaran/vim-buffergator.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-smartinput"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-smartinput
+	url = https://github.com/kana/vim-smartinput.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/nerdcommenter"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-align"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-align
+	url = https://github.com/tsaleh/vim-align.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-fugitive"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-repeat"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-ruby"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-unimpaired"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/supertab"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-endwise"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-endwise
+	url = https://github.com/tpope/vim-endwise.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-git"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-git
+	url = https://github.com/tpope/vim-git.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-rake"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-rake
+	url = https://github.com/tpope/vim-rake.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-rspec"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-rspec
+	url = https://github.com/taq/vim-rspec.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-surround"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/zencoding-vim"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/zencoding-vim
+	url = https://github.com/mattn/zencoding-vim.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/ack.vim"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-javascript"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-javascript
+	url = https://github.com/mephux/vim-javascript.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/nodejs"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/nodejs
+	url = https://github.com/mmalecki/vim-node.js
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-go"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-go
+	url = https://github.com/uggedal/go-vim.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-ragtag"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-ragtag
+	url = https://github.com/tpope/vim-ragtag.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/SingleCompile"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/SingleCompile
+	url = https://github.com/vim-scripts/SingleCompile.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-extradite"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-extradite
+	url = https://github.com/int3/vim-extradite.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/greplace"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/greplace
+	url = https://github.com/vim-scripts/greplace.vim.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/ctrlp"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-snipmate"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-snipmate
+	url = git://github.com/garbas/vim-snipmate.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/tlib_vim"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/vim-addon-mw-utils"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/snipmate-snippets"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/snipmate-snippets
+	url = https://github.com/mephux/snipmate-snippets.git
+[submodule "/Users/mephux/Source/shell/vimux/vim/bundle/nerdtree"]
+	path = /Users/mephux/Source/shell/vimux/vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git

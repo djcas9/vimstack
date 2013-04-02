@@ -5,6 +5,13 @@ set nocompatible                   " Must come first because it changes others
 " set shell=/bin/sh
 set encoding=utf-8
 
+let g:IndentGuidesEnabled = 0
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_color_change_percent = 10
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=237
+
 " Setup Pathogen
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -21,18 +28,20 @@ set synmaxcol=2048                " Syntax coloring lines that are too
 
 set viminfo='20,\"80              " read/write a .viminfo file, don't store more
 
-set t_Co=256                      " 256 colors
+colorscheme threatstack
 set term=xterm
+set t_Co=256                      " 256 colors
+let &t_Co=256
 
-set background=dark
-colorscheme epix
+" Show syntax highlighting groups for word under cursor
+nmap <Leader>s :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
-match LongLineWarning '\%>80v.\+'
-" match ErrorMsg '\%>80v.\+'
-" au BufWinEnter * let w:m2=matchadd('LongLineWarning', '\%>80v.\+', -1)
-" match LongLineWarning /\%>81v.\+/
-" highlight OverLength ctermbg=red ctermfg=black cterm=NONE guibg=#FF6C60
-" highlight OverLength guifg=white guibg=#FF6C60 gui=BOLD ctermfg=white ctermbg=red cterm=NONE
 
 set autoread			    " Automatically re-read files changed outside
 set ttyfast                       " you have a fast terminal
@@ -87,10 +96,10 @@ map <leader>yy "*Y
 
 " Git Gutter
 let g:gitgutter_enabled = 0
-map <leader>g :ToggleGitGutter<CR>
+map <leader>g :GitGutterToggle<CR>
 
 " Preserve indentation while pasting text from the OS X clipboard
-noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+map <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " On Focus Lost
 " Enter normal mode
@@ -116,8 +125,10 @@ else
 
   nmap <silent> <C-Left> b
   nmap <silent> <C-Right> w
-  vmap <silent> <C-Left> b
-  vmap <silent> <C-Right> w
+  " vmap <silent> <C-Left> b
+  " vmap <silent> <C-Right> w
+  vmap <C-Right> <Plug>(expand_region_expand)
+  vmap <C-Left> <Plug>(expand_region_shrink)
 
   imap <silent> <C-Left> <ESC>b
   imap <silent> <C-Right> <ESC>w
@@ -142,6 +153,24 @@ else
 
 endif
 
+" Default - V Expand
+if !exists('g:expand_region_text_objects')
+  " Dictionary of text objects that are supported by default. Note that some of
+  " the text objects are not available in vanilla vim. '1' indicates that the
+  " text object is recursive (think of nested parens or brackets)
+  let g:expand_region_text_objects = {
+        \ 'iw'  :0,
+        \ 'iW'  :1,
+        \ 'i"'  :1,
+        \ 'i''' :1,
+        \ 'i]'  :1,
+        \ 'ib'  :1,
+        \ 'iB'  :1,
+        \ 'il'  :1,
+        \ 'ip'  :1,
+        \ 'ie'  :1,
+        \}
+endif
 
 " Nav Hacks
 map <C-c> <plug>NERDCommenterToggle<CR>
@@ -205,9 +234,6 @@ set noequalalways
 " CtrlP configuration
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
-
-" :Extradite - Git log viewer
-map <Leader>o :Extradite!<CR>
 
 " Awk
 nnoremap <leader>f :Ack<Space>
@@ -334,9 +360,6 @@ set statusline+=%=%#error#
 set statusline+=%{&paste?'[paste]':''}
 set statusline+=%*
 
-" Line Lines
-" set statusline+=\ %{StatuslineLongLineWarning()}
-
 set statusline+=%=[%{&ff}]
 set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
 set statusline+=\ %y
@@ -356,7 +379,7 @@ nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Highlight the current line and column Don't do this - It makes window
 " redraws painfully slow
-set nocursorline
+set cursorline
 set nocursorcolumn
 
 " Remove Ex mode Replace with a format helper
@@ -512,35 +535,6 @@ autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
 "return '[#x,my,$z] if long lines are found, were x is the number of long
 "lines, y is the median length of the long lines and z is the length of the
 "longest line
-function! StatuslineLongLineWarning()
-  if !exists("b:statusline_long_line_warning")
-
-    if !&modifiable
-      let b:statusline_long_line_warning = ''
-      return b:statusline_long_line_warning
-    endif
-
-    let long_line_lens = s:LongLines()
-
-    if len(long_line_lens) > 0
-      let b:statusline_long_line_warning = "[" .
-            \ '#' . len(long_line_lens) . "," .
-            \ 'm' . s:Median(long_line_lens) . "," .
-            \ '$' . max(long_line_lens) . "]"
-    else
-      let b:statusline_long_line_warning = ""
-    endif
-  endif
-  return b:statusline_long_line_warning
-endfunction
-
-"return a list containing the lengths of the long lines in this buffer
-function! s:LongLines()
-  let threshold = (&tw ? &tw : 80)
-  let spaces = repeat(" ", &ts)
-  let line_lens = map(getline(1,'$'), 'len(substitute(v:val, "\\t", spaces, "g"))')
-  return filter(line_lens, 'v:val > threshold')
-endfunction
 
 "find the median of the given array of numbers
 function! s:Median(nums)
@@ -559,4 +553,12 @@ endfunction
 let g:yankstack_map_keys = 0
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_older_paste
+
+" syntax match LongLineWarning '\%>80v.\+'
+" match LongLineWarning /\%81v.*/
+
+let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
+let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=119 ctermfg=black'
+let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
+let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=108 ctermfg=black'
 
