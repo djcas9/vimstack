@@ -30,7 +30,7 @@ hi ModeMsg          guifg=#919191     guibg=#111111     gui=BOLD      ctermfg=bl
 hi MoreMsg          guifg=#919191     guibg=#111111     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD
 
 " Directory Colors
-hi Directory        guifg=#bcc7cc     guibg=NONE        gui=BOLD      ctermfg=102        ctermbg=NONE        cterm=NONE
+hi Directory        guifg=#bcc7cc     guibg=NONE        gui=BOLD      ctermfg=103        ctermbg=NONE        cterm=NONE
 
 hi Menu             guifg=#383838     guibg=#111111     gui=NONE      ctermbg=233 ctermfg=250 cterm=NONE
 hi WildMenu         guifg=#FFFFFF     guibg=#313131     gui=bold      cterm=NONE
