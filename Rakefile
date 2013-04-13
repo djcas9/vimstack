@@ -19,6 +19,7 @@ PATHOGEN = %{ mkdir -p ~/.vim/autoload ~/.vim/bundle;
             }
 
 BUNDLES = {
+  'vim-abolish' => 'https://github.com/tpope/vim-abolish.git',
   'vim-expand' => 'https://github.com/terryma/vim-expand-region.git',
   'git-gutter' => 'https://github.com/airblade/vim-gitgutter.git',
   # eunuch.vim: helpers for UNIX
