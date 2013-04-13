@@ -12,7 +12,7 @@ endif
 let colors_name = "threatstack"
 
 " General colors
-hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=232        cterm=NONE
 hi NonText          guifg=#070707 guibg=black ctermfg=235 ctermbg=none
 
 hi Cursor           guifg=black guibg=white ctermfg=0 ctermbg=15
