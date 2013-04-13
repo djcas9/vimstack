@@ -48,9 +48,9 @@ hi SpellBad         guibg=#111111     gui=undercurl     guisp=#8d8d8d ctermbg=NO
 
 " Vim Diff
 hi DiffText         guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-hi DiffChange       guifg=#FFFFFF     guibg=#374757     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-hi DiffDelete       guifg=#FFFFFF     guibg=#5c3a3d     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-hi DiffAdd          guifg=#FFFFFF     guibg=#3d5838     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi DiffChange       guifg=#FFFFFF     guibg=#374757     gui=NONE      ctermfg=NONE        ctermbg=234        cterm=NONE
+hi DiffDelete       guifg=#FFFFFF     guibg=#5c3a3d     gui=NONE      ctermfg=NONE        ctermbg=52        cterm=NONE
+hi DiffAdd          guifg=#FFFFFF     guibg=#3d5838     gui=NONE      ctermfg=NONE        ctermbg=22         cterm=NONE
 
 hi SpecialKey       guifg=#808080 guibg=#343434 ctermfg=8 ctermbg=236
 
