@@ -2,6 +2,7 @@
 " ~/.VIMRC
 
 set nocompatible                   " Must come first because it changes others
+filetype off
 " set shell=/bin/sh
 set encoding=utf-8
 
@@ -12,10 +13,45 @@ let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=237
 
-" Setup Pathogen
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" Vundle 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+ " let Vundle manage Vundle
+ " required! 
+ Bundle 'gmarik/vundle'
+
+ Bundle 'tpope/vim-abolish'
+ Bundle 'terryma/vim-expand-region'
+ Bundle 'nono/vim-handlebars'
+ Bundle 'molok/vim-smartusline'
+ Bundle 'jeetsukumaran/vim-buffergator'
+ Bundle 'kana/vim-smartinput'
+ Bundle 'scrooloose/nerdcommenter'
+ Bundle 'tpope/vim-fugitive'
+ Bundle 'tpope/vim-repeat'
+ Bundle 'tpope/vim-unimpaired'
+ Bundle 'ervandew/supertab'
+ Bundle 'tpope/vim-endwise'
+ Bundle 'tpope/vim-git'
+ Bundle 'tpope/vim-surround'
+ Bundle 'mattn/zencoding-vim'
+ Bundle 'mileszs/ack.vim'
+ Bundle 'mephux/vim-javascript'
+ Bundle 'mmalecki/vim-node.js'
+ Bundle 'tpope/vim-ragtag'
+ Bundle 'vim-scripts/SingleCompile'
+ Bundle 'int3/vim-extradite'
+ Bundle 'kien/ctrlp.vim'
+ Bundle 'garbas/vim-snipmate'
+ Bundle 'tomtom/tlib_vim'
+ Bundle 'MarcWeber/vim-addon-mw-utils'
+ Bundle 'mephux/snipmate-snippets'
+ Bundle 'scrooloose/nerdtree'
+
+" My Bundles here:
+
+" END VUNDLE
 
 filetype plugin indent on         " Turn on file type detection.
 syntax on                         " syntax highlighting
@@ -23,7 +59,8 @@ syntax on                         " syntax highlighting
 "some stuff to get the mouse going in term
 set mouse=a
 set ttymouse=xterm2
-set synmaxcol=2048                " Syntax coloring lines that are too
+" set synmaxcol=2048                " Syntax coloring lines that are too
+set shell=$SHELL\ -l
 " long just slows down the world
 
 set viminfo='20,\"80              " read/write a .viminfo file, don't store more
@@ -44,6 +81,8 @@ endfunc
 
 
 set autoread			    " Automatically re-read files changed outside
+set copyindent
+set undolevels=1000
 set ttyfast                       " you have a fast terminal
 set ttyscroll=3
 set lazyredraw                    " avoid scrolling problems
@@ -60,7 +99,7 @@ nmap <Leader>= mzgg=G\`z
 " set equalalways                   " keep windows equal when splitting (default)
 set winfixwidth
 set eadirection=hor               " ver/hor/both - where does equalalways apply
-set winwidth=85
+" set winwidth=85
 set winheight=10
 set winminheight=10
 set winheight=999
@@ -91,7 +130,7 @@ endif
 set clipboard=unnamed
 
 " Yank text to the OS X clipboard
-map <leader>y "*y
+map <leader>y :.w !pbcopy<CR><CR>
 map <leader>yy "*Y
 
 " Git Gutter
@@ -99,7 +138,14 @@ let g:gitgutter_enabled = 0
 map <leader>g :GitGutterToggle<CR>
 
 " Preserve indentation while pasting text from the OS X clipboard
-map <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+map <leader>p :set invpaste<CR>
+" noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+" Win dow Resize
+if bufwinnr(1)
+  map + <C-W>10<
+  map - <C-W>10>
+endi
 
 " On Focus Lost
 " Enter normal mode
@@ -175,7 +221,8 @@ endif
 " Nav Hacks
 map <C-c> <plug>NERDCommenterToggle<CR>
 
-set foldmethod=indent             " Folding settings
+set foldmethod=manual             " Folding settings
+set foldlevel=99
 set foldnestmax=3                 " deepest fold is 3 levels
 set nofoldenable                  " dont fold by default
 set showmode                      " Display the mode you're in.
@@ -214,10 +261,43 @@ set vb t_vb=		                  " shut off bell entirely; see also .gvimrc
 set title                         " Set the terminal's title
 set visualbell                    " No beeping.
 
+" Ensure the temp dirs exist
+if !isdirectory($HOME . "/.vim/tmp")
+  call system("mkdir -p ~/.vim/tmp/swap")
+  call system("mkdir -p ~/.vim/tmp/backup")
+  call system("mkdir -p ~/.vim/tmp/undo")
+endif
+
+" Persistent Undo
 set undofile
-set undodir=~/.vim/tmp/undo//     " undo files
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set undolevels=10000     " numbers of particular undos to save
+set undoreload=100000    " number of undo lines to save
+
+set dir=~/.vim/tmp/swap/
+set backupdir=~/.vim/tmp/backup/
+set undodir=~/.vim/tmp/undo/
+
+" Don't back up temp files
+set backupskip=/tmp/*,/private/tmp/*
+
+ " Don't save other tabs in sessions (as I don't use tabs)
+set sessionoptions-=tabpages
+" Don't save help pages in sessions
+set sessionoptions-=help
+" Don't save hidden buffers -- only save the visible ones.
+set sessionoptions-=buffers
+
+" Show extra whitespace
+" hi ExtraWhitespace guibg=#202020
+" hi ExtraWhitespace ctermbg=239
+" match ExtraWhitespace /\s\+$/
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd BufWinLeave * call clearmatches()
+
+" Get rid of Ex mode
+nnoremap Q nop
 
 " Don't make a backup before overwriting a file.
 set nobackup
@@ -232,8 +312,10 @@ set mousehide
 set noequalalways
 
 " CtrlP configuration
+let g:ctrlp_by_filename = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 
 " Awk
 nnoremap <leader>f :Ack<Space>
@@ -554,11 +636,6 @@ function! s:Median(nums)
     return (nums[l/2] + nums[(l/2)-1]) / 2
   endif
 endfunction
-
-" Yank Stack
-let g:yankstack_map_keys = 0
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_older_paste
 
 " syntax match LongLineWarning '\%>80v.\+'
 " match LongLineWarning /\%81v.*/

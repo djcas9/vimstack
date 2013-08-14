@@ -12,7 +12,7 @@ endif
 let colors_name = "threatstack"
 
 " General colors
-hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=232        cterm=NONE
+hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=16        cterm=NONE
 hi NonText          guifg=#070707 guibg=black ctermfg=235 ctermbg=none
 
 hi Cursor           guifg=black guibg=white ctermfg=0 ctermbg=15
@@ -76,9 +76,9 @@ endif
 
 " Syntax highlighting
 " TODO: 
-hi Comment          guifg=#7C7C7C ctermfg=8 ctermbg=none
-hi String           guifg=#A8FF60 ctermfg=155 
-hi Number           guifg=#FF73FD ctermfg=207 
+hi Comment          guifg=#7C7C7C ctermfg=237 ctermbg=none
+hi String           guifg=#A8FF60 ctermfg=155 " 155
+hi Number           guifg=#FF73FD ctermfg=207
 
 hi Keyword          guifg=#96CBFE ctermfg=117 
 hi PreProc          guifg=#96CBFE ctermfg=117 
@@ -88,9 +88,9 @@ hi Todo             guifg=#000000 guibg=#cae682 ctermfg=167 ctermbg=none cterm=n
 hi Constant         guifg=#99CC99 ctermfg=151 
 
 hi Identifier       guifg=#C6C5FE ctermfg=189 
-hi Function         guifg=#FFD2A7 ctermfg=223 
-hi Type             guifg=#FFFFB6 ctermfg=229 
-hi Statement        guifg=#6699CC ctermfg=110 
+hi Function         guifg=#FFD2A7 ctermfg=223 "223 
+hi Type             guifg=#FFFFB6 ctermfg=229 "229 
+hi Statement        guifg=#6699CC ctermfg=110 "110 
 
 hi Special          guifg=#E18964 ctermfg=173 
 hi Delimiter        guifg=#00A0A0 ctermfg=37 
