@@ -1,4 +1,5 @@
 .DS_Store
+vim/.cache
 *.netrwhist
 *.swp
 vim/NERDTreeBookmarks
