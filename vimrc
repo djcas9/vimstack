@@ -48,6 +48,7 @@ call vundle#rc()
  Bundle 'MarcWeber/vim-addon-mw-utils'
  Bundle 'mephux/snipmate-snippets'
  Bundle 'scrooloose/nerdtree'
+ Bundle 'fsouza/go.vim'
 
 " My Bundles here:
 
