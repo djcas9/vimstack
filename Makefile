@@ -1,13 +1,13 @@
 PWD := $(shell pwd)
 
-install: clean
+install: uninstall
 	ln -s $(PWD)/vim ~/.vim
 	ln -s $(PWD)/vimrc ~/.vimrc
 	ln -s $(PWD)/gvimrc ~/.gvimrc
 	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-	@echo "\n\nInstallation Complete - Now run: vim +BundleInstall +qall"
+	@echo "\n\nInstallation Complete - Now run: vim +BundleInstall +qall \n"
 
-clean:
+uninstall:
 	rm -rf $(PWD)/vim/bundle/*
 	rm -rf ~/.vim
 	rm -rf ~/.vimrc
