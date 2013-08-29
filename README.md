@@ -12,6 +12,6 @@
 
   `make uninstall`
 
-Default color scheme is epix.vim (my custom theme)
+Default color scheme is threatstack
 
 ![Epix](https://github.com/mephux/vimux/raw/master/vimux.png)
