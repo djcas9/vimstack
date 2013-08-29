@@ -282,14 +282,16 @@ if !isdirectory($HOME . "/.vim/tmp")
   call system("mkdir -p ~/.vim/tmp/undo")
 endif
 
-" Persistent Undo
-set undofile
-set undolevels=10000     " numbers of particular undos to save
-set undoreload=100000    " number of undo lines to save
+if version >= 703
+  " Persistent Undo
+  set undofile
+  set undolevels=10000     " numbers of particular undos to save
+  set undoreload=100000    " number of undo lines to save
+  set undodir=~/.vim/tmp/undo/
+endif
 
 set dir=~/.vim/tmp/swap/
 set backupdir=~/.vim/tmp/backup/
-set undodir=~/.vim/tmp/undo/
 
 " Don't back up temp files
 set backupskip=/tmp/*,/private/tmp/*
