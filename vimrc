@@ -1,6 +1,13 @@
 " Mephux <dustin.webber[at]gmail.com>
 " ~/.VIMRC
 
+" XXX Notice XXX
+"
+" This vimrc is all over the place. One day
+" I will try to organize it but we both known
+" that will never happen. Good Luck!
+"
+
 set nocompatible                   " Must come first because it changes others
 filetype off
 " set shell=/bin/sh
@@ -13,13 +20,16 @@ let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=237
 
-" Vundle 
+" Vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
  " let Vundle manage Vundle
- " required! 
+ " required!
  Bundle 'gmarik/vundle'
+
+ " Status Bar
+ Bundle 'bling/vim-airline'
 
  Bundle 'tpope/vim-abolish'
  Bundle 'terryma/vim-expand-region'
@@ -35,7 +45,7 @@ call vundle#rc()
  Bundle 'tpope/vim-endwise'
  Bundle 'tpope/vim-git'
  Bundle 'tpope/vim-surround'
- Bundle 'mattn/zencoding-vim'
+ Bundle 'mattn/emmet-vim'
  Bundle 'mileszs/ack.vim'
  Bundle 'mephux/vim-javascript'
  Bundle 'mmalecki/vim-node.js'
@@ -62,6 +72,7 @@ set mouse=a
 set ttymouse=xterm2
 " set synmaxcol=2048                " Syntax coloring lines that are too
 set shell=$SHELL\ -l
+set ttimeoutlen=50  " Exit insert mode timeout
 " long just slows down the world
 
 set viminfo='20,\"80              " read/write a .viminfo file, don't store more
@@ -151,22 +162,24 @@ endi
 " On Focus Lost
 " Enter normal mode
 " au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
+"
+" Zencoding Keymap - Linux/Windows/Terminal
+let g:user_emmet_expandabbr_key = '<C-e>'
+" let g:user_emmet_leader_key = '<C>'
+" let g:user_emmet_leader_key = '<C-e>'
+" let g:user_emmet_mode='a'    "enable all function in all mode.
 
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
 if has("gui_running")
 
   if has("gui_macvim")
     let macvim_hig_shift_movement = 1
-    " Zencoding Keymap - MacOSX
-    let g:user_zen_expandabbr_key = '<D-e>'
   endif
 
 else
 
   set selection=exclusive           " Select
 
-  " Zencoding Keymap - Linux/Windows/Terminal
-  let g:user_zen_expandabbr_key = '<C-e>'
 
   map <Leader>w <ESC>:w<CR>
 
@@ -404,7 +417,7 @@ let g:buffergator_suppress_keymaps = 1
 let g:buffergator_split_size = 20
 map <leader>b :BuffergatorToggle<Enter>
 
-call SingleCompile#ChooseCompiler('c', 'cc')
+" call SingleCompile#ChooseCompiler('c', 'cc')
 nmap <Leader>B :SCCompile<cr>
 nmap <Leader>r :update<CR>:SCCompileRun<cr>
 vmap <Leader>r :update<CR>:SCCompileRun<cr>
@@ -425,18 +438,42 @@ autocmd FileType c set sw=4 sts=4 et
 
 
 " Smartusline
-let g:smartusline_string_to_highlight = '%f'
-let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
-let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=58 ctermfg=black'
-let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
-let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black'
+" let g:smartusline_string_to_highlight = '%f'
+" let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
+" let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=58 ctermfg=black'
+" let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
+" let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black'
+
+" vim-airline status configs
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+
+let g:airline_detect_modified=0
+
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
+
+let g:airline_symbols = {}
+let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " Status Line Setup
 set statusline=[%n]\ [%<%f]\ %h%w%m%r
 
-
 " Git branch and status
-set statusline+=\%{fugitive#statusline()}
+set statusline+=\%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
 " Display a warning if &paste is set
 set statusline+=%=%#error#
@@ -638,11 +675,7 @@ function! s:Median(nums)
   endif
 endfunction
 
-" syntax match LongLineWarning '\%>80v.\+'
-" match LongLineWarning /\%81v.*/
-
 let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
 let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=119 ctermfg=black'
 let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
 let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=108 ctermfg=black'
-

@@ -13,4 +13,6 @@ uninstall:
 	rm -rf ~/.vimrc
 	rm -rf ~/.gvimrc
 
+clean: uninstall
+
 .PHONY: install
