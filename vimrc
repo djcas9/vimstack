@@ -27,9 +27,10 @@ call vundle#rc()
  " let Vundle manage Vundle
  " required!
  Bundle 'gmarik/vundle'
+ Bundle 'tpope/vim-capslock'
 
  " Status Bar
- Bundle 'bling/vim-airline'
+ " Bundle 'bling/vim-airline'
 
  Bundle 'tpope/vim-abolish'
  Bundle 'terryma/vim-expand-region'
@@ -245,10 +246,16 @@ set backspace=indent,eol,start    " Intuitive backspacing.
 set hidden                        " Handle multiple buffers better.
 
 " Tab completion
+set wildmenu                      " Enhanced command line completion.
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*DS_Store*
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
 
-set wildmenu                      " Enhanced command line completion.
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains
 " a capital letter.
@@ -438,57 +445,33 @@ autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd filetype svn,*commit* setlocal spell
 autocmd FileType c set sw=4 sts=4 et
 
-
-" Smartusline
-" let g:smartusline_string_to_highlight = '%f'
-" let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
-" let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=58 ctermfg=black'
-" let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
-" let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black'
-
-" vim-airline status configs
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-
-let g:airline_detect_modified=0
-
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
-
-let g:airline_symbols = {}
-let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols = {}
+" let g:airline_symbols.branch = '⎇'
 " let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.whitespace = 'Ξ'
+" let g:airline_symbols.whitespace = 'Ξ'
 
 " Status Line Setup
+set statusline=
+set statusline+=%<\ " cut at start
 set statusline=[%n]\ [%<%f]\ %h%w%m%r
 
 " Git branch and status
 set statusline+=\%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
-" Display a warning if &paste is set
+
 set statusline+=%=%#error#
+set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
+" Display a warning if &paste is set
 set statusline+=%{&paste?'[paste]':''}
 set statusline+=%*
+set statusline+=\ 
 
 set statusline+=%=[%{&ff}]
 set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
 set statusline+=\ %y
 
 " Column/Line Information
-set statusline+=%=%-10(\ %l,%c-%v\ %)
-set statusline+=\ [%P]\ "percent through file
+set statusline+=\ [%P\ %l/%L\:\ %v\]\ " percent through file
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -523,7 +506,9 @@ augroup END
 " Command-/ to toggle comments
 let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1
-map <Leader>c <plug>NERDCommenterToggle<CR>
+
+" Caps Lock
+nmap <Leader>c <Plug>CapsLockToggle
 
 " QuickFix Navigation
 " map <c-z> :cprevious<CR>
@@ -560,9 +545,6 @@ vnoremap <Space> za
 
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" shortcut to jump to next conflict marker
-nmap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
 
 " Creating underline/overline headings for markup languages
 " Inspired by http://sphinx.pocoo.org/rest.html#sections
@@ -632,10 +614,6 @@ nmap <leader>gs :Gstatus<CR><C-w>20+
 " Control-F for Ack
 map <C-F> :Ack<space>
 
-" Control-m/n to increase/decrease indentation
-vmap <C-m> >gv
-vmap <C-n> <gv
-
 " RENAME CURRENT FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
@@ -653,30 +631,8 @@ map <leader>n :call RenameFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! -range Md5 :echo system('echo '.shellescape(join(getline(<line1>, <line2>), '\n')) . '| md5')
 
-"recalculate the long line warning when idle and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
-
-"return a warning for "long lines" where "long" is either &textwidth or 80 (if
-"no &textwidth is set)
-"
-"return '' if no long lines
-"return '[#x,my,$z] if long lines are found, were x is the number of long
-"lines, y is the median length of the long lines and z is the length of the
-"longest line
-
-"find the median of the given array of numbers
-function! s:Median(nums)
-  let nums = sort(a:nums)
-  let l = len(nums)
-
-  if l % 2 == 1
-    let i = (l-1) / 2
-    return nums[i]
-  else
-    return (nums[l/2] + nums[(l/2)-1]) / 2
-  endif
-endfunction
-
+" smartusline
+let g:smartusline_string_to_highlight = '%f'
 let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
 let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=119 ctermfg=black'
 let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
