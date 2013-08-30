@@ -2,11 +2,9 @@
 
 ## Install
 
-  `make install`
+  1) `make install`
 
-  then
-
-  `vim +BundleInstall +qall # install all default plugins`
+  2) `vim +BundleInstall +qall # install all default plugins`
 
 ## Commands
 
@@ -15,7 +13,7 @@
   * `ctrl + p`  - fuzzy file finder via ctrlp (https://github.com/kien/ctrlp.vim)
   * `<Leader>b` - ctrlp buffer search
   * `<Leader>f` - ctrlp function search
-  * `<c-f>`     - search via Ack (https://github.com/mileszs/ack.vim - `brew install ack or sudo apt-get install ack-grep`)
+  * `<c-f>`     - search via Ack (https://github.com/mileszs/ack.vim - `brew install ack` or `sudo apt-get install ack-grep`)
   * `<Leader>o` - git commit viewer via vim-extradite (https://github.com/int3/vim-extradite)
   * `<Leader>q` - quickfix
   * `<Leader>w` - write file
@@ -30,10 +28,11 @@
   * Example
     - `div#hello` followed by `ctrl + e` = `<div id="hello"></div>`
     - `div.world` followed by `ctrl + e` = `<div class="word"></div>`
+    - etc..
 
 ## Uninstall
 
-  `make uninstall`
+  `make uninstall` or `make clean`
 
 Default color scheme is threatstack
 
