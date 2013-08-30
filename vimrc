@@ -28,15 +28,11 @@ call vundle#rc()
  " required!
  Bundle 'gmarik/vundle'
  Bundle 'tpope/vim-capslock'
-
- " Status Bar
- " Bundle 'bling/vim-airline'
-
  Bundle 'tpope/vim-abolish'
  Bundle 'terryma/vim-expand-region'
  Bundle 'nono/vim-handlebars'
  Bundle 'molok/vim-smartusline'
- Bundle 'jeetsukumaran/vim-buffergator'
+ " Bundle 'jeetsukumaran/vim-buffergator'
  Bundle 'kana/vim-smartinput'
  Bundle 'scrooloose/nerdcommenter'
  Bundle 'tpope/vim-fugitive'
@@ -53,7 +49,10 @@ call vundle#rc()
  Bundle 'tpope/vim-ragtag'
  Bundle 'vim-scripts/SingleCompile'
  Bundle 'int3/vim-extradite'
+
  Bundle 'kien/ctrlp.vim'
+ Bundle 'mephux/ctrlp-funky'
+
  Bundle 'garbas/vim-snipmate'
  Bundle 'tomtom/tlib_vim'
  Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -335,13 +334,17 @@ set mousehide
 set noequalalways
 
 " CtrlP configuration
+let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
 let g:ctrlp_by_filename = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
-let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+let g:ctrlp_extensions = ['funky']
+nnoremap <Leader>f :CtrlPFunky<Cr>
+nnoremap <Leader>b :CtrlPBuffer<Cr>
 
 " Awk
-nnoremap <leader>f :Ack<Space>
+nnoremap <c-f> :Ack<Space>
 
 " Don't make a backup before overwriting a file.
 set nobackup
@@ -420,11 +423,11 @@ let NERDTreeShowFiles=1
 let NERDTreeShowHidden=0
 
 " BuffergatorToggle
-let g:buffergator_viewport_split_policy = "B"
-let g:buffergator_autoexpand_on_split = 0
-let g:buffergator_suppress_keymaps = 1
-let g:buffergator_split_size = 20
-map <leader>b :BuffergatorToggle<Enter>
+" let g:buffergator_viewport_split_policy = "B"
+" let g:buffergator_autoexpand_on_split = 0
+" let g:buffergator_suppress_keymaps = 1
+" let g:buffergator_split_size = 20
+" map <leader>b :BuffergatorToggle<Enter>
 
 " call SingleCompile#ChooseCompiler('c', 'cc')
 nmap <Leader>B :SCCompile<cr>
@@ -515,7 +518,7 @@ nmap <Leader>c <Plug>CapsLockToggle
 " map <c-x> :cnext<CR>
 
 " Quickfix (open/close using <leader>f)
-nmap <silent> <leader>f :QFix<CR>
+nmap <silent> <leader>q :QFix<CR>
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
   if exists("g:qfix_win") && a:forced == 0
