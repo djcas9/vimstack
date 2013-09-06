@@ -1,125 +1,99 @@
 " Mephux <dustin.webber[at]gmail.com>
 " ~/.VIMRC
 
-" XXX Notice XXX
-"
-" This vimrc is all over the place. One day
-" I will try to organize it but we both known
-" that will never happen. Good Luck!
-"
-
-set nocompatible                   " Must come first because it changes others
+" The Basics
+set nocompatible
 filetype off
-" set shell=/bin/sh
 set encoding=utf-8
 
-let g:IndentGuidesEnabled = 0
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_color_change_percent = 10
-let g:indent_guides_guide_size = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=237
-
-" Vundle
+" Vundle - Plugin Managment
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
- " let Vundle manage Vundle
- " required!
- Bundle 'gmarik/vundle'
- Bundle 'tpope/vim-capslock'
- Bundle 'tpope/vim-abolish'
- Bundle 'terryma/vim-expand-region'
- Bundle 'nono/vim-handlebars'
- Bundle 'molok/vim-smartusline'
- " Bundle 'jeetsukumaran/vim-buffergator'
- Bundle 'kana/vim-smartinput'
- Bundle 'scrooloose/nerdcommenter'
- Bundle 'tpope/vim-fugitive'
- Bundle 'tpope/vim-repeat'
- Bundle 'tpope/vim-unimpaired'
- Bundle 'ervandew/supertab'
- Bundle 'tpope/vim-endwise'
- Bundle 'tpope/vim-git'
- Bundle 'tpope/vim-surround'
- Bundle 'mattn/emmet-vim'
- Bundle 'mileszs/ack.vim'
- Bundle 'mephux/vim-javascript'
- Bundle 'mmalecki/vim-node.js'
- Bundle 'tpope/vim-ragtag'
- Bundle 'vim-scripts/SingleCompile'
- Bundle 'int3/vim-extradite'
+Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-capslock'
+Bundle 'tpope/vim-abolish'
+Bundle 'terryma/vim-expand-region'
+Bundle 'nono/vim-handlebars'
+Bundle 'molok/vim-smartusline'
+Bundle 'kana/vim-smartinput'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-surround'
+Bundle 'mattn/emmet-vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'mephux/vim-javascript'
+Bundle 'mmalecki/vim-node.js'
+Bundle 'tpope/vim-ragtag'
+Bundle 'vim-scripts/SingleCompile'
+Bundle 'int3/vim-extradite'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mephux/ctrlp-funky'
+Bundle 'garbas/vim-snipmate'
+Bundle 'tomtom/tlib_vim'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'mephux/snipmate-snippets'
+Bundle 'scrooloose/nerdtree'
+Bundle 'fsouza/go.vim'
 
- Bundle 'kien/ctrlp.vim'
- Bundle 'mephux/ctrlp-funky'
+" Turn on file type detection.
+filetype plugin indent on
+" syntax highlighting
+syntax on
 
- Bundle 'garbas/vim-snipmate'
- Bundle 'tomtom/tlib_vim'
- Bundle 'MarcWeber/vim-addon-mw-utils'
- Bundle 'mephux/snipmate-snippets'
- Bundle 'scrooloose/nerdtree'
- Bundle 'fsouza/go.vim'
-
-" My Bundles here:
-
-" END VUNDLE
-
-filetype plugin indent on         " Turn on file type detection.
-syntax on                         " syntax highlighting
-
-"some stuff to get the mouse going in term
+" Enable VIM mouse support
 set mouse=a
 set ttymouse=xterm2
-" set synmaxcol=2048                " Syntax coloring lines that are too
+
+" Set system shell
 set shell=$SHELL\ -l
-set ttimeoutlen=50  " Exit insert mode timeout
-" long just slows down the world
 
-set viminfo='20,\"80              " read/write a .viminfo file, don't store more
+" Exit insert mode timeout
+set ttimeoutlen=50
 
+" read/write a .viminfo file, don't store more
+set viminfo='20,\"80
+
+" Set the vim color schema
 colorscheme threatstack
+
+" Set terminal and force 256 colors
 set term=xterm
-set t_Co=256                      " 256 colors
+set t_Co=256
 let &t_Co=256
 
-" Show syntax highlighting groups for word under cursor
-nmap <Leader>s :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-
-set autoread			    " Automatically re-read files changed outside
+" Automatically re-read files changed outside
+set autoread			    
 set copyindent
 set undolevels=1000
-set ttyfast                       " you have a fast terminal
+
+" you have a fast terminal
+set ttyfast                       
 set ttyscroll=3
-set lazyredraw                    " avoid scrolling problems
+
+" avoid scrolling problems
+set lazyredraw                    
 
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
 
-" HTML Fix
-autocmd FileType html setlocal indentkeys-=*<Return>
-nmap <Leader>= mzgg=G\`z
-
 " Windowing settings
-" set equalalways                   " keep windows equal when splitting (default)
 set winfixwidth
-set eadirection=hor               " ver/hor/both - where does equalalways apply
-" set winwidth=85
+
+" ver/hor/both - where does equalalways apply
+set eadirection=hor               
 set winheight=10
 set winminheight=10
 set winheight=999
 
-
 set showcmd
 set laststatus=2                  " Show the status line all the time
-
 set autoindent                    " automatic indent new lines
 set smartindent                   " be smart about it
 set nowrap                        " do not wrap lines
@@ -130,110 +104,6 @@ set expandtab                     " expand tabs to spaces
 set nosmarttab                    " no tabs
 set formatoptions=qrn1            " support for numbered/bullet lists
 set virtualedit=block             " allow virtual edit in visual block mode
-
-" Man page support
-runtime ftplugin/man.vim
-
-" Mark the ideal max text width
-if exists('+colorcolumn')
-  set colorcolumn=80
-endif
-
-set clipboard=unnamed
-
-" Yank text to the OS X clipboard
-map <leader>y :.w !pbcopy<CR><CR>
-map <leader>yy "*Y
-
-" Git Gutter
-let g:gitgutter_enabled = 0
-map <leader>g :GitGutterToggle<CR>
-
-" Preserve indentation while pasting text from the OS X clipboard
-map <leader>p :set invpaste<CR>
-" noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
-
-" Win dow Resize
-if bufwinnr(1)
-  map + <C-W>10<
-  map - <C-W>10>
-endi
-
-" On Focus Lost
-" Enter normal mode
-" au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
-"
-" Zencoding Keymap - Linux/Windows/Terminal
-let g:user_emmet_expandabbr_key = '<C-e>'
-" let g:user_emmet_leader_key = '<C>'
-" let g:user_emmet_leader_key = '<C-e>'
-" let g:user_emmet_mode='a'    "enable all function in all mode.
-
-" MacVIM shift+arrow-keys behavior (required in .vimrc)
-if has("gui_running")
-
-  if has("gui_macvim")
-    let macvim_hig_shift_movement = 1
-  endif
-
-else
-
-  set selection=exclusive           " Select
-
-
-  map <Leader>w <ESC>:w<CR>
-
-  nmap <silent> <C-Left> b
-  nmap <silent> <C-Right> w
-  " vmap <silent> <C-Left> b
-  " vmap <silent> <C-Right> w
-  vmap <C-Right> <Plug>(expand_region_expand)
-  vmap <C-Left> <Plug>(expand_region_shrink)
-
-  imap <silent> <C-Left> <ESC>b
-  imap <silent> <C-Right> <ESC>w
-
-  nmap <silent> <C-h> b
-  nmap <silent> <C-l> w
-  vmap <silent> <C-h> b
-  vmap <silent> <C-l> w
-
-  nmap <silent> <C-j> }
-  nmap <silent> <C-k> {
-  vmap <silent> <C-j> {
-  vmap <silent> <C-k> }
-
-  nmap <silent> <C-Up> {
-  nmap <silent> <C-Down> }
-  vmap <silent> <C-Up> {
-  vmap <silent> <C-Down> }
-
-  imap <silent> <C-Up> <ESC> {
-  imap <silent> <C-Down> <ESC>}
-
-endif
-
-" Default - V Expand
-if !exists('g:expand_region_text_objects')
-  " Dictionary of text objects that are supported by default. Note that some of
-  " the text objects are not available in vanilla vim. '1' indicates that the
-  " text object is recursive (think of nested parens or brackets)
-  let g:expand_region_text_objects = {
-        \ 'iw'  :0,
-        \ 'iW'  :1,
-        \ 'i"'  :1,
-        \ 'i''' :1,
-        \ 'i]'  :1,
-        \ 'ib'  :1,
-        \ 'iB'  :1,
-        \ 'il'  :1,
-        \ 'ip'  :1,
-        \ 'ie'  :1,
-        \}
-endif
-
-" Nav Hacks
-map <C-c> <plug>NERDCommenterToggle<CR>
 
 set foldmethod=manual             " Folding settings
 set foldlevel=99
@@ -267,14 +137,7 @@ set hlsearch                      " Highlight matches.
 " set wrap                        " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
-"set linebreak			    " For lines longer than the window,
-" wrap intelligently. This doesn't
-" insert hard line breaks.
-
-set showbreak=↪\ \ 		" string to put before wrapped screen
-" lines
-
-" set cmdheight=2
+set showbreak=↪\ \ 		" string to put before wrapped screen lines
 
 " Terminal settings
 set vb t_vb=		                  " shut off bell entirely; see also .gvimrc
@@ -309,18 +172,6 @@ set sessionoptions-=help
 " Don't save hidden buffers -- only save the visible ones.
 set sessionoptions-=buffers
 
-" Show extra whitespace
-" hi ExtraWhitespace guibg=#202020
-" hi ExtraWhitespace ctermbg=239
-" match ExtraWhitespace /\s\+$/
-" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-" autocmd BufWinLeave * call clearmatches()
-
-" Get rid of Ex mode
-nnoremap Q nop
-
 " Don't make a backup before overwriting a file.
 set nobackup
 set nowritebackup
@@ -333,18 +184,12 @@ set mousehide
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-" CtrlP configuration
-let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
-let g:ctrlp_by_filename = 1
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
-" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-let g:ctrlp_extensions = ['funky']
-nnoremap <Leader>f :CtrlPFunky<Cr>
-nnoremap <Leader>b :CtrlPBuffer<Cr>
+" Mark the ideal max text width
+if exists('+colorcolumn')
+  set colorcolumn=80
+endif
 
-" Awk
-nnoremap <c-f> :Ack<Space>
+set clipboard=unnamed
 
 " Don't make a backup before overwriting a file.
 set nobackup
@@ -362,12 +207,141 @@ set mousehide
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-" :Extradite - Git log viewer
-map <Leader>o :Extradite!<CR>
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
 
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8
 " lines from the bottom
 set scrolloff=8
+
+" Status Line Setup
+set statusline=
+set statusline+=%<\ " cut at start
+set statusline=[%n]\ [%<%f]\ %h%w%m%r
+
+" Git branch and status
+set statusline+=\%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+
+
+set statusline+=%=%#error#
+set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
+" Display a warning if &paste is set
+set statusline+=%{&paste?'[paste]':''}
+set statusline+=%*
+set statusline+=\
+
+set statusline+=%=[%{&ff}]
+set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
+set statusline+=\ %y
+
+" Column/Line Information
+set statusline+=\ [%P\ %l/%L\:\ %v\]\ " percent through file
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+" Highlight the current line and column Don't do this - It makes window
+" redraws painfully slow
+set cursorline
+set nocursorcolumn
+
+" Yank text to the OS X clipboard
+map <leader>y :.w !pbcopy<CR><CR>
+map <leader>yy "*Y
+
+" Git Gutter
+let g:gitgutter_enabled = 0
+map <leader>g :GitGutterToggle<CR>
+
+" Preserve indentation while pasting text from the OS X clipboard
+map <leader>p :set invpaste<CR>
+" noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+" Win dow Resize
+if bufwinnr(1)
+  map + <C-W>10<
+  map - <C-W>10>
+endi
+
+" Zencoding Keymap - Linux/Windows/Terminal
+let g:user_emmet_expandabbr_key = '<C-e>'
+
+" Crazy Movment Stuff
+set selection=exclusive           " Select
+
+map <Leader>w <ESC>:w<CR>
+
+nmap <silent> <C-Left> b
+nmap <silent> <C-Right> w
+" vmap <silent> <C-Left> b
+" vmap <silent> <C-Right> w
+vmap <C-Right> <Plug>(expand_region_expand)
+vmap <C-Left> <Plug>(expand_region_shrink)
+
+imap <silent> <C-Left> <ESC>b
+imap <silent> <C-Right> <ESC>w
+
+nmap <silent> <C-h> b
+nmap <silent> <C-l> w
+vmap <silent> <C-h> b
+vmap <silent> <C-l> w
+
+nmap <silent> <C-j> }
+nmap <silent> <C-k> {
+vmap <silent> <C-j> {
+vmap <silent> <C-k> }
+
+nmap <silent> <C-Up> {
+nmap <silent> <C-Down> }
+vmap <silent> <C-Up> {
+vmap <silent> <C-Down> }
+
+imap <silent> <C-Up> <ESC> {
+imap <silent> <C-Down> <ESC>}
+
+" Default - V Expand
+if !exists('g:expand_region_text_objects')
+  " Dictionary of text objects that are supported by default. Note that some of
+  " the text objects are not available in vanilla vim. '1' indicates that the
+  " text object is recursive (think of nested parens or brackets)
+  let g:expand_region_text_objects = {
+        \ 'iw'  :0,
+        \ 'iW'  :1,
+        \ 'i"'  :1,
+        \ 'i''' :1,
+        \ 'i]'  :1,
+        \ 'ib'  :1,
+        \ 'iB'  :1,
+        \ 'il'  :1,
+        \ 'ip'  :1,
+        \ 'ie'  :1,
+        \}
+endif
+
+" Nav Hacks
+map <C-c> <plug>NERDCommenterToggle<CR>
+
+" Get rid of Ex mode
+nnoremap Q nop
+
+" CtrlP configuration
+let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
+let g:ctrlp_by_filename = 1
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
+" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+let g:ctrlp_extensions = ['funky']
+nnoremap <Leader>f :CtrlPFunky<Cr>
+nnoremap <Leader>b :CtrlPBuffer<Cr>
+
+" Awk
+nnoremap <c-f> :Ack<Space>
+
+" :Extradite - Git log viewer
+map <Leader>o :Extradite!<CR>
 
 " clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
@@ -399,18 +373,6 @@ au BufRead,BufNewFile *.ejs set ft=html
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-" Bubble multiple lines
-" vmap <C-Down> ]egv
-" vmap <C-Up> [egv
-
-
-
-" Tagbar
-" map <Leader>t <ESC>:TagbarToggle<cr>
-
 " Nerdtree settings
 map <Leader>t :NERDTreeToggle<Enter>
 let g:NERDTreeMouseMode = 2
@@ -418,26 +380,14 @@ let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
 let NERDTreeShowBookmarks=0
 let g:NERDTreeWinSize = 30
 let NERDTreeHighlightCursorline=1
-" nmap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=0
-
-" BuffergatorToggle
-" let g:buffergator_viewport_split_policy = "B"
-" let g:buffergator_autoexpand_on_split = 0
-" let g:buffergator_suppress_keymaps = 1
-" let g:buffergator_split_size = 20
-" map <leader>b :BuffergatorToggle<Enter>
 
 " call SingleCompile#ChooseCompiler('c', 'cc')
 nmap <Leader>B :SCCompile<cr>
 nmap <Leader>r :update<CR>:SCCompileRun<cr>
 vmap <Leader>r :update<CR>:SCCompileRun<cr>
 imap <Leader>r <Esc>:SCCompileRun<cr>
-
-" vim-pasta
-let g:pasta_disabled_filetypes = ['yaml']
-" let g:pasta_enabled_filetypes = ['ruby', 'javascript', 'css', 'sh']
 
 " Force Save
 cmap w!! w !sudo tee % >/dev/null
@@ -448,60 +398,14 @@ autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd filetype svn,*commit* setlocal spell
 autocmd FileType c set sw=4 sts=4 et
 
-" let g:airline_symbols = {}
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.paste = 'Þ'
-" let g:airline_symbols.whitespace = 'Ξ'
-
-" Status Line Setup
-set statusline=
-set statusline+=%<\ " cut at start
-set statusline=[%n]\ [%<%f]\ %h%w%m%r
-
-" Git branch and status
-set statusline+=\%{exists('g:loaded_fugitive')?fugitive#statusline():''}
-
-
-set statusline+=%=%#error#
-set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
-" Display a warning if &paste is set
-set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*
-set statusline+=\ 
-
-set statusline+=%=[%{&ff}]
-set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
-set statusline+=\ %y
-
-" Column/Line Information
-set statusline+=\ [%P\ %l/%L\:\ %v\]\ " percent through file
-
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
-" if &listchars ==# 'eol:$'
-  " set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-  " if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
-    " let &listchars = "tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u00b7"
-  " endif
-" endif
-
 " Strip all trailing whitespace from a file, using ,w
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
-
-" Highlight the current line and column Don't do this - It makes window
-" redraws painfully slow
-set cursorline
-set nocursorcolumn
 
 " Remove Ex mode Replace with a format helper
 nnoremap Q gqip
 
 augroup ft_javascript
   au!
-
   au FileType javascript setlocal foldmethod=marker
   au FileType javascript setlocal foldmarker={,}
 augroup END
@@ -529,15 +433,6 @@ function! QFixToggle(forced)
     let g:qfix_win = bufnr("$")
   endif
 endfunction
-
-" Use the damn hjkl keys
-" map <up> <nop>
-" map <down> <nop>
-" map <left> <nop>
-" map <right> <nop>
-
-" make p in Visual mode replace the selected text with the yank register
-" vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
 " Quick yanking to the end of the line
 nmap Y ^y$
@@ -602,18 +497,6 @@ endfunction
 " Git Stuff
 nmap <leader>gs :Gstatus<CR><C-w>20+
 
-" Ruby Debug
-" let g:ruby_debugger_progname = 'mvim'
-" map <Leader>B  :call g:RubyDebugger.toggle_breakpoint()<CR>
-" map <Leader>V  :call g:RubyDebugger.open_variables()<CR>
-" map <Leader>M  :call g:RubyDebugger.open_breakpoints()<CR>
-" map <Leader>T  :call g:RubyDebugger.open_frames()<CR>
-" map <Leader>S  :call g:RubyDebugger.step()<CR>
-" map <Leader>F  :call g:RubyDebugger.finish()<CR>
-" map <Leader>N  :call g:RubyDebugger.next()<CR>
-" map <Leader>C  :call g:RubyDebugger.continue()<CR>
-" map <Leader>E  :call g:RubyDebugger.exit()<CR>
-
 " Control-F for Ack
 map <C-F> :Ack<space>
 
@@ -640,3 +523,18 @@ let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermf
 let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=119 ctermfg=black'
 let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
 let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=108 ctermfg=black'
+
+
+" Show syntax highlighting groups for word under cursor
+nmap <Leader>s :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+
+" HTML Fix
+autocmd FileType html setlocal indentkeys-=*<Return>
+nmap <Leader>= mzgg=G\`z
