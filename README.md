@@ -8,7 +8,7 @@
   Vimux by default is mostly setup for work in ruby, javascript, html, css, go and c. However, adding plugins to extend
   it for whatever tools you need is trivial.
 
-  Vimux comes with two color schemas: epix and threatstack. Bohttps://github.com/wesgibbs/vim-irblackth color schemas were created by me modified from 
+  Vimux comes with two color schemas: epix and threatstack. Both color schemas were created by me modified from 
   ir_black (https://github.com/wesgibbs/vim-irblack). The default color schema is threatstack.
 
 ## Install
