@@ -157,9 +157,9 @@ hi link htmlEndTag Identifier
 " Special for Javascript
 hi link jsNumber Number 
 " hi link Noise Number
-hi link jsFunctionKey Function
+hi link jsFunctionKey Conditional
 hi link jsFunctionVar Type
-hi link jsObjectKey Type
+hi link jsObjectKey Conditional
 hi link jsGlobalObjects Type
 hi link jsThis Type
 hi link jsFunction Type
