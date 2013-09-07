@@ -1,5 +1,4 @@
-" Mephux <dustin.webber[at]gmail.com>
-" ~/.VIMRC
+" Threat Stack, Inc Vim Configuration 
 
 " The Basics
 set nocompatible
