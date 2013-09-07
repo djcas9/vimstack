@@ -153,6 +153,7 @@ hi link htmlTag Keyword
 hi link htmlArg Keyword
 hi link htmlTagName Conditional 
 hi link htmlEndTag Identifier 
+hi link htmlLink htmlTag
 
 " Special for Javascript
 hi link jsNumber Number 
