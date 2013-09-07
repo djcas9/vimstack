@@ -228,10 +228,11 @@ set statusline+=\%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
 set statusline+=%=%#error#
 set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
+set statusline+=%*\ %=%#error#
+
 " Display a warning if &paste is set
 set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*
-set statusline+=\
+set statusline+=%*\ 
 
 set statusline+=%=[%{&ff}]
 set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
