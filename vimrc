@@ -28,8 +28,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'mattn/emmet-vim'
 Bundle 'mileszs/ack.vim'
 
-Bundle "pangloss/vim-javascript"
-" Bundle 'mephux/vim-javascript'
+" Bundle 'pangloss/vim-javascript'
+Bundle 'mephux/vim-javascript'
 
 Bundle 'mmalecki/vim-node.js'
 Bundle 'tpope/vim-ragtag'
@@ -325,7 +325,7 @@ if !exists('g:expand_region_text_objects')
         \}
 endif
 
-" Nav Hacks
+" Comment
 map <C-c> <plug>NERDCommenterToggle<CR>
 
 " Get rid of Ex mode
