@@ -155,7 +155,14 @@ hi link htmlTagName Conditional
 hi link htmlEndTag Identifier 
 
 " Special for Javascript
-hi link javaScriptNumber Number 
+hi link jsNumber Number 
+" hi link Noise Number
+hi link jsFunctionKey Function
+hi link jsFunctionVar Type
+hi link jsObjectKey Type
+hi link jsGlobalObjects Type
+hi link jsThis Type
+hi link jsFunction Type
 
 " Special for CSharp
 hi link csXmlTag Keyword 
