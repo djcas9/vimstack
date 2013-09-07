@@ -27,13 +27,16 @@ Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-surround'
 Bundle 'mattn/emmet-vim'
 Bundle 'mileszs/ack.vim'
-Bundle 'mephux/vim-javascript'
+
+Bundle "pangloss/vim-javascript"
+" Bundle 'mephux/vim-javascript'
+
 Bundle 'mmalecki/vim-node.js'
 Bundle 'tpope/vim-ragtag'
 Bundle 'vim-scripts/SingleCompile'
 Bundle 'int3/vim-extradite'
 Bundle 'kien/ctrlp.vim'
-Bundle 'mephux/ctrlp-funky'
+Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'garbas/vim-snipmate'
 Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
