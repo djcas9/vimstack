@@ -156,6 +156,7 @@ hi link htmlEndTag Identifier
 
 " Special for Javascript
 hi link jsNumber Number 
+hi link jsDotCall Constant
 " hi link Noise Number
 hi link jsFunctionKey Conditional
 hi link jsFunctionVar Type
@@ -163,6 +164,7 @@ hi link jsObjectKey Conditional
 hi link jsGlobalObjects Type
 hi link jsThis Type
 hi link jsFunction Type
+hi link jsStatics Constant
 
 " Special for CSharp
 hi link csXmlTag Keyword 
