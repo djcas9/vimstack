@@ -165,6 +165,7 @@ hi link jsGlobalObjects Type
 hi link jsThis Type
 hi link jsFunction Type
 hi link jsStatics Type
+hi link jsFuncCall Function
 
 " Special for CSharp
 hi link csXmlTag Keyword 
