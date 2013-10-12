@@ -170,3 +170,11 @@ hi link jsFuncCall Function
 
 " Special for CSharp
 hi link csXmlTag Keyword 
+
+" vim-startify
+hi StartifyBracket ctermfg=240
+hi StartifyFooter  ctermfg=235
+hi StartifyHeader  ctermfg=203
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240

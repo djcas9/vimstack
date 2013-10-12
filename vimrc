@@ -1,4 +1,4 @@
-" Threat Stack, Inc Vim Configuration 
+" Threat Stack, Inc Vim Configuration
 
 " The Basics
 set nocompatible
@@ -10,6 +10,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-capslock'
 Bundle 'tpope/vim-abolish'
 Bundle 'terryma/vim-expand-region'
@@ -31,7 +32,9 @@ Bundle 'mmalecki/vim-node.js'
 Bundle 'tpope/vim-ragtag'
 Bundle 'vim-scripts/SingleCompile'
 Bundle 'int3/vim-extradite'
+Bundle 'mattn/webapi-vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'mattn/ctrlp-register'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'garbas/vim-snipmate'
 Bundle 'tomtom/tlib_vim'
@@ -67,16 +70,16 @@ set t_Co=256
 let &t_Co=256
 
 " Automatically re-read files changed outside
-set autoread			    
+set autoread
 set copyindent
 set undolevels=1000
 
 " you have a fast terminal
-set ttyfast                       
+set ttyfast
 set ttyscroll=3
 
 " avoid scrolling problems
-set lazyredraw                    
+set lazyredraw
 
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
@@ -86,7 +89,7 @@ set t_ti= t_te=
 set winfixwidth
 
 " ver/hor/both - where does equalalways apply
-set eadirection=hor               
+set eadirection=hor
 set winheight=10
 set winminheight=10
 set winheight=999
@@ -128,6 +131,7 @@ set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains
 " a capital letter.
 
+" set relativenumber
 set number                        " Show line numbers.
 set ruler                         " Show cursor position.
 set incsearch                     " Highlight matches as you type.
@@ -186,7 +190,10 @@ set noequalalways
 " Mark the ideal max text width
 if exists('+colorcolumn')
   set colorcolumn=80
+  " highlight ColorColumn ctermbg=magenta
+  " call matchadd('ColorColumn', '\%81v', 100)
 endif
+
 
 set clipboard=unnamed
 
@@ -228,7 +235,7 @@ set statusline+=%*\ %=%#error#
 
 " Display a warning if &paste is set
 set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*\ 
+set statusline+=%*\
 
 set statusline+=%=[%{&ff}]
 set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
@@ -236,9 +243,6 @@ set statusline+=\ %y
 
 " Column/Line Information
 set statusline+=\ [%P\ %l/%L\:\ %v\]\ " percent through file
-
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -248,13 +252,15 @@ set listchars=tab:▸\ ,eol:¬
 set cursorline
 set nocursorcolumn
 
-" Yank text to the OS X clipboard
-map <leader>y :.w !pbcopy<CR><CR>
-map <leader>yy "*Y
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
 
-" Git Gutter
-let g:gitgutter_enabled = 0
-map <leader>g :GitGutterToggle<CR>
+" vim-multiple-cursors
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-x>'
+" let g:multi_cursor_prev_key='<C-,>'
+" let g:multi_cursor_skip_key='<C-s>'
+let g:multi_cursor_quit_key='<Esc>'
 
 " Preserve indentation while pasting text from the OS X clipboard
 map <leader>p :set invpaste<CR>
@@ -276,8 +282,6 @@ map <Leader>w <ESC>:w<CR>
 
 nmap <silent> <C-Left> b
 nmap <silent> <C-Right> w
-" vmap <silent> <C-Left> b
-" vmap <silent> <C-Right> w
 vmap <C-Right> <Plug>(expand_region_expand)
 vmap <C-Left> <Plug>(expand_region_shrink)
 
@@ -332,10 +336,10 @@ let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
 let g:ctrlp_by_filename = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
-" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 let g:ctrlp_extensions = ['funky']
 nnoremap <Leader>f :CtrlPFunky<Cr>
 nnoremap <Leader>b :CtrlPBuffer<Cr>
+nnoremap <Leader>r :CtrlPRegister<Cr>
 
 " Awk
 nnoremap <c-f> :Ack<Space>
@@ -359,6 +363,7 @@ let g:snipMate.scope_aliases['handlebars'] = 'html'
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
+nmap <silent> <leader>cs :tabedit ~/.vim/colors/threatstack.vim<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap <silent> <leader>ac :tabedit ~/.vim/autocorrect.vim<CR>
 source ~/.vim/autocorrect.vim
@@ -385,9 +390,13 @@ let NERDTreeShowHidden=0
 
 " call SingleCompile#ChooseCompiler('c', 'cc')
 nmap <Leader>B :SCCompile<cr>
-nmap <Leader>r :update<CR>:SCCompileRun<cr>
-vmap <Leader>r :update<CR>:SCCompileRun<cr>
-imap <Leader>r <Esc>:SCCompileRun<cr>
+" nmap <Leader>r :update<CR>:SCCompileRun<cr>
+" vmap <Leader>r :update<CR>:SCCompileRun<cr>
+" imap <Leader>r <Esc>:SCCompileRun<cr>
+
+" ignore Ex mode
+
+nnoremap Q <nop>
 
 " Force Save
 cmap w!! w !sudo tee % >/dev/null
@@ -400,9 +409,6 @@ autocmd FileType c set sw=4 sts=4 et
 
 " Strip all trailing whitespace from a file, using ,w
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
-
-" Remove Ex mode Replace with a format helper
-nnoremap Q gqip
 
 augroup ft_javascript
   au!
@@ -453,47 +459,6 @@ nnoremap <leader>4 yypVr-
 nnoremap <leader>5 yypVr^
 nnoremap <leader>6 yypVr"
 
-" Keep search matches in the middle of the window and pulse the line when moving
-" to them.
-nnoremap n n:call PulseCursorLine()<cr>
-nnoremap N N:call PulseCursorLine()<cr>
-
-function! PulseCursorLine()
-  let current_window = winnr()
-
-  windo set nocursorline
-  execute current_window . 'wincmd w'
-
-  setlocal cursorline
-
-  redir => old_hi
-  silent execute 'hi CursorLine'
-  redir END
-  let old_hi = split(old_hi, '\n')[0]
-  let old_hi = substitute(old_hi, 'xxx', '', '')
-
-  hi CursorLine guibg=#3a3a3a
-  redraw
-  sleep 20m
-
-  hi CursorLine guibg=#4a4a4a
-  redraw
-  sleep 30m
-
-  hi CursorLine guibg=#3a3a3a
-  redraw
-  sleep 30m
-
-  hi CursorLine guibg=#2a2a2a
-  redraw
-  sleep 20m
-
-  execute 'hi ' . old_hi
-
-  windo set cursorline
-  execute current_window . 'wincmd w'
-endfunction
-
 " Git Stuff
 nmap <leader>gs :Gstatus<CR><C-w>20+
 
@@ -538,3 +503,50 @@ endfunc
 " HTML Fix
 autocmd FileType html setlocal indentkeys-=*<Return>
 nmap <Leader>= mzgg=G\`z
+
+" Bling
+let g:bling_color = 'black'
+let g:bling_count = 5
+let g:bling_time = 25
+
+" Keep search matches in the middle of the window and pulse the line when moving
+" to them.
+nnoremap n n:call PulseCursorLine()<cr>
+nnoremap N N:call PulseCursorLine()<cr>
+
+function! PulseCursorLine()
+  let current_window = winnr()
+
+  windo set nocursorline
+  execute current_window . 'wincmd w'
+
+  setlocal cursorline
+
+  redir => old_hi
+  silent execute 'hi CursorLine'
+  redir END
+  let old_hi = split(old_hi, '\n')[0]
+  let old_hi = substitute(old_hi, 'xxx', '', '')
+
+  hi CursorLine guibg=#3a3a3a ctermbg=235
+  redraw
+  sleep 20m
+
+  hi CursorLine guibg=#4a4a4a ctermbg=235
+  redraw
+  sleep 30m
+
+  hi CursorLine guibg=#3a3a3a ctermbg=235
+  redraw
+  sleep 30m
+
+  hi CursorLine guibg=#2a2a2a ctermbg=235
+  redraw
+  sleep 20m
+
+  execute 'hi ' . old_hi
+
+  windo set cursorline
+  execute current_window . 'wincmd w'
+endfunction
+
