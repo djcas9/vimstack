@@ -282,6 +282,10 @@ map <Leader>w <ESC>:w<CR>
 
 nmap <silent> <C-Left> b
 nmap <silent> <C-Right> w
+
+" nmap <C-Right> <Plug>(expand_region_expand)
+" nmap <C-Left> <Plug>(expand_region_shrink)
+
 vmap <C-Right> <Plug>(expand_region_expand)
 vmap <C-Left> <Plug>(expand_region_shrink)
 
@@ -319,9 +323,7 @@ if !exists('g:expand_region_text_objects')
         \ 'i]'  :1,
         \ 'ib'  :1,
         \ 'iB'  :1,
-        \ 'il'  :1,
         \ 'ip'  :1,
-        \ 'ie'  :1,
         \}
 endif
 
