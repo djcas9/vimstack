@@ -17,7 +17,7 @@ Bundle 'terryma/vim-expand-region'
 Bundle 'nono/vim-handlebars'
 Bundle 'molok/vim-smartusline'
 Bundle 'kana/vim-smartinput'
-Bundle 'scrooloose/nerdcommenter'
+Bundle 'ervandew/nerdcommenter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-unimpaired'
@@ -42,11 +42,20 @@ Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'mephux/snipmate-snippets'
 Bundle 'scrooloose/nerdtree'
 Bundle 'fsouza/go.vim'
+Bundle 'tommcdo/vim-lion'
+Bundle 'bruno-/vim-vertical-move'
 
 " Turn on file type detection.
 filetype plugin indent on
+
 " syntax highlighting
 syntax on
+
+" Update syntax highlighting for more lines increased scrolling performance
+syntax sync minlines=256
+
+" Don't syntax highlight long lines
+set synmaxcol=256"
 
 " Enable VIM mouse support
 set mouse=a
@@ -99,6 +108,7 @@ set laststatus=2                  " Show the status line all the time
 set autoindent                    " automatic indent new lines
 set smartindent                   " be smart about it
 set nowrap                        " do not wrap lines
+set showbreak=↪\                  " Character to precede line wraps
 set softtabstop=2                 " yep, two
 set shiftwidth=2                  " ..
 set tabstop=2
@@ -165,6 +175,12 @@ endif
 set dir=~/.vim/tmp/swap/
 set backupdir=~/.vim/tmp/backup/
 
+" Don't reset cursor to start of line when moving around
+set nostartofline
+
+" Do not jump to the matching bracket upon bracket insert (default)
+set noshowmatch
+
 " Don't back up temp files
 set backupskip=/tmp/*,/private/tmp/*
 
@@ -225,6 +241,8 @@ set statusline=
 set statusline+=%<\ " cut at start
 set statusline=[%n]\ [%<%f]\ %h%w%m%r
 
+set stl+=\[b%n/%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}\]
+
 " Git branch and status
 set statusline+=\%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
@@ -251,6 +269,15 @@ set listchars=tab:▸\ ,eol:¬
 " redraws painfully slow
 set cursorline
 set nocursorcolumn
+
+" Open help in a vertical split instead of the default horizontal split
+" http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
+cabbrev h <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'h')<cr>
+cabbrev help <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'help')<cr>"
+
+" Expand %% to current directory
+" http://vimcasts.org/e/14
+cnoremap %% <C-R>=expand('%:h').'/'<cr>"
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -302,13 +329,13 @@ nmap <silent> <C-k> {
 vmap <silent> <C-j> {
 vmap <silent> <C-k> }
 
-nmap <silent> <C-Up> {
-nmap <silent> <C-Down> }
-vmap <silent> <C-Up> {
-vmap <silent> <C-Down> }
+nmap <silent> <C-Up> :<C-U>call vertical_move#Up('', v:count1)<CR>
+nmap <silent> <C-Down> :<C-U>call vertical_move#Down('', v:count1)<CR>
+vmap <silent> <C-Up> :<C-U>call vertical_move#Up('v', v:count1)<CR>
+vmap <silent> <C-Down> :<C-U>call vertical_move#Down('v', v:count1)<CR>
 
-imap <silent> <C-Up> <ESC> {
-imap <silent> <C-Down> <ESC>}
+imap <silent> <C-Up> <ESC> :<C-U>call vertical_move#Down('v', v:count1)<CR>
+imap <silent> <C-Down> <ESC> :<C-U>call vertical_move#Down('', v:count1)<CR>
 
 " Default - V Expand
 if !exists('g:expand_region_text_objects')
@@ -328,6 +355,10 @@ if !exists('g:expand_region_text_objects')
 endif
 
 " Comment
+let g:NERDCreateDefaultMappings = 0
+let NERDSpaceDelims = 1
+let NERDShutUp = 1
+let g:NERDDefaultAlign = 'start'
 map <C-c> <plug>NERDCommenterToggle<CR>
 
 " Get rid of Ex mode
@@ -392,9 +423,9 @@ let NERDTreeShowHidden=0
 
 " call SingleCompile#ChooseCompiler('c', 'cc')
 nmap <Leader>B :SCCompile<cr>
-" nmap <Leader>r :update<CR>:SCCompileRun<cr>
-" vmap <Leader>r :update<CR>:SCCompileRun<cr>
-" imap <Leader>r <Esc>:SCCompileRun<cr>
+nmap <Leader>R :update<CR>:SCCompileRun<cr>
+vmap <Leader>R :update<CR>:SCCompileRun<cr>
+imap <Leader>R <Esc>:SCCompileRun<cr>
 
 " ignore Ex mode
 
