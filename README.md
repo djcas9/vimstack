@@ -3,9 +3,9 @@
 ## Why?
 
   I want a good quality vim setup that does not depend on ruby, perl or python. Just pure old vimscript for
-  easy deployment to whatever box I am currently using.
+  easy deployment to whatever box I am currently using. (i.e it will fallback gracefully)
 
-  Vimux by default is mostly setup for work in ruby, javascript, html, css, go and c. However, adding plugins to extend
+  VimStack by default is mostly setup for work in ruby, javascript, html, css, go and c. However, adding plugins to extend
   it for whatever tools you need is trivial.
 
   Vimux comes with two color schemas: epix and threatstack. Both color schemas were created by me modified from 
