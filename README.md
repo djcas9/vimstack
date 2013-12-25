@@ -23,6 +23,7 @@
   * `ctrl + p`  - fuzzy file finder via ctrlp (https://github.com/kien/ctrlp.vim)
   * `<Leader>b` - ctrlp buffer search
   * `<Leader>f` - ctrlp function search
+  * `<Leader>r` - ctrlp register search
   * `<c-f>`     - search via Ack (https://github.com/mileszs/ack.vim - `brew install ack` or `sudo apt-get install ack-grep`)
   * `<Leader>o` - git commit viewer via vim-extradite (https://github.com/int3/vim-extradite)
   * `<Leader>q` - quickfix
@@ -30,6 +31,12 @@
   * `shift+s"`  - surround selected char/word with ""
   * `<Leader>c` - toggle software caps lock
   * `<Leader>p` - toggle paste mode
+  * `gof`: **Go** to the current file's directory in the **F**ile manager 
+  * `got`: **Go** to the current file's directory in the **T**erminal
+    * See the *Platform Support* section (below) for details on which terminal is chosen
+  * `goF`: like `gof` for the current "session" directory, that is, the directory
+    returned by `:pwd`
+  * `goT`: like `got` for the current "session" directory
 
 ## HTML
 

@@ -49,6 +49,8 @@ Bundle 'bruno-/vim-vertical-move'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-vinegar'
 
+Bundle 'justinmk/vim-gtfo'
+
 " Turn on file type detection.
 filetype plugin indent on
 
