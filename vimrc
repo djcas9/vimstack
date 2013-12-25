@@ -37,16 +37,17 @@ Bundle 'mattn/webapi-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/ctrlp-register'
 Bundle 'tacahiroy/ctrlp-funky'
-Bundle 'jasoncodes/ctrlp-modified.vim'
 
 Bundle 'garbas/vim-snipmate'
 Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'mephux/snipmate-snippets'
-Bundle 'scrooloose/nerdtree'
 Bundle 'fsouza/go.vim'
 Bundle 'tommcdo/vim-lion'
 Bundle 'bruno-/vim-vertical-move'
+
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-vinegar'
 
 " Turn on file type detection.
 filetype plugin indent on
@@ -297,10 +298,10 @@ map <leader>p :set invpaste<CR>
 " noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " Win dow Resize
-if bufwinnr(1)
-  map + <C-W>10<
-  map - <C-W>10>
-endi
+" if bufwinnr(1)
+"   map + <C-W>10<
+"   map - <C-W>10>
+" endi
 
 " Zencoding Keymap - Linux/Windows/Terminal
 let g:user_emmet_expandabbr_key = '<C-e>'
@@ -376,8 +377,6 @@ let g:ctrlp_extensions = ['funky']
 nnoremap <Leader>f :CtrlPFunky<Cr>
 nnoremap <Leader>b :CtrlPBuffer<Cr>
 nnoremap <Leader>r :CtrlPRegister<Cr>
-nnoremap <Leader>m :CtrlPModified<Cr>
-nnoremap <Leader>M :CtrlPBranch<CR>
 
 " Awk
 nnoremap <c-f> :Ack<Space>
@@ -454,9 +453,6 @@ augroup ft_javascript
   au FileType javascript setlocal foldmarker={,}
 augroup END
 
-" Command-/ to toggle comments
-let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1
 
 " Caps Lock
 nmap <Leader>c <Plug>CapsLockToggle
