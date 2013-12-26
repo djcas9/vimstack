@@ -546,6 +546,10 @@ endfunc
 " HTML Fix
 autocmd FileType html setlocal indentkeys-=*<Return>
 nmap <Leader>= mzgg=G\`z
+nnoremap <leader>ef mfggVG=`fzz
+let g:html_indent_inctags="head,html,body,p,head,table,tbody,div,script"
+let g:html_indent_script1="inc"
+let g:html_indent_style1="inc"
 
 " Bling
 let g:bling_color = 'black'
