@@ -42,7 +42,7 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'mephux/snipmate-snippets'
-Bundle 'fsouza/go.vim'
+Bundle 'jnwhiteh/vim-golang.git'
 Bundle 'tommcdo/vim-lion'
 Bundle 'bruno-/vim-vertical-move'
 
@@ -72,6 +72,7 @@ set shell=$SHELL\ -l
 
 " Exit insert mode timeout
 set ttimeoutlen=50
+set timeout timeoutlen=1000 ttimeoutlen=100
 
 " read/write a .viminfo file, don't store more
 set viminfo='20,\"80
