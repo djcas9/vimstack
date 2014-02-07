@@ -33,11 +33,9 @@ Bundle 'tpope/vim-ragtag'
 Bundle 'vim-scripts/SingleCompile'
 Bundle 'int3/vim-extradite'
 Bundle 'mattn/webapi-vim'
-
 Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/ctrlp-register'
 Bundle 'tacahiroy/ctrlp-funky'
-
 Bundle 'garbas/vim-snipmate'
 Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -45,11 +43,10 @@ Bundle 'mephux/snipmate-snippets'
 Bundle 'jnwhiteh/vim-golang.git'
 Bundle 'tommcdo/vim-lion'
 Bundle 'bruno-/vim-vertical-move'
-
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-vinegar'
-
 Bundle 'justinmk/vim-gtfo'
+Bundle 'wellle/targets.vim'
 
 " Turn on file type detection.
 filetype plugin indent on
@@ -277,6 +274,10 @@ set listchars=tab:▸\ ,eol:¬
 set cursorline
 set nocursorcolumn
 
+" GO Configuration
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
+
 " Open help in a vertical split instead of the default horizontal split
 " http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
 cabbrev h <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'h')<cr>
@@ -486,6 +487,11 @@ vnoremap <Space> za
 
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" Yankring
+" let g:yankstack_map_keys = 0
+" nmap <leader>1 <Plug>yankstack_substitute_older_paste
+" nmap <leader>2 <Plug>yankstack_substitute_newer_paste
 
 " Register Stuff
 vmap <Leader>1 "1y
