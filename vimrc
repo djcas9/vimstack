@@ -40,13 +40,21 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'mephux/snipmate-snippets'
-Bundle 'jnwhiteh/vim-golang.git'
+
+" GO
+Bundle 'fatih/vim-go'
+
 Bundle 'tommcdo/vim-lion'
 Bundle 'bruno-/vim-vertical-move'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-vinegar'
 Bundle 'justinmk/vim-gtfo'
 Bundle 'wellle/targets.vim'
+Bundle 'zhaocai/GoldenView.Vim'
+Bundle 'othree/html5.vim'
+Bundle 'vim-scripts/gitignore'
+Bundle 'AndrewRadev/splitjoin.vim'
+Bundle 'tommcdo/vim-exchange'
 
 " Turn on file type detection.
 filetype plugin indent on
@@ -99,7 +107,7 @@ set lazyredraw
 set t_ti= t_te=
 
 " Windowing settings
-set winfixwidth
+" set winfixwidth
 
 " ver/hor/both - where does equalalways apply
 set eadirection=hor
@@ -278,6 +286,9 @@ set nocursorcolumn
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
 
+let g:go_disable_autoinstall = 1
+let g:go_fmt_command = "gofmt"
+
 " Open help in a vertical split instead of the default horizontal split
 " http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
 cabbrev h <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'h')<cr>
@@ -285,7 +296,7 @@ cabbrev help <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'help')<cr>
 
 " Expand %% to current directory
 " http://vimcasts.org/e/14
-cnoremap %% <C-R>=expand('%:h').'/'<cr>"
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -296,6 +307,11 @@ let g:multi_cursor_next_key='<C-x>'
 " let g:multi_cursor_prev_key='<C-,>'
 " let g:multi_cursor_skip_key='<C-s>'
 let g:multi_cursor_quit_key='<Esc>'
+
+" A vim plugin that simplifies the transition 
+" between multiline and single-line code
+nmap sj :SplitjoinSplit<cr> 
+nmap sk :SplitjoinJoin<cr>
 
 " Preserve indentation while pasting text from the OS X clipboard
 map <leader>p :set invpaste<CR>
@@ -362,6 +378,9 @@ if !exists('g:expand_region_text_objects')
         \}
 endif
 
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
 " Comment
 let g:NERDCreateDefaultMappings = 0
 let NERDSpaceDelims = 1
@@ -381,6 +400,9 @@ let g:ctrlp_extensions = ['funky']
 nnoremap <Leader>f :CtrlPFunky<Cr>
 nnoremap <Leader>b :CtrlPBuffer<Cr>
 nnoremap <Leader>r :CtrlPRegister<Cr>
+
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_use_caching = 0
 
 " Awk
 nnoremap <c-f> :Ack<Space>
@@ -541,13 +563,13 @@ let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=108 ctermfg=bla
 
 
 " Show syntax highlighting groups for word under cursor
-nmap <Leader>s :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+" nmap <Leader>s :call <SID>SynStack()<CR>
+" function! <SID>SynStack()
+"   if !exists("*synstack")
+"     return
+"   endif
+"   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+" endfunc
 
 
 " HTML Fix
@@ -673,3 +695,24 @@ function! BufOnly(buffer, bang)
   endif
 
 endfunction
+
+" Quickly select text you just pasted:
+nmap <Leader>s `[v`]`]`
+
+" Type 12<Enter> to go to line 12 (12G breaks my wrist)
+" Hit Enter to go to end of file.
+" Hit Backspace to go to beginning of file.
+" nnoremap <CR> G
+" nnoremap <BS> gg
+
+
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
