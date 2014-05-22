@@ -6,55 +6,58 @@ filetype off
 set encoding=utf-8
 
 " Vundle - Plugin Managment
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'tpope/vim-capslock'
-Bundle 'tpope/vim-abolish'
-Bundle 'terryma/vim-expand-region'
-Bundle 'nono/vim-handlebars'
-Bundle 'molok/vim-smartusline'
-Bundle 'kana/vim-smartinput'
-Bundle 'ervandew/nerdcommenter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'ervandew/supertab'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-surround'
-Bundle 'mattn/emmet-vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'mmalecki/vim-node.js'
-Bundle 'tpope/vim-ragtag'
-Bundle 'vim-scripts/SingleCompile'
-Bundle 'int3/vim-extradite'
-Bundle 'mattn/webapi-vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mattn/ctrlp-register'
-Bundle 'tacahiroy/ctrlp-funky'
-Bundle 'garbas/vim-snipmate'
-Bundle 'tomtom/tlib_vim'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'mephux/snipmate-snippets'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-capslock'
+Plugin 'tpope/vim-abolish'
+Plugin 'terryma/vim-expand-region'
+Plugin 'nono/vim-handlebars'
+Plugin 'molok/vim-smartusline'
+Plugin 'kana/vim-smartinput'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-surround'
+Plugin 'mattn/emmet-vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mmalecki/vim-node.js'
+Plugin 'tpope/vim-ragtag'
+Plugin 'vim-scripts/SingleCompile'
+Plugin 'int3/vim-extradite'
+Plugin 'mattn/webapi-vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mattn/ctrlp-register'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'garbas/vim-snipmate'
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'mephux/snipmate-snippets'
+Plugin 'fatih/vim-go'
+Plugin 'tommcdo/vim-lion'
+Plugin 'bruno-/vim-vertical-move'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-vinegar'
 
-" GO
-Bundle 'fatih/vim-go'
+Plugin 'justinmk/vim-gtfo'
+Plugin 'wellle/targets.vim'
+Plugin 'zhaocai/GoldenView.Vim'
+Plugin 'othree/html5.vim'
+Plugin 'vim-scripts/gitignore'
 
-Bundle 'tommcdo/vim-lion'
-Bundle 'bruno-/vim-vertical-move'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-vinegar'
-Bundle 'justinmk/vim-gtfo'
-Bundle 'wellle/targets.vim'
-Bundle 'zhaocai/GoldenView.Vim'
-Bundle 'othree/html5.vim'
-Bundle 'vim-scripts/gitignore'
-Bundle 'AndrewRadev/splitjoin.vim'
-Bundle 'tommcdo/vim-exchange'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'tommcdo/vim-exchange'
+
+Plugin 'Yggdroot/indentLine'
+
+call vundle#end()
 
 " Turn on file type detection.
 filetype plugin indent on
@@ -83,7 +86,7 @@ set timeout timeoutlen=1000 ttimeoutlen=100
 set viminfo='20,\"80
 
 " Set the vim color schema
-colorscheme threatstack
+colorscheme mephux
 
 " Set terminal and force 256 colors
 set term=xterm
@@ -361,6 +364,13 @@ vmap <silent> <C-Down> :<C-U>call vertical_move#Down('v', v:count1)<CR>
 imap <silent> <C-Up> <ESC> :<C-U>call vertical_move#Down('v', v:count1)<CR>
 imap <silent> <C-Down> <ESC> :<C-U>call vertical_move#Down('', v:count1)<CR>
 
+" VimIndentLine
+let g:indentLine_color_term = 234
+let g:indentLine_color_gui = '#A4E57E'
+let g:indentLine_color_tty_dark=1
+let g:indentLine_color_dark = 1
+let g:indentLine_char = '┆'
+
 " Default - V Expand
 if !exists('g:expand_region_text_objects')
   " Dictionary of text objects that are supported by default. Note that some of
@@ -383,13 +393,19 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " Comment
 let g:NERDCreateDefaultMappings = 0
-let NERDSpaceDelims = 1
-let NERDShutUp = 1
-let g:NERDDefaultAlign = 'start'
+let g:NERDSpaceDelims = 1
+let g:NERD_javascript_alt_style = 1
+" let g:NERDCustomDelimiters = {
+      " \ 'javascript': { 'left': '/*', 'right': '*/', 'leftAlt': '//' }
+      " \ }
+" let g:NERDDefaultAlign = 'start'
 map <C-c> <plug>NERDCommenterToggle<CR>
 
 " Get rid of Ex mode
 nnoremap Q nop
+
+" GoldenView
+let g:goldenview__enable_default_mapping=0
 
 " CtrlP configuration
 let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
@@ -397,6 +413,7 @@ let g:ctrlp_by_filename = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
 let g:ctrlp_extensions = ['funky']
+
 nnoremap <Leader>f :CtrlPFunky<Cr>
 nnoremap <Leader>b :CtrlPBuffer<Cr>
 nnoremap <Leader>r :CtrlPRegister<Cr>
@@ -481,7 +498,7 @@ augroup END
 
 
 " Caps Lock
-nmap <Leader>c <Plug>CapsLockToggle
+nmap <Leader>cc <Plug>CapsLockToggle
 
 " QuickFix Navigation
 " map <c-z> :cprevious<CR>
@@ -716,3 +733,20 @@ function! s:Repl()
   return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
+
+" jsfmt
+function! FormatprgLocal(filter)
+  if !empty(v:char)
+    return 1
+  else
+    let l:command = v:lnum.','.(v:lnum+v:count-1).'!'.a:filter
+    echo l:command
+    execute l:command
+  endif
+endfunction
+
+if has("autocmd")
+  let jsfmt_pipeline  = "jsfmt -c=true"
+  autocmd FileType javascript setlocal formatexpr=FormatprgLocal(jsfmt_pipeline)
+endif
+
