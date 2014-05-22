@@ -1,4 +1,4 @@
-" Threat Stack, Inc Vim Configuration
+" Vim Configuration
 
 " The Basics
 set nocompatible
@@ -85,13 +85,6 @@ set timeout timeoutlen=1000 ttimeoutlen=100
 " read/write a .viminfo file, don't store more
 set viminfo='20,\"80
 
-" Set the vim color schema
-colorscheme mephux
-
-" Set terminal and force 256 colors
-set term=xterm
-set t_Co=256
-let &t_Co=256
 
 " Automatically re-read files changed outside
 set autoread
@@ -171,6 +164,15 @@ set showbreak=↪\ \ 		" string to put before wrapped screen lines
 set vb t_vb=		                  " shut off bell entirely; see also .gvimrc
 set title                         " Set the terminal's title
 set visualbell                    " No beeping.
+
+" Set the vim color schema
+colorscheme mephux
+set background=dark
+
+" Set terminal and force 256 colors
+set term=xterm
+set t_Co=256
+let &t_Co=256
 
 " Ensure the temp dirs exist
 if !isdirectory($HOME . "/.vim/tmp")
@@ -367,8 +369,6 @@ imap <silent> <C-Down> <ESC> :<C-U>call vertical_move#Down('', v:count1)<CR>
 " VimIndentLine
 let g:indentLine_color_term = 234
 let g:indentLine_color_gui = '#A4E57E'
-let g:indentLine_color_tty_dark=1
-let g:indentLine_color_dark = 1
 let g:indentLine_char = '┆'
 
 " Default - V Expand
@@ -443,7 +443,7 @@ let g:snipMate.scope_aliases['handlebars'] = 'html'
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
-nmap <silent> <leader>cs :tabedit ~/.vim/colors/threatstack.vim<CR>
+nmap <silent> <leader>cs :tabedit ~/.vim/colors/mephux.vim<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap <silent> <leader>ac :tabedit ~/.vim/autocorrect.vim<CR>
 source ~/.vim/autocorrect.vim
