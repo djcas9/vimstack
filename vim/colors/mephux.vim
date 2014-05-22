@@ -1,4 +1,4 @@
-" Threat Stack color scheme - https://threatstack.com
+" Mephux
 " Based on ir_black from: http://blog.infinitered.com/entries/show/8
 " adds 256 color console support
 
@@ -9,7 +9,7 @@ if exists("syntax_on")
  syntax reset
 endif
 
-let colors_name = "threatstack"
+let colors_name = "mephux"
 
 " General colors
 hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=16        cterm=NONE

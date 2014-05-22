@@ -167,7 +167,7 @@ set visualbell                    " No beeping.
 
 " Set the vim color schema
 colorscheme mephux
-set background=dark
+" set background=dark
 
 " Set terminal and force 256 colors
 set term=xterm
