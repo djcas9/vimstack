@@ -2,8 +2,9 @@
 
 " The Basics
 set nocompatible
-filetype off
 set encoding=utf-8
+
+filetype off
 
 " Vundle - Plugin Managment
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -56,6 +57,9 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'tommcdo/vim-exchange'
 
 Plugin 'Yggdroot/indentLine'
+
+Plugin 'wookiehangover/jshint.vim'
+Plugin 'mephux/vim-jsfmt'
 
 call vundle#end()
 
@@ -167,7 +171,6 @@ set visualbell                    " No beeping.
 
 " Set the vim color schema
 colorscheme mephux
-" set background=dark
 
 " Set terminal and force 256 colors
 set term=xterm
@@ -266,13 +269,13 @@ set statusline+=\%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
 set statusline+=%=%#error#
 set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
-set statusline+=%*\ %=%#error#
+set statusline+=%*\%=%#error#
 
 " Display a warning if &paste is set
 set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*\
+set statusline+=%* 
 
-set statusline+=%=[%{&ff}]
+set statusline+=%=\ [%{&ff}]
 set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
 set statusline+=\ %y
 
@@ -288,11 +291,12 @@ set cursorline
 set nocursorcolumn
 
 " GO Configuration
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+" autocmd FileType go autocmd BufWritePre <buffer> Fmt
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
 
 let g:go_disable_autoinstall = 1
 let g:go_fmt_command = "gofmt"
+
 
 " Open help in a vertical split instead of the default horizontal split
 " http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
@@ -734,6 +738,9 @@ function! s:Repl()
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 
+" JSHint
+let JSHintUpdateWriteOnly = 1
+
 " jsfmt
 function! FormatprgLocal(filter)
   if !empty(v:char)
@@ -746,7 +753,7 @@ function! FormatprgLocal(filter)
 endfunction
 
 if has("autocmd")
-  let jsfmt_pipeline  = "jsfmt -c=true"
+  let jsfmt_pipeline  = "jsfmt"
   autocmd FileType javascript setlocal formatexpr=FormatprgLocal(jsfmt_pipeline)
 endif
 
