@@ -1,6 +1,10 @@
 " Ruby
 iab initalize initialize
 
+" Javascript
+iab fuction function
+iab fucntion function
+
 " Other
 iab abbout about
 iab abotu about

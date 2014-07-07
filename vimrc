@@ -37,10 +37,15 @@ Plugin 'mattn/webapi-vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/ctrlp-register'
 Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'garbas/vim-snipmate'
-Plugin 'tomtom/tlib_vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'mephux/snipmate-snippets'
+
+" Plugin 'garbas/vim-snipmate'
+" Plugin 'tomtom/tlib_vim'
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'mephux/custom-vim-snippets'
+
 Plugin 'fatih/vim-go'
 Plugin 'tommcdo/vim-lion'
 Plugin 'bruno-/vim-vertical-move'
@@ -297,6 +302,12 @@ au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
 let g:go_disable_autoinstall = 1
 let g:go_fmt_command = "gofmt"
 
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
 
 " Open help in a vertical split instead of the default horizontal split
 " http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
@@ -335,8 +346,19 @@ map <leader>p :set invpaste<CR>
 " Zencoding Keymap - Linux/Windows/Terminal
 let g:user_emmet_expandabbr_key = '<C-e>'
 
-" Crazy Movment Stuff
+" ## Crazy Movment Stuff
 set selection=exclusive           " Select
+
+" # Window Movment
+map <S-Down> <C-W>j
+map <S-Right> <C-W>l
+map <S-Left> <C-W>h
+map <S-Up> <C-W>k
+
+map <C-S-Left> ^
+map <C-S-Right> $
+map <C-S-Up> gg
+map <C-S-Down> G
 
 map <Leader>w <ESC>:w<CR>
 
@@ -422,8 +444,18 @@ nnoremap <Leader>f :CtrlPFunky<Cr>
 nnoremap <Leader>b :CtrlPBuffer<Cr>
 nnoremap <Leader>r :CtrlPRegister<Cr>
 
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:ctrlp_use_caching = 0
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = ['ag %s -l --nocolor -g ""']
+else
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+endif
 
 " Awk
 nnoremap <c-f> :Ack<Space>
@@ -445,13 +477,23 @@ let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['handlebars'] = 'html'
 
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsEditSplit="vertical"
+
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
 nmap <silent> <leader>cs :tabedit ~/.vim/colors/mephux.vim<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
 nmap <silent> <leader>ac :tabedit ~/.vim/autocorrect.vim<CR>
 source ~/.vim/autocorrect.vim
-nmap <silent> <leader>ss :tabedit ~/.vim/bundle/snipmate-snippets/snippets/_.snippets<CR>
+
+" For quick and dirty snippets
+nmap <silent> <leader>ss :tabedit ~/.vim/bundle/custom-vim-snippets/snippets/_.snippets<CR>
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
