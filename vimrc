@@ -38,10 +38,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/ctrlp-register'
 Plugin 'tacahiroy/ctrlp-funky'
 
-" Plugin 'garbas/vim-snipmate'
-" Plugin 'tomtom/tlib_vim'
-" Plugin 'MarcWeber/vim-addon-mw-utils'
-
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'mephux/custom-vim-snippets'
@@ -62,9 +58,13 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'tommcdo/vim-exchange'
 
 Plugin 'Yggdroot/indentLine'
+Plugin 'elzr/vim-json'
+Plugin 'airblade/vim-gitgutter'
 
-Plugin 'wookiehangover/jshint.vim'
+" Plugin 'wookiehangover/jshint.vim'
 Plugin 'mephux/vim-jsfmt'
+
+Plugin 'ConradIrwin/vim-bracketed-paste'
 
 call vundle#end()
 
@@ -163,6 +163,15 @@ set number                        " Show line numbers.
 set ruler                         " Show cursor position.
 set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
+
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Same when jumping around
+nnoremap g; g;zz
+nnoremap g, g,zz
+nnoremap <c-o> <c-o>zz
 
 " set wrap                        " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
@@ -355,10 +364,13 @@ map <S-Right> <C-W>l
 map <S-Left> <C-W>h
 map <S-Up> <C-W>k
 
-map <C-S-Left> ^
-map <C-S-Right> $
-map <C-S-Up> gg
-map <C-S-Down> G
+map <S-Left> ^
+map <S-Right> $
+imap <S-Left> <ESC>I
+imap <S-Right> <ESC>A
+
+map <S-Up> gg
+map <S-Down> G
 
 map <Leader>w <ESC>:w<CR>
 
@@ -461,7 +473,8 @@ endif
 nnoremap <c-f> :Ack<Space>
 
 " :Extradite - Git log viewer
-map <Leader>o :Extradite!<CR>
+map <Leader>o :Extradite<CR>
+let g:extradite_resize = 0
 
 " clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
@@ -513,12 +526,21 @@ let g:NERDTreeWinSize = 30
 let NERDTreeHighlightCursorline=1
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=0
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDChristmasTree = 1
+let NERDTreeChDirMode = 2
 
 " call SingleCompile#ChooseCompiler('c', 'cc')
 nmap <Leader>B :SCCompile<cr>
 nmap <Leader>R :update<CR>:SCCompileRun<cr>
 vmap <Leader>R :update<CR>:SCCompileRun<cr>
 imap <Leader>R <Esc>:SCCompileRun<cr>
+
+" Supertab Configs
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabLongestHighlight = 1
+let g:SuperTabCrMapping = 1
 
 " ignore Ex mode
 
@@ -761,13 +783,11 @@ endfunction
 
 " Quickly select text you just pasted:
 nmap <Leader>s `[v`]`]`
+nnoremap <leader>V V`]`
 
-" Type 12<Enter> to go to line 12 (12G breaks my wrist)
-" Hit Enter to go to end of file.
-" Hit Backspace to go to beginning of file.
-" nnoremap <CR> G
-" nnoremap <BS> gg
-
+" Select entire buffer
+nnoremap vaa ggvGg_
+nnoremap Vaa ggVG
 
 " vp doesn't replace paste buffer
 function! RestoreRegister()
@@ -799,3 +819,43 @@ if has("autocmd")
   autocmd FileType javascript setlocal formatexpr=FormatprgLocal(jsfmt_pipeline)
 endif
 
+" Custom Work Highlights
+
+function! HiInterestingWord(n) " {{{
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction " }}}
+
+nnoremap <silent> <leader>0 :call HiInterestingWord(0)<cr>
+nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+hi def InterestingWord0 guifg=#000000 ctermfg=NONE guibg=black ctermbg=16 cterm=NONE

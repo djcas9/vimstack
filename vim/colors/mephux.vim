@@ -18,6 +18,8 @@ hi NonText          guifg=#070707 guibg=black ctermfg=235 ctermbg=none
 hi Cursor           guifg=black guibg=white ctermfg=0 ctermbg=15
 hi LineNr           guifg=#3D3D3D guibg=black ctermfg=236 ctermbg=233
 
+hi SignColumn       ctermfg=236 ctermbg=233
+
 hi VertSplit        guifg=#202020 guibg=#202020 ctermfg=235 ctermbg=235 
 hi StatusLine       guifg=#CCCCCC guibg=#202020 gui=none ctermfg=233 ctermbg=239
 hi StatusLineNC     guifg=black guibg=#202020 ctermfg=233 ctermbg=235
@@ -178,3 +180,11 @@ hi StartifyHeader  ctermfg=203
 hi StartifyNumber  ctermfg=215
 hi StartifyPath    ctermfg=245
 hi StartifySlash   ctermfg=240
+
+
+" hi GitGutterAddLin          ctermfg=
+" hi GitGutterChangeLin       ctermfg=
+" hi GitGutterDeleteLin       ctermfg=
+" hi GitGutterChangeDeleteLin ctermfg=
+
+
