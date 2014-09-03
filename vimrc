@@ -63,8 +63,11 @@ Plugin 'airblade/vim-gitgutter'
 
 " Plugin 'wookiehangover/jshint.vim'
 Plugin 'mephux/vim-jsfmt'
+Plugin 'vim-scripts/ZoomWin'
 
 Plugin 'ConradIrwin/vim-bracketed-paste'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'tpope/vim-obsession'
 
 call vundle#end()
 
@@ -191,6 +194,8 @@ set term=xterm
 set t_Co=256
 let &t_Co=256
 
+set noswapfile
+
 " Ensure the temp dirs exist
 if !isdirectory($HOME . "/.vim/tmp")
   call system("mkdir -p ~/.vim/tmp/swap")
@@ -309,7 +314,7 @@ set nocursorcolumn
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
 
 let g:go_disable_autoinstall = 1
-let g:go_fmt_command = "gofmt"
+let g:go_fmt_command = "goimports"
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -485,6 +490,9 @@ if has("autocmd")
         \| exe "normal g'\"" | endif
 endif
 
+" GitGutter
+let g:gitgutter_diff_args = '-w'
+
 " SnipMate
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
@@ -501,15 +509,20 @@ let g:UltiSnipsEditSplit="vertical"
 nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
 nmap <silent> <leader>cs :tabedit ~/.vim/colors/mephux.vim<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>n :tabedit ~/.notes.md<CR>
 
 nmap <silent> <leader>ac :tabedit ~/.vim/autocorrect.vim<CR>
 source ~/.vim/autocorrect.vim
 
 " For quick and dirty snippets
-nmap <silent> <leader>ss :tabedit ~/.vim/bundle/custom-vim-snippets/snippets/_.snippets<CR>
+" nmap <silent> <leader>ss :tabedit ~/.vim/bundle/custom-vim-snippets/snippets/_.snippets<CR>
+nmap <silent> <leader>ss :UltiSnipsEdit<CR>
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
+
+" Markdown files
+au BufRead,BufNewFile *.md set ft=markdown
 
 " Node/EJS
 au BufRead,BufNewFile *.ejs set ft=html
@@ -632,7 +645,7 @@ function! RenameFile()
     redraw!
   endif
 endfunction
-map <leader>n :call RenameFile()<cr>
+map <leader>N :call RenameFile()<cr>
 
 " Show the MD5 of the current buffer
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -802,22 +815,8 @@ vmap <silent> <expr> p <sid>Repl()
 
 " JSHint
 let JSHintUpdateWriteOnly = 1
-
-" jsfmt
-function! FormatprgLocal(filter)
-  if !empty(v:char)
-    return 1
-  else
-    let l:command = v:lnum.','.(v:lnum+v:count-1).'!'.a:filter
-    echo l:command
-    execute l:command
-  endif
-endfunction
-
-if has("autocmd")
-  let jsfmt_pipeline  = "jsfmt"
-  autocmd FileType javascript setlocal formatexpr=FormatprgLocal(jsfmt_pipeline)
-endif
+" JSFmt
+" let g:js_fmt_autosave = 1
 
 " Custom Work Highlights
 
