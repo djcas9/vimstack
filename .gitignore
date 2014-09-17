@@ -8,4 +8,7 @@ vim/NERDTreeBookmarks
 vim/tmp/
 vim/syntax
 vim/bundle
+vim/plugged
 vim/spell
+
+vim/UltiSnips/markdown.snippets

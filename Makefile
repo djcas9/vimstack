@@ -3,13 +3,15 @@ PWD := $(shell pwd)
 install: clean
 	ln -s $(PWD)/vim ~/.vim
 	ln -s $(PWD)/vimrc ~/.vimrc
-	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-	vim +PluginInstall +qall
+	mkdir -p ~/.vim/autoload
+	curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	vim +PlugInstall +qall
 	clear
 	@echo "\nDONE - Installation Complete\n"
 
 clean:
-	rm -rf $(PWD)/vim/bundle/*
+	rm -rf $(PWD)/vim/bundle
+	rm -rf $(PWD)/vim/plugged
 	rm -rf ~/.vim
 	rm -rf ~/.vimrc
 
