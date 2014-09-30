@@ -59,6 +59,8 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'tpope/vim-obsession'
 
+" Plug 'Shougo/vimproc.vim', { 'do': 'make -f make_mac.mak' }
+
 call plug#end()
 
 " Turn on file type detection.
@@ -444,7 +446,7 @@ let g:goldenview__enable_default_mapping=0
 let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
 let g:ctrlp_by_filename = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|\.swp$\|node_modules/*$\|vendor/*$'
 let g:ctrlp_extensions = ['funky']
 
 nnoremap <Leader>f :CtrlPFunky<Cr>
@@ -453,8 +455,17 @@ nnoremap <Leader>r :CtrlPRegister<Cr>
 
 let g:ctrlp_use_caching = 0
 
+" Use the_platinum_searcher https://github.com/monochromegane/the_platinum_searcher
+if executable('pt')
+  " Use pt over Grep
+  set grepprg=pt
+        "\ --nogroup\ --nocolor
+
+  " Use pt in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = ['pt %s -l --nocolor -g ""']
+
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
+elseif executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 
@@ -620,6 +631,7 @@ nmap <Leader>\2 "2p
 
 " Git Stuff
 nmap <leader>gs :Gstatus<CR><C-w>20+
+nmap <leader>gp :Gpush<CR><C-w>20+
 
 " Control-F for Ack
 map <C-F> :Ack<space>
@@ -805,8 +817,10 @@ vmap <silent> <expr> p <sid>Repl()
 
 " JSHint
 let JSHintUpdateWriteOnly = 1
+
 " JSFmt
-" let g:js_fmt_autosave = 1
+let g:js_fmt_autosave = 0
+let g:js_fmt_fail_silently = 1
 
 " Custom Work Highlights
 
