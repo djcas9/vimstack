@@ -13,7 +13,9 @@ let colors_name = "mephux"
 
 " General colors
 hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=16        cterm=NONE
-hi NonText          guifg=#070707 guibg=black ctermfg=235 ctermbg=none
+
+hi NonText          guifg=#070707 guibg=black ctermfg=237 ctermbg=none
+hi SpecialKey       guifg=#808080 guibg=#343434 ctermfg=237 ctermbg=236
 
 hi Cursor           guifg=black guibg=white ctermfg=0 ctermbg=15
 hi LineNr           guifg=#3D3D3D guibg=black ctermfg=236 ctermbg=233
@@ -54,7 +56,6 @@ hi DiffChange       guifg=#FFFFFF     guibg=#374757     gui=NONE      ctermfg=NO
 hi DiffDelete       guifg=#FFFFFF     guibg=#5c3a3d     gui=NONE      ctermfg=NONE        ctermbg=52        cterm=NONE
 hi DiffAdd          guifg=#FFFFFF     guibg=#3d5838     gui=NONE      ctermfg=NONE        ctermbg=22         cterm=NONE
 
-hi SpecialKey       guifg=#808080 guibg=#343434 ctermfg=8 ctermbg=236
 
 hi Error            gui=undercurl ctermfg=203 ctermbg=none cterm=underline guisp=#FF6C60
 hi ErrorMsg         guifg=white guibg=#FF6C60 gui=bold ctermfg=white ctermbg=203 cterm=bold
