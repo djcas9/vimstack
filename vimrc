@@ -58,6 +58,7 @@ Plug 'vim-scripts/ZoomWin'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'tpope/vim-obsession'
+Plug 'majutsushi/tagbar'
 
 " Plug 'Shougo/vimproc.vim', { 'do': 'make -f make_mac.mak' }
 
@@ -242,7 +243,7 @@ if exists('+colorcolumn')
 endif
 
 
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Don't make a backup before overwriting a file.
 set nobackup
