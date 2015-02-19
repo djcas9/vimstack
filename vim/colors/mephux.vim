@@ -14,8 +14,8 @@ let colors_name = "mephux"
 " General colors
 hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=16        cterm=NONE
 
-hi NonText          guifg=#070707 guibg=black ctermfg=237 ctermbg=none
-hi SpecialKey       guifg=#808080 guibg=#343434 ctermfg=237 ctermbg=236
+hi NonText          guifg=#070707 guibg=none ctermfg=237 ctermbg=none
+hi SpecialKey       guifg=#808080 guibg=none ctermfg=235 ctermbg=none
 
 hi Cursor           guifg=black guibg=white ctermfg=0 ctermbg=15
 hi LineNr           guifg=#3D3D3D guibg=black ctermfg=236 ctermbg=233
@@ -68,7 +68,7 @@ if version >= 700 " Vim 7.x specific colors
 
   hi CursorColumn   guibg=#121212 gui=none ctermbg=234 ctermfg=233
   hi MatchParen     guifg=#f6f3e8 guibg=#857b6f gui=bold ctermfg=white ctermbg=darkgray 
-  hi Pmenu          guifg=#f6f3e8 guibg=#444444 ctermfg=white ctermbg=242 
+  hi Pmenu          guifg=#f6f3e8 guibg=#444444 ctermfg=white ctermbg=237
   hi PmenuSel       guifg=#000000 guibg=#cae682 ctermfg=0 ctermbg=195 
   hi Search         guifg=#000000 guibg=#cae682 ctermfg=0 ctermbg=85
 
@@ -187,5 +187,3 @@ hi StartifySlash   ctermfg=240
 " hi GitGutterChangeLin       ctermfg=
 " hi GitGutterDeleteLin       ctermfg=
 " hi GitGutterChangeDeleteLin ctermfg=
-
-

@@ -13,7 +13,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-abolish'
 Plug 'terryma/vim-expand-region'
-Plug 'nono/vim-handlebars'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'molok/vim-smartusline'
 Plug 'kana/vim-smartinput'
 Plug 'scrooloose/nerdcommenter'
@@ -59,6 +59,22 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'tpope/vim-obsession'
 Plug 'majutsushi/tagbar'
+Plug 'wting/rust.vim'
+Plug 'mklabs/grunt.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'cespare/vim-toml'
+
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.sh
+  endif
+endfunction
+
+" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 " Plug 'Shougo/vimproc.vim', { 'do': 'make -f make_mac.mak' }
 
@@ -294,8 +310,13 @@ set statusline+=\ %y
 " Column/Line Information
 set statusline+=\ [%P\ %l/%L\:\ %v\]\ " percent through file
 
+" VimIndentLine
+let g:indentLine_color_term = 234
+let g:indentLine_color_gui = '#A4E57E'
+let g:indentLine_char = '┆'
+
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:\┆\ ,eol:¬
 
 " Highlight the current line and column Don't do this - It makes window
 " redraws painfully slow
@@ -305,9 +326,26 @@ set nocursorcolumn
 " GO Configuration
 " autocmd FileType go autocmd BufWritePre <buffer> Fmt
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
-
+let g:go_highlight_extra_types = 1
 let g:go_disable_autoinstall = 1
 let g:go_fmt_command = "goimports"
+
+" Turn on more syntax sauce
+let g:go_highlight_functions = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_build_constraints = 1
+
+augroup filetypedetect_go
+  autocmd FileType go nmap <Leader>gi <Plug>(go-info)
+  au Filetype go nnoremap <leader>gd :vsp <CR>:exe "GoDef" <CR>
+  au Filetype go nnoremap <leader>gdt :tab split <CR>:exe "GoDef"<CR>
+augroup END
+
+" Highlight Pointers
+syn match goOperator /\s\?\*\w\+\.\w\+/
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -330,7 +368,7 @@ nmap <leader>l :set list!<CR>
 
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-x>'
+let g:multi_cursor_next_key='<C-n>'
 " let g:multi_cursor_prev_key='<C-,>'
 " let g:multi_cursor_skip_key='<C-s>'
 let g:multi_cursor_quit_key='<Esc>'
@@ -402,10 +440,6 @@ vmap <silent> <C-Down> :<C-U>call vertical_move#Down('v', v:count1)<CR>
 imap <silent> <C-Up> <ESC> :<C-U>call vertical_move#Down('v', v:count1)<CR>
 imap <silent> <C-Down> <ESC> :<C-U>call vertical_move#Down('', v:count1)<CR>
 
-" VimIndentLine
-let g:indentLine_color_term = 234
-let g:indentLine_color_gui = '#A4E57E'
-let g:indentLine_char = '┆'
 
 " Default - V Expand
 if !exists('g:expand_region_text_objects')
@@ -437,6 +471,12 @@ let g:NERD_javascript_alt_style = 1
 " let g:NERDDefaultAlign = 'start'
 map <C-c> <plug>NERDCommenterToggle<CR>
 
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " Get rid of Ex mode
 nnoremap Q nop
 
@@ -447,7 +487,7 @@ let g:goldenview__enable_default_mapping=0
 let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
 let g:ctrlp_by_filename = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|\.swp$\|node_modules/*$\|vendor/*$'
+let g:ctrlp_custom_ignore = 'Godeps/*$\|\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|\.swp$\|node_modules/*$\|vendor/*$'
 let g:ctrlp_extensions = ['funky']
 
 nnoremap <Leader>f :CtrlPFunky<Cr>
@@ -475,9 +515,6 @@ elseif executable('ag')
 else
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 endif
-
-" Awk
-nnoremap <c-f> :Ack<Space>
 
 " :Extradite - Git log viewer
 map <Leader>o :Extradite<CR>
@@ -634,8 +671,8 @@ nmap <Leader>\2 "2p
 nmap <leader>gs :Gstatus<CR><C-w>20+
 nmap <leader>gp :Gpush<CR><C-w>20+
 
-" Control-F for Ack
-map <C-F> :Ack<space>
+" Control-f for Ack
+map <C-f> :Ack<space>
 
 " RENAME CURRENT FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
