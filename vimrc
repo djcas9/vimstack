@@ -63,6 +63,7 @@ Plug 'wting/rust.vim'
 Plug 'mklabs/grunt.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'cespare/vim-toml'
+Plug 'justinmk/vim-sneak'
 
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
@@ -486,13 +487,21 @@ let g:goldenview__enable_default_mapping=0
 " CtrlP configuration
 let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
 let g:ctrlp_by_filename = 1
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
+" set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
 let g:ctrlp_custom_ignore = 'Godeps/*$\|\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|\.swp$\|node_modules/*$\|vendor/*$'
 let g:ctrlp_extensions = ['funky']
 
 nnoremap <Leader>f :CtrlPFunky<Cr>
 nnoremap <Leader>b :CtrlPBuffer<Cr>
 nnoremap <Leader>r :CtrlPRegister<Cr>
+
+" Sneak
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
+xmap f <Plug>Sneak_s
+xmap F <Plug>Sneak_S
+omap f <Plug>Sneak_s
+omap F <Plug>Sneak_S
 
 let g:ctrlp_use_caching = 0
 
