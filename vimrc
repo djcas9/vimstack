@@ -343,6 +343,9 @@ augroup filetypedetect_go
   autocmd FileType go nmap <Leader>gi <Plug>(go-info)
   au Filetype go nnoremap <leader>gd :vsp <CR>:exe "GoDef" <CR>
   au Filetype go nnoremap <leader>gdt :tab split <CR>:exe "GoDef"<CR>
+  au FileType go nmap <Leader>gi <Plug>(go-info)
+  au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+  au FileType go nmap <Leader>gr <Plug>(go-rename)
 augroup END
 
 " Highlight Pointers
@@ -530,7 +533,7 @@ map <Leader>o :Extradite<CR>
 let g:extradite_resize = 0
 
 " clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<cr>
+:nnoremap <leader>c :nohlsearch<cr>
 
 " Remember last location in file
 if has("autocmd")
