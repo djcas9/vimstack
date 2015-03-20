@@ -9,7 +9,7 @@
   it for whatever tools you need is trivial.
 
   Vimux comes with two color schemas: epix and mephux. Both color schemas were created by me modified from 
-  ir_black (https://github.com/wesgibbs/vim-irblack). The default color schema is threatstack.
+  ir_black (https://github.com/wesgibbs/vim-irblack). The default color schema is mephux.
 
 ## Install
 
