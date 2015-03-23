@@ -25,7 +25,6 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
-Plug 'mileszs/ack.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-ragtag'
 Plug 'vim-scripts/SingleCompile'
@@ -62,20 +61,7 @@ Plug 'cespare/vim-toml'
 Plug 'justinmk/vim-sneak'
 Plug 'JulesWang/css.vim'
 Plug 'tpope/vim-afterimage'
-
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.sh
-  endif
-endfunction
-
-" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-
-" Plug 'Shougo/vimproc.vim', { 'do': 'make -f make_mac.mak' }
+Plug 'ompugao/uncrustify-vim'
 
 call plug#end()
 
@@ -321,6 +307,12 @@ set listchars=tab:\┆\ ,eol:¬
 " redraws painfully slow
 set cursorline
 set nocursorcolumn
+
+" C Stuff
+" path to uncrustify configuration file
+let g:uncrustify_cfg_file_path = "~/.uncrustify.cfg"
+autocmd FileType c noremap <buffer> <c-f> :call uncrustify#UncrustifyAuto()<CR>
+autocmd FileType c vnoremap <buffer> <c-f> :call uncrustify#UncrustifyAuto()<CR>
 
 " GO Configuration
 " autocmd FileType go autocmd BufWritePre <buffer> Fmt
@@ -680,9 +672,6 @@ nmap <Leader>\2 "2p
 " Git Stuff
 nmap <leader>gs :Gstatus<CR><C-w>20+
 nmap <leader>gp :Gpush<CR><C-w>20+
-
-" Control-f for Ack
-map <C-f> :Ack<space>
 
 " RENAME CURRENT FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
