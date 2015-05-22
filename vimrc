@@ -63,6 +63,8 @@ Plug 'JulesWang/css.vim'
 Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
 
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+
 call plug#end()
 
 " Turn on file type detection.
@@ -539,11 +541,23 @@ let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['handlebars'] = 'html'
 
+" YCM
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+" Supertab Configs
+let g:SuperTabDefaultCompletionType = "<C-n>"
+let g:SuperTabLongestHighlight = 1
+let g:SuperTabCrMapping = 1
+
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " Ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 
 " Quickly edit/reload the vimrc file
@@ -590,11 +604,6 @@ nmap <Leader>B :SCCompile<cr>
 nmap <Leader>R :update<CR>:SCCompileRun<cr>
 vmap <Leader>R :update<CR>:SCCompileRun<cr>
 imap <Leader>R <Esc>:SCCompileRun<cr>
-
-" Supertab Configs
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabLongestHighlight = 1
-let g:SuperTabCrMapping = 1
 
 " ignore Ex mode
 
