@@ -10,6 +10,7 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'terryma/vim-multiple-cursors'
+Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-abolish'
 Plug 'terryma/vim-expand-region'
@@ -58,12 +59,11 @@ Plug 'tpope/vim-obsession'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-easy-align'
 Plug 'cespare/vim-toml'
-Plug 'justinmk/vim-sneak'
 Plug 'JulesWang/css.vim'
 Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --gocode-completer' }
 
 call plug#end()
 
@@ -479,6 +479,16 @@ nnoremap Q nop
 " GoldenView
 let g:goldenview__enable_default_mapping=0
 
+" YCM
+" let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_error_symbol = 'XX'
+let g:ycm_warning_symbol = '!!'
+let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
 " CtrlP configuration
 let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
 let g:ctrlp_by_filename = 1
@@ -490,13 +500,15 @@ nnoremap <Leader>f :CtrlPFunky<Cr>
 nnoremap <Leader>b :CtrlPBuffer<Cr>
 nnoremap <Leader>r :CtrlPRegister<Cr>
 
-" Sneak
-nmap f <Plug>Sneak_s
-nmap F <Plug>Sneak_S
-xmap f <Plug>Sneak_s
-xmap F <Plug>Sneak_S
-omap f <Plug>Sneak_s
-omap F <Plug>Sneak_S
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+imap     <C-F>t <Esc>:CtrlSFToggle<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+nnoremap <C-F>o :CtrlSFOpen<CR>
+
 
 let g:ctrlp_use_caching = 0
 

@@ -1,4 +1,5 @@
 .DS_Store
+*.pyc
 vim/autoload
 vim/.cache
 *.netrwhist
