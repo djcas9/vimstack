@@ -396,13 +396,13 @@ map <S-Right> <C-W>l
 map <S-Left> <C-W>h
 map <S-Up> <C-W>k
 
-map <S-Left> ^
-map <S-Right> $
-imap <S-Left> <ESC>I
-imap <S-Right> <ESC>A
+"map <S-Left> ^
+"map <S-Right> $
+"imap <S-Left> <ESC>I
+"imap <S-Right> <ESC>A
 
-map <S-Up> gg
-map <S-Down> G
+" map <S-Up> gg
+" map <S-Down> G
 
 map <Leader>w <ESC>:w<CR>
 
@@ -412,8 +412,11 @@ nmap <silent> <C-Right> w
 " nmap <C-Right> <Plug>(expand_region_expand)
 " nmap <C-Left> <Plug>(expand_region_shrink)
 
-vmap <C-Right> <Plug>(expand_region_expand)
-vmap <C-Left> <Plug>(expand_region_shrink)
+
+vmap <C-Right> w
+vmap <C-Left> b
+" vmap <C-Right> <Plug>(expand_region_expand)
+" vmap <C-Left> <Plug>(expand_region_shrink)
 
 imap <silent> <C-Left> <ESC>b
 imap <silent> <C-Right> <ESC>w
@@ -596,6 +599,9 @@ au BufRead,BufNewFile *.ejs set ft=html
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
+
+" Tagbar
+map <Leader>T :TagbarToggle<Enter>
 
 " Nerdtree settings
 map <Leader>t :NERDTreeToggle<Enter>
