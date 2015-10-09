@@ -37,7 +37,6 @@ Plug 'tacahiroy/ctrlp-funky'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mephux/custom-vim-snippets'
-Plug 'fatih/vim-go'
 Plug 'tommcdo/vim-lion'
 Plug 'bruno-/vim-vertical-move'
 Plug 'scrooloose/nerdtree'
@@ -64,7 +63,10 @@ Plug 'JulesWang/css.vim'
 Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --gocode-completer' }
+" Plug 'unblevable/quick-scope'
+
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+Plug 'fatih/vim-go'
 
 call plug#end()
 
@@ -927,3 +929,30 @@ hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 hi def InterestingWord0 guifg=#000000 ctermfg=NONE guibg=black ctermbg=16 cterm=NONE
+
+" Insert into your .vimrc after quick-scope is loaded.
+" Obviously depends on <https://github.com/unblevable/quick-scope> being installed.
+
+" Thanks to @VanLaser for cleaning the code up and expanding capabilities to include e.g. `df`
+
+let g:qs_enable = 0
+let g:qs_enable_char_list = [ 'f', 'F', 't', 'T' ]
+
+function! Quick_scope_selective(movement)
+    let needs_disabling = 0
+    if !g:qs_enable
+        QuickScopeToggle
+        redraw
+        let needs_disabling = 1
+    endif
+    let letter = nr2char(getchar())
+    if needs_disabling
+        QuickScopeToggle
+    endif
+    return a:movement . letter
+endfunction
+
+for i in g:qs_enable_char_list
+	execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
+endfor
+
