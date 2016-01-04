@@ -26,7 +26,11 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
+
 Plug 'pangloss/vim-javascript'
+" Plug 'isRuslan/vim-es6'
+Plug 'mxw/vim-jsx'
+
 Plug 'tpope/vim-ragtag'
 Plug 'vim-scripts/SingleCompile'
 Plug 'int3/vim-extradite'
@@ -62,6 +66,8 @@ Plug 'cespare/vim-toml'
 Plug 'JulesWang/css.vim'
 Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
+
+Plug 'vim-rubyfmt'
 
 " Plug 'unblevable/quick-scope'
 
@@ -602,6 +608,9 @@ au BufRead,BufNewFile *.ejs set ft=html
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
+
+" JSX/React
+let g:jsx_ext_required = 0
 
 " Tagbar
 map <Leader>T :TagbarToggle<Enter>
