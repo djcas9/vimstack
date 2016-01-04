@@ -2,6 +2,7 @@
 
 " The Basics
 set nocompatible
+" set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 set encoding=utf-8
 
 filetype off
@@ -34,7 +35,6 @@ Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-ragtag'
 Plug 'vim-scripts/SingleCompile'
 Plug 'int3/vim-extradite'
-" Plug 'kien/ctrlp.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-register'
 Plug 'tacahiroy/ctrlp-funky'
@@ -67,7 +67,11 @@ Plug 'JulesWang/css.vim'
 Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
 
-Plug 'vim-rubyfmt'
+" ruby format
+" Plug 'vim-rubyfmt'
+
+" icons
+Plug 'ryanoasis/vim-devicons'
 
 " Plug 'unblevable/quick-scope'
 
@@ -616,6 +620,7 @@ let g:jsx_ext_required = 0
 map <Leader>T :TagbarToggle<Enter>
 
 " Nerdtree settings
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 map <Leader>t :NERDTreeToggle<Enter>
 let g:NERDTreeMouseMode = 2
 let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")

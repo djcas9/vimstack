@@ -16,6 +16,8 @@
   * `make install`
   * `vim +BundleInstall +qall # install all default plugins`
 
+  For NerdTree file icons (devicons) see https://github.com/ryanoasis/vim-devicons
+
 ## Commands
 
   NOTE: The default `<Leader>` is set to `\`
