@@ -66,6 +66,7 @@ Plug 'cespare/vim-toml'
 Plug 'JulesWang/css.vim'
 Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
+Plug 'mxw/vim-jsx'
 
 " ruby format
 " Plug 'vim-rubyfmt'
@@ -76,6 +77,7 @@ Plug 'ryanoasis/vim-devicons'
 " Plug 'unblevable/quick-scope'
 
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+" Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'fatih/vim-go'
 
 call plug#end()
