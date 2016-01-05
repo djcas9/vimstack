@@ -63,7 +63,11 @@ Plug 'tpope/vim-obsession'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-easy-align'
 Plug 'cespare/vim-toml'
+
+" css
 Plug 'JulesWang/css.vim'
+Plug 'othree/csscomplete.vim'
+
 Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
 Plug 'mxw/vim-jsx'
@@ -346,6 +350,9 @@ augroup filetypedetect_go
   au FileType go nmap <Leader>gr <Plug>(go-rename)
 augroup END
 
+" CSS Options
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
+
 " Highlight Pointers
 syn match goOperator /\s\?\*\w\+\.\w\+/
 
@@ -499,6 +506,9 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " CtrlP configuration
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+let g:ctrlp_max_files = 20000
+let g:ctrlp_max_depth = 200
 let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
 let g:ctrlp_by_filename = 1
 " set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
