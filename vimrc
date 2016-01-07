@@ -75,6 +75,9 @@ Plug 'mxw/vim-jsx'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 Plug 'fatih/vim-go'
 
+" # vim:filetype=i3
+Plug 'PotatoesMaster/i3-vim-syntax'
+
 call plug#end()
 
 " Turn on file type detection.
@@ -328,6 +331,7 @@ autocmd FileType c vnoremap <buffer> <c-f> :call uncrustify#UncrustifyAuto()<CR>
 
 " GO Configuration
 " autocmd FileType go autocmd BufWritePre <buffer> Fmt
+let g:go_bin_path = expand("~/source/go/bin")
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
 let g:go_highlight_extra_types = 1
 let g:go_disable_autoinstall = 1
@@ -506,6 +510,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " CtrlP configuration
+let g:ctrlp_funky_go_types = 1
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_max_files = 20000
 let g:ctrlp_max_depth = 200
