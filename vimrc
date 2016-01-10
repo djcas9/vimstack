@@ -72,7 +72,7 @@ Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
 Plug 'mxw/vim-jsx'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --tern-completer --clang-completer --gocode-completer' }
 Plug 'fatih/vim-go'
 
 " # vim:filetype=i3
@@ -165,6 +165,8 @@ set wildignore+=*DS_Store*
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+set completefunc=youcompleteme#Complete
+set completeopt=preview,menuone
 
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains
