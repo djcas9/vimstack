@@ -72,7 +72,7 @@ Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
 Plug 'mxw/vim-jsx'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --tern-completer --clang-completer --gocode-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --gocode-completer' }
 Plug 'fatih/vim-go'
 
 " # vim:filetype=i3
