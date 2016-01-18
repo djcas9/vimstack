@@ -911,7 +911,7 @@ let JSHintUpdateWriteOnly = 1
 
 " JSFmt
 let g:js_fmt_autosave = 0
-let g:js_fmt_fail_silently = 1
+let g:js_fmt_fail_silently = 0
 
 " Custom Work Highlights
 
