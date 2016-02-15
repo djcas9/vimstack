@@ -10,6 +10,7 @@ filetype off
 " vim-plug - Plugin Managment
 call plug#begin('~/.vim/plugged')
 
+Plug 'fidian/hexmode'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-capslock'
@@ -980,3 +981,6 @@ for i in g:qs_enable_char_list
 	execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
 endfor
 
+nnoremap <C-H> :Hexmode<CR>
+inoremap <C-H> <Esc>:Hexmode<CR>
+vnoremap <C-H> :<C-U>Hexmode<CR>
