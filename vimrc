@@ -11,6 +11,8 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'fidian/hexmode'
+" Plug 'scrooloose/syntastic'
+
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-capslock'
@@ -65,6 +67,8 @@ Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-easy-align'
 Plug 'cespare/vim-toml'
 
+Plug 'mileszs/ack.vim'
+
 " css
 Plug 'JulesWang/css.vim'
 Plug 'othree/csscomplete.vim'
@@ -73,7 +77,7 @@ Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
 Plug 'mxw/vim-jsx'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --gocode-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 Plug 'fatih/vim-go'
 
 " # vim:filetype=i3
@@ -539,17 +543,11 @@ nnoremap <C-F>o :CtrlSFOpen<CR>
 
 let g:ctrlp_use_caching = 0
 
-" Use the_platinum_searcher https://github.com/monochromegane/the_platinum_searcher
-if executable('pt')
-  " Use pt over Grep
-  set grepprg=pt
-        "\ --nogroup\ --nocolor
-
-  " Use pt in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = ['pt %s -l --nocolor -g ""']
-
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-elseif executable('ag')
+if executable('ag')
+  " let g:ackprg = 'ag --nogroup --nocolor --column'
+  let g:ackprg = 'ag --vimgrep'
+
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 
@@ -984,3 +982,19 @@ endfor
 nnoremap <C-H> :Hexmode<CR>
 inoremap <C-H> <Esc>:Hexmode<CR>
 vnoremap <C-H> :<C-U>Hexmode<CR>
+
+" Auto Syntax
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
+
+let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
+if matchstr(local_eslint, "^\/\\w") == ''
+  let local_eslint = getcwd() . "/" . local_eslint
+endif
+if executable(local_eslint)
+  let g:syntastic_javascript_eslint_exec = local_eslint
+endif
