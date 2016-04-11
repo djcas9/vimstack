@@ -12,7 +12,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'fidian/hexmode'
 " Plug 'scrooloose/syntastic'
-
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-capslock'
@@ -345,6 +344,7 @@ let g:go_disable_autoinstall = 1
 let g:go_fmt_command = "goimports"
 
 " Turn on more syntax sauce
+let g:go_highlight_generate_tags = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
@@ -353,8 +353,10 @@ let g:go_highlight_methods = 1
 let g:go_highlight_build_constraints = 1
 
 augroup filetypedetect_go
-  autocmd FileType go nmap <Leader>gi <Plug>(go-info)
   au Filetype go nnoremap <leader>gd :vsp <CR>:exe "GoDef" <CR>
+  au Filetype go nnoremap <leader>gc :vsp <CR>:exe "GoCallees" <CR>
+  " au Filetype go nnoremap <leader>gr :vsp <CR>:exe "GoReferrers" <CR>
+  " au Filetype go nnoremap <leader>gimp :vsp <CR>:exe "GoImplements" <CR>
   au Filetype go nnoremap <leader>gdt :tab split <CR>:exe "GoDef"<CR>
   au FileType go nmap <Leader>gi <Plug>(go-info)
   au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
@@ -701,6 +703,20 @@ vnoremap <Space> za
 
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" Targets
+" g:targets_aiAI
+" g:targets_nlNL
+" g:targets_pairs
+" g:targets_quotes
+" g:targets_separators
+" g:targets_tagTrigger
+" g:targets_argTrigger
+" g:targets_argOpening
+" g:targets_argClosing
+" g:targets_argSeparator
+" g:targets_seekRanges
+" g:targets_jumpRanges
 
 " Yankring
 " let g:yankstack_map_keys = 0

@@ -72,6 +72,8 @@ if version >= 700 " Vim 7.x specific colors
 
   " hi Pmenu          guifg=#f6f3e8 guibg=#444444 ctermfg=white ctermbg=235
   " hi PmenuSel       guifg=#000000 guibg=#cae682 ctermfg=0 ctermbg=237
+  "
+  hi PMenuSbar guifg=NONE guibg=#848688 guisp=#848688 gui=NONE ctermfg=NONE ctermbg=102 cterm=NONE
   hi Pmenu guifg=#ffffff guibg=#1c1c1c guisp=#1c1c1c gui=NONE ctermfg=15 ctermbg=234 cterm=NONE
   hi PMenuSel guifg=#ffffff guibg=#303030 guisp=#303030 gui=NONE ctermfg=15 ctermbg=236 cterm=NONE
   " hi PmenuThumb guifg=NONE guibg=#3D3D3D guisp=#3D3D3D gui=NONE ctermfg=NONE ctermbg=237 cterm=NONE
@@ -79,6 +81,14 @@ if version >= 700 " Vim 7.x specific colors
   " hi ColorColumn guifg=#000000 guibg=#cae682 ctermfg=none ctermbg=233
   hi ColorColumn    cterm=none ctermfg=none ctermbg=none
 endif
+
+
+" Tabs
+hi TabLineFill guifg=#192224 guibg=#875fd7 guisp=#875fd7 gui=bold ctermfg=235 ctermbg=98 cterm=bold
+hi TabLineSel guifg=#ffffff guibg=#5f0087 guisp=#5f0087 gui=bold ctermfg=15 ctermbg=54 cterm=bold
+hi TabLine guifg=#ffffff guibg=#8700ff guisp=#8700ff gui=bold ctermfg=15 ctermbg=93 cterm=bold
+
+
 
 
 " Syntax highlighting
