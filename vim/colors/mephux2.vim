@@ -9,13 +9,13 @@ if exists("syntax_on")
  syntax reset
 endif
 
-let colors_name = "mephux"
+let colors_name = "mephux2"
 
 " General colors
 hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=16        cterm=NONE
 
-hi NonText          guifg=#070707 guibg=NONE ctermfg=237 ctermbg=NONE
-hi SpecialKey       guifg=#808080 guibg=NONE ctermfg=235 ctermbg=NONE
+hi NonText          guifg=#070707 guibg=none ctermfg=237 ctermbg=none
+hi SpecialKey       guifg=#808080 guibg=none ctermfg=235 ctermbg=none
 
 hi Cursor           guifg=black guibg=white ctermfg=0 ctermbg=15
 hi LineNr           guifg=#3D3D3D guibg=black ctermfg=236 ctermbg=233
@@ -23,11 +23,13 @@ hi LineNr           guifg=#3D3D3D guibg=black ctermfg=236 ctermbg=233
 hi SignColumn       ctermfg=236 ctermbg=233
 
 hi VertSplit        guifg=#202020 guibg=#202020 ctermfg=235 ctermbg=235 
-hi StatusLine       guifg=#CCCCCC guibg=#202020 gui=NONE ctermfg=233 ctermbg=239
-hi StatusLineNC     guifg=black guibg=#202020 ctermfg=233 ctermbg=235
+" hi StatusLine       guifg=#CCCCCC guibg=#202020 gui=none ctermfg=233 ctermbg=239
+" hi StatusLineNC     guifg=black guibg=#202020 ctermfg=233 ctermbg=235
+hi StatusLine guifg=#192224 guibg=#875fd7 guisp=#875fd7 gui=bold ctermfg=white ctermbg=98 cterm=bold
+hi StatusLineNC guifg=#ffffff guibg=#8700ff guisp=#8700ff gui=bold ctermfg=white ctermbg=93 cterm=bold
 
 hi Title            guifg=#f6f3e8 gui=bold ctermfg=187 cterm=bold
-hi Visual           guibg=#262D51 ctermbg=152 ctermfg=black cterm=NONE
+hi Visual           guibg=#262D51 ctermbg=152 ctermfg=black cterm=none
 
 " Message displayed in lower left, such as --INSERT--
 hi ModeMsg          guifg=#919191     guibg=#111111     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD
@@ -57,16 +59,16 @@ hi DiffDelete       guifg=#FFFFFF     guibg=#5c3a3d     gui=NONE      ctermfg=NO
 hi DiffAdd          guifg=#FFFFFF     guibg=#3d5838     gui=NONE      ctermfg=NONE        ctermbg=22         cterm=NONE
 
 
-hi Error            gui=undercurl ctermfg=203 ctermbg=NONE cterm=underline guisp=#FF6C60
+hi Error            gui=undercurl ctermfg=203 ctermbg=none cterm=underline guisp=#FF6C60
 hi ErrorMsg         guifg=white guibg=#FF6C60 gui=bold ctermfg=white ctermbg=203 cterm=bold
-" hi LongLineWarning gui=undercurl ctermfg=NONE ctermbg=234 cterm=NONE guisp=#FF6C60
+" hi LongLineWarning gui=undercurl ctermfg=none ctermbg=234 cterm=none guisp=#FF6C60
 hi WarningMsg       guifg=white guibg=#FF6C60 gui=bold ctermfg=white ctermbg=203 cterm=bold
 
 if version >= 700 " Vim 7.x specific colors
-  hi CursorLine     guibg=#121212 ctermbg=233 ctermfg=NONE gui=NONE cterm=NONE
-  hi CursorLineNr   guibg=#121212 ctermbg=233 ctermfg=247 gui=NONE cterm=NONE
+  hi CursorLine     guibg=#121212 ctermbg=233 ctermfg=none gui=none cterm=none
+  hi CursorLineNr   guibg=#121212 ctermbg=233 ctermfg=247 gui=none cterm=none
 
-  hi CursorColumn   guibg=#121212 gui=NONE ctermbg=234 ctermfg=233
+  hi CursorColumn   guibg=#121212 gui=none ctermbg=234 ctermfg=233
   hi MatchParen     guifg=#f6f3e8 guibg=#857b6f gui=bold ctermfg=white ctermbg=darkgray 
   hi Search         guifg=#000000 guibg=#cae682 ctermfg=0 ctermbg=85
 
@@ -78,8 +80,8 @@ if version >= 700 " Vim 7.x specific colors
   hi PMenuSel guifg=#ffffff guibg=#303030 guisp=#303030 gui=NONE ctermfg=15 ctermbg=236 cterm=NONE
   " hi PmenuThumb guifg=NONE guibg=#3D3D3D guisp=#3D3D3D gui=NONE ctermfg=NONE ctermbg=237 cterm=NONE
 
-  " hi ColorColumn guifg=#000000 guibg=#cae682 ctermfg=NONE ctermbg=233
-  hi ColorColumn    cterm=NONE ctermfg=NONE ctermbg=NONE
+  " hi ColorColumn guifg=#000000 guibg=#cae682 ctermfg=none ctermbg=233
+  hi ColorColumn    cterm=none ctermfg=none ctermbg=none
 endif
 
 
@@ -88,12 +90,9 @@ hi TabLineFill guifg=#192224 guibg=#875fd7 guisp=#875fd7 gui=bold ctermfg=235 ct
 hi TabLineSel guifg=#ffffff guibg=#5f0087 guisp=#5f0087 gui=bold ctermfg=15 ctermbg=54 cterm=bold
 hi TabLine guifg=#ffffff guibg=#8700ff guisp=#8700ff gui=bold ctermfg=15 ctermbg=93 cterm=bold
 
-
-
-
 " Syntax highlighting
 " TODO: 
-hi Comment          guifg=#7C7C7C ctermfg=237 ctermbg=NONE
+hi Comment          guifg=#7C7C7C ctermfg=237 ctermbg=none
 hi String           guifg=#A8FF60 ctermfg=155 " 155
 hi Number           guifg=#FF73FD ctermfg=207
 
@@ -101,7 +100,7 @@ hi Keyword          guifg=#96CBFE ctermfg=117
 hi PreProc          guifg=#96CBFE ctermfg=117 
 hi Conditional      guifg=#6699CC ctermfg=110 
 
-hi Todo             guifg=#000000 guibg=#cae682 ctermfg=167 ctermbg=NONE cterm=NONE
+hi Todo             guifg=#000000 guibg=#cae682 ctermfg=167 ctermbg=none cterm=none
 hi Constant         guifg=#99CC99 ctermfg=151 
 
 hi Identifier       guifg=#C6C5FE ctermfg=189 

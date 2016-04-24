@@ -76,6 +76,8 @@ Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
 Plug 'mxw/vim-jsx'
 
+Plug 'rust-lang/rust.vim'
+
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 Plug 'fatih/vim-go'
 
@@ -114,7 +116,6 @@ set viminfo='20,\"80
 " Automatically re-read files changed outside
 set autoread
 set copyindent
-set undolevels=1000
 
 " you have a fast terminal
 set ttyfast
@@ -218,16 +219,23 @@ if !isdirectory($HOME . "/.vim/tmp")
   call system("mkdir -p ~/.vim/tmp/undo")
 endif
 
-if version >= 703
+" Keep swap files in one location
+" +=,$HOME/.vim/tmp/
+set directory=$HOME/.vim/tmp/,.
+set dir=~/.vim/tmp/swap/
+set backupdir=~/.vim/tmp/backup/
+
+" if version >= 703
   " Persistent Undo
   set undofile
   set undolevels=10000     " numbers of particular undos to save
   set undoreload=100000    " number of undo lines to save
   set undodir=~/.vim/tmp/undo/
-endif
+" endif
 
-set dir=~/.vim/tmp/swap/
-set backupdir=~/.vim/tmp/backup/
+" Don't make a backup before overwriting a file.
+set nobackup
+set nowritebackup
 
 " Don't reset cursor to start of line when moving around
 set nostartofline
@@ -245,10 +253,6 @@ set sessionoptions-=help
 " Don't save hidden buffers -- only save the visible ones.
 set sessionoptions-=buffers
 
-" Don't make a backup before overwriting a file.
-set nobackup
-set nowritebackup
-
 " Hide the mouse pointer while typing
 set mousehide
 
@@ -264,16 +268,13 @@ if exists('+colorcolumn')
   " call matchadd('ColorColumn', '\%81v', 100)
 endif
 
-
+" clipboard
 set clipboard=unnamedplus
 
 " Don't make a backup before overwriting a file.
 set nobackup
 set nowritebackup
 
-" Keep swap files in one location
-" +=,$HOME/.vim/tmp/
-set directory=$HOME/.vim/tmp/,.
 
 " Hide the mouse pointer while typing
 set mousehide
@@ -309,12 +310,13 @@ set statusline+=%*\%=%#error#
 set statusline+=%{&paste?'[paste]':''}
 set statusline+=%* 
 
-set statusline+=%=\ [%{&ff}]
-set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
-set statusline+=\ %y
+" If you have more more for metadata - uncomment
+" set statusline+=%=\ [%{&ff}]
+" set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
+" set statusline+=\ %y
 
 " Column/Line Information
-set statusline+=\ [%P\ %l/%L\:\ %v\]\ " percent through file
+set statusline+=\ [%P\ %l/%L\ %vc\]\ " percent through file
 
 " VimIndentLine
 let g:indentLine_color_term = 234
