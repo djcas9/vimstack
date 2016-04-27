@@ -698,6 +698,8 @@ endfunction
 
 " Quick yanking to the end of the line
 nmap Y ^y$
+vnoremap y myy`y
+vnoremap Y myY`y
 
 " Folding
 nnoremap <Space> za
