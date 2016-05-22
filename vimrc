@@ -131,6 +131,9 @@ set t_ti= t_te=
 " Windowing settings
 " set winfixwidth
 
+" no visual bell
+set novb
+
 " ver/hor/both - where does equalalways apply
 set eadirection=hor
 set winheight=10
@@ -339,7 +342,7 @@ autocmd FileType c vnoremap <buffer> <c-f> :call uncrustify#UncrustifyAuto()<CR>
 
 " GO Configuration
 " autocmd FileType go autocmd BufWritePre <buffer> Fmt
-let g:go_bin_path = expand("~/source/go/bin")
+" let g:go_bin_path = expand("/home/dweb/source/go/bin")
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
 let g:go_highlight_extra_types = 1
 let g:go_disable_autoinstall = 1
