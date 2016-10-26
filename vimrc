@@ -78,7 +78,11 @@ Plug 'mxw/vim-jsx'
 
 Plug 'rust-lang/rust.vim'
 
+" this will fail if you use gimme or some other
+" go version control tool
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
+" /usr/bin/python ~/.vim/plugged/YouCompleteMe/third_party/ycmd/build.py --clang-completer --gocode-completer --tern-complete
+
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " # vim:filetype=i3
