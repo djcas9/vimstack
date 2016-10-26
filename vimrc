@@ -78,8 +78,8 @@ Plug 'mxw/vim-jsx'
 
 Plug 'rust-lang/rust.vim'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
-Plug 'fatih/vim-go'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " # vim:filetype=i3
 Plug 'PotatoesMaster/i3-vim-syntax'
@@ -313,7 +313,7 @@ set statusline+=%*\%=%#error#
 set statusline+=%{&paste?'[paste]':''}
 set statusline+=%* 
 
-" If you have more more for metadata - uncomment
+" If you have more room for metadata - uncomment
 " set statusline+=%=\ [%{&ff}]
 " set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
 " set statusline+=\ %y
@@ -342,11 +342,15 @@ autocmd FileType c vnoremap <buffer> <c-f> :call uncrustify#UncrustifyAuto()<CR>
 
 " GO Configuration
 " autocmd FileType go autocmd BufWritePre <buffer> Fmt
-" let g:go_bin_path = expand("/home/dweb/source/go/bin")
+let g:go_bin_path = expand("$GOPATH/bin")
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
 let g:go_highlight_extra_types = 1
 let g:go_disable_autoinstall = 1
 let g:go_fmt_command = "goimports"
+
+" GO YCM
+let g:ycm_gocode_binary_path = "$GOPATH/bin/gocode"
+let g:ycm_godef_binary_path = "$GOPATH/bin/godef"
 
 " Turn on more syntax sauce
 let g:go_highlight_generate_tags = 1
