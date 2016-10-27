@@ -80,7 +80,7 @@ Plug 'rust-lang/rust.vim'
 
 " this will fail if you use gimme or some other
 " go version control tool
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 " /usr/bin/python ~/.vim/plugged/YouCompleteMe/third_party/ycmd/build.py --clang-completer --gocode-completer --tern-complete
 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -107,7 +107,7 @@ set mouse=a
 set ttymouse=xterm2
 
 " Set system shell
-set shell=$SHELL\ -l
+set shell=$SHELL
 
 " Exit insert mode timeout
 set ttimeoutlen=50
@@ -213,7 +213,7 @@ set visualbell                    " No beeping.
 colorscheme mephux
 
 " Set terminal and force 256 colors
-set term=xterm
+set term=xterm-256color
 set t_Co=256
 let &t_Co=256
 
