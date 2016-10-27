@@ -226,6 +226,11 @@ if !isdirectory($HOME . "/.vim/tmp")
   call system("mkdir -p ~/.vim/tmp/undo")
 endif
 
+" dd wont overwrite the last yank
+" map dd to the black hole register
+nnoremap d "_d
+vnoremap d "_d
+
 " Keep swap files in one location
 " +=,$HOME/.vim/tmp/
 set directory=$HOME/.vim/tmp/,.
