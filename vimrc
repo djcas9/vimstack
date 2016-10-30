@@ -525,6 +525,7 @@ nmap ga <Plug>(EasyAlign)
 
 " GoldenView
 let g:goldenview__enable_default_mapping=0
+nmap <Leader><Leader> <plug>GoldenViewResize<CR>
 
 " YCM
 " let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'

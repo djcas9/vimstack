@@ -39,6 +39,8 @@
   * `goF`: like `gof` for the current "session" directory, that is, the directory
     returned by `:pwd`
   * `goT`: like `got` for the current "session" directory
+  * etc...
+  * Too many to list here. See vimrc
 
 ## HTML
 
@@ -67,3 +69,11 @@
 ## Look At Me
 
 ![Epix](https://github.com/mephux/vimux/raw/master/vimux.png)
+
+## Self-Promotion
+
+Like vimstack? Follow the repository on
+[GitHub](https://github.com/mephux/vimstack) and if
+you would like to stalk me, follow [mephux](http://dweb.io/) on
+[Twitter](http://twitter.com/mephux) and
+[GitHub](https://github.com/mephux).
