@@ -18,16 +18,13 @@ Plug 'molok/vim-smartusline'
 Plug 'kana/vim-smartinput'
 Plug 'fidian/hexmode'
 Plug 'scrooloose/nerdtree'
-Plug 'wellle/targets.vim'
 Plug 'zhaocai/GoldenView.Vim'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/ZoomWin'
-Plug 'tpope/vim-obsession'
 Plug 'junegunn/vim-easy-align'
 
 " Git
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'int3/vim-extradite'
@@ -61,6 +58,8 @@ Plug 'elzr/vim-json'
 " Plug 'isRuslan/vim-es6'
 
 " Nav/Move/Format
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'wellle/targets.vim'
 Plug 'tpope/vim-ragtag'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-capslock'
@@ -72,17 +71,17 @@ Plug 'ervandew/supertab'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'bruno-/vim-vertical-move'
+Plug 'scrooloose/nerdcommenter'
 
 " Other
-" Plug 'vim-scripts/SingleCompile'
-Plug 'scrooloose/nerdcommenter'
 Plug 'cespare/vim-toml'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
-Plug 'rust-lang/rust.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+" Plug 'vim-scripts/SingleCompile'
+" Plug 'tpope/vim-afterimage'
+" Plug 'rust-lang/rust.vim'
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -303,6 +302,12 @@ set backspace=indent,eol,start
 set scrolloff=8
 
 " Status Line Setup
+let g:smartusline_string_to_highlight = '%f'
+let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
+let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=119 ctermfg=black'
+let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
+let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=108 ctermfg=black'
+
 set statusline=
 set statusline+=%<\ " cut at start
 set statusline=[%n]\ [%<%f]\ %h%w%m%r
@@ -318,7 +323,7 @@ set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
 set statusline+=%*\%=%#error#
 
 " Display a warning if &paste is set
-set statusline+=%{&paste?'[paste]':''}
+set statusline+=%{&paste?'[Paste]':''}
 set statusline+=%* 
 
 " If you have more room for metadata - uncomment
@@ -482,7 +487,6 @@ vmap <silent> <C-Down> :<C-U>call vertical_move#Down('v', v:count1)<CR>
 imap <silent> <C-Up> <ESC> :<C-U>call vertical_move#Down('v', v:count1)<CR>
 imap <silent> <C-Down> <ESC> :<C-U>call vertical_move#Down('', v:count1)<CR>
 
-
 " Default - V Expand
 if !exists('g:expand_region_text_objects')
   " Dictionary of text objects that are supported by default. Note that some of
@@ -518,9 +522,6 @@ vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-" Get rid of Ex mode
-nnoremap Q nop
 
 " GoldenView
 let g:goldenview__enable_default_mapping=0
@@ -559,7 +560,6 @@ imap     <C-F>t <Esc>:CtrlSFToggle<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 nnoremap <C-F>o :CtrlSFOpen<CR>
 
-
 let g:ctrlp_use_caching = 0
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
@@ -591,6 +591,8 @@ endif
 
 " GitGutter
 let g:gitgutter_diff_args = '-w'
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
 
 " SnipMate
 let g:snipMate = {}
@@ -663,14 +665,16 @@ let NERDChristmasTree = 1
 let NERDTreeChDirMode = 2
 
 " call SingleCompile#ChooseCompiler('c', 'cc')
-nmap <Leader>B :SCCompile<cr>
-nmap <Leader>R :update<CR>:SCCompileRun<cr>
-vmap <Leader>R :update<CR>:SCCompileRun<cr>
-imap <Leader>R <Esc>:SCCompileRun<cr>
+" nmap <Leader>B :SCCompile<cr>
+" nmap <Leader>R :update<CR>:SCCompileRun<cr>
+" vmap <Leader>R :update<CR>:SCCompileRun<cr>
+" imap <Leader>R <Esc>:SCCompileRun<cr>
 
-" ignore Ex mode
-
-nnoremap Q <nop>
+" Get rid of Ex mode
+nnoremap Q nop
+" nnoremap Q <nop>
+cmap Q! q!
+" cmap W w
 
 " Force Save
 cmap w!! w !sudo tee % >/dev/null
@@ -689,7 +693,6 @@ augroup ft_javascript
   au FileType javascript setlocal foldmethod=marker
   au FileType javascript setlocal foldmarker={,}
 augroup END
-
 
 " Caps Lock
 nmap <Leader>cc <Plug>CapsLockToggle
@@ -737,11 +740,6 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " g:targets_seekRanges
 " g:targets_jumpRanges
 
-" Yankring
-" let g:yankstack_map_keys = 0
-" nmap <leader>1 <Plug>yankstack_substitute_older_paste
-" nmap <leader>2 <Plug>yankstack_substitute_newer_paste
-
 " Register Stuff
 vmap <Leader>1 "1y
 vmap <Leader>2 "2y
@@ -778,14 +776,6 @@ map <leader>N :call RenameFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! -range MD5 :echo system('echo '.shellescape(join(getline(<line1>, <line2>), '\n')) . '| md5')
 nmap <Leader>\m :MD5<CR>
-
-" smartusline
-let g:smartusline_string_to_highlight = '%f'
-let g:smartusline_hi_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
-let g:smartusline_hi_insert = 'guibg=orange guifg=black ctermbg=119 ctermfg=black'
-let g:smartusline_hi_virtual_replace = 'guibg=#e454ba guifg=black ctermbg=magenta ctermfg=black'
-let g:smartusline_hi_normal = 'guibg=#95e454 guifg=black ctermbg=108 ctermfg=black'
-
 
 " Show syntax highlighting groups for word under cursor
 " nmap <Leader>s :call <SID>SynStack()<CR>
