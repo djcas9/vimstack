@@ -10,83 +10,82 @@ filetype off
 " vim-plug - Plugin Managment
 call plug#begin('~/.vim/plugged')
 
-Plug 'fidian/hexmode'
 " Plug 'scrooloose/syntastic'
-Plug 'terryma/vim-multiple-cursors'
+
+" UI
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'molok/vim-smartusline'
+Plug 'kana/vim-smartinput'
+Plug 'fidian/hexmode'
+Plug 'scrooloose/nerdtree'
+Plug 'wellle/targets.vim'
+Plug 'zhaocai/GoldenView.Vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/ZoomWin'
+Plug 'tpope/vim-obsession'
+Plug 'junegunn/vim-easy-align'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'int3/vim-extradite'
+Plug 'vim-scripts/gitignore'
+
+" Ctrlp/Plugins
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mattn/ctrlp-register'
+Plug 'tacahiroy/ctrlp-funky'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'mephux/custom-vim-snippets'
+
+" Search
+Plug 'justinmk/vim-gtfo'
 Plug 'dyng/ctrlsf.vim'
+Plug 'mileszs/ack.vim'
+
+" WebDev HTML/CSS/Javascript
+Plug 'mattn/emmet-vim'
+Plug 'othree/html5.vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'JulesWang/css.vim'
+Plug 'othree/csscomplete.vim'
+Plug 'mephux/vim-jsfmt'
+Plug 'elzr/vim-json'
+" Plug 'isRuslan/vim-es6'
+
+" Nav/Move/Format
+Plug 'tpope/vim-ragtag'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-abolish'
 Plug 'terryma/vim-expand-region'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'molok/vim-smartusline'
-Plug 'kana/vim-smartinput'
-Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-git'
 Plug 'tpope/vim-surround'
-Plug 'mattn/emmet-vim'
-
-Plug 'pangloss/vim-javascript'
-" Plug 'isRuslan/vim-es6'
-Plug 'mxw/vim-jsx'
-
-Plug 'tpope/vim-ragtag'
-Plug 'vim-scripts/SingleCompile'
-Plug 'int3/vim-extradite'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mattn/ctrlp-register'
-Plug 'tacahiroy/ctrlp-funky'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'mephux/custom-vim-snippets'
-Plug 'tommcdo/vim-lion'
 Plug 'bruno-/vim-vertical-move'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-vinegar'
-Plug 'justinmk/vim-gtfo'
-Plug 'wellle/targets.vim'
-Plug 'zhaocai/GoldenView.Vim'
-Plug 'othree/html5.vim'
-Plug 'vim-scripts/gitignore'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'tommcdo/vim-exchange'
-Plug 'Yggdroot/indentLine'
-Plug 'elzr/vim-json'
-Plug 'airblade/vim-gitgutter'
-Plug 'mephux/vim-jsfmt'
-Plug 'vim-scripts/ZoomWin'
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'tpope/vim-obsession'
-Plug 'majutsushi/tagbar'
-Plug 'junegunn/vim-easy-align'
+
+" Other
+" Plug 'vim-scripts/SingleCompile'
+Plug 'scrooloose/nerdcommenter'
 Plug 'cespare/vim-toml'
-
-Plug 'mileszs/ack.vim'
-
-" css
-Plug 'JulesWang/css.vim'
-Plug 'othree/csscomplete.vim'
-
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'tpope/vim-afterimage'
 Plug 'ompugao/uncrustify-vim'
-Plug 'mxw/vim-jsx'
-
 Plug 'rust-lang/rust.vim'
-
-" this will fail if you use gimme or some other
-" go version control tool
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
-" /usr/bin/python ~/.vim/plugged/YouCompleteMe/third_party/ycmd/build.py --clang-completer --gocode-completer --tern-complete
-
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-
-" # vim:filetype=i3
 Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 call plug#end()
 
@@ -228,8 +227,8 @@ endif
 
 " dd wont overwrite the last yank
 " map dd to the black hole register
-nnoremap d "_d
-vnoremap d "_d
+" nnoremap d "_d
+" vnoremap d "_d
 
 " Keep swap files in one location
 " +=,$HOME/.vim/tmp/
