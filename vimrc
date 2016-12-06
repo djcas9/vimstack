@@ -317,7 +317,6 @@ set stl+=\[b%n/%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}\]
 " Git branch and status
 set statusline+=\%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
-
 set statusline+=%=%#error#
 set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
 set statusline+=%*\%=%#error#
@@ -359,6 +358,7 @@ let g:go_bin_path = expand("$GOPATH/bin")
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
 let g:go_highlight_extra_types = 1
 let g:go_disable_autoinstall = 1
+" let g:go_metalinter_autosave = 1
 let g:go_fmt_command = "goimports"
 
 " GO YCM

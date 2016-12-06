@@ -12,7 +12,8 @@ endif
 let colors_name = "mephux"
 
 " General colors
-hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=16        cterm=NONE
+hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+" hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=16        cterm=NONE
 
 hi NonText          guifg=#070707 guibg=NONE ctermfg=237 ctermbg=NONE
 hi SpecialKey       guifg=#808080 guibg=NONE ctermfg=235 ctermbg=NONE
