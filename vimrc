@@ -1,4 +1,11 @@
-" Vim Configuration
+" __     _____ __  __ ____ _____  _    ____ _  __
+" \ \   / /_ _|  \/  / ___|_   _|/ \  / ___| |/ /
+"  \ \ / / | || |\/| \___ \ | | / _ \| |   | ' / 
+"   \ V /  | || |  | |___) || |/ ___ \ |___| . \ 
+"    \_/  |___|_|  |_|____/ |_/_/   \_\____|_|\_\
+"
+" The Mephux Collection - https://github.com/mephux/vimstack
+" 
 
 " The Basics
 set nocompatible
