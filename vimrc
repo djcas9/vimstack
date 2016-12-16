@@ -78,7 +78,9 @@ Plug 'cespare/vim-toml'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'ompugao/uncrustify-vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 " Plug 'vim-scripts/SingleCompile'
 " Plug 'tpope/vim-afterimage'
 " Plug 'rust-lang/rust.vim'
@@ -361,10 +363,6 @@ let g:go_disable_autoinstall = 1
 " let g:go_metalinter_autosave = 1
 let g:go_fmt_command = "goimports"
 
-" GO YCM
-let g:ycm_gocode_binary_path = "$GOPATH/bin/gocode"
-let g:ycm_godef_binary_path = "$GOPATH/bin/godef"
-
 " Turn on more syntax sauce
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_functions = 1
@@ -531,11 +529,18 @@ nmap <Leader><Leader> <plug>GoldenViewResize<CR>
 " let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_error_symbol = 'XX'
 let g:ycm_warning_symbol = '!!'
-let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" GO YCM
+let g:ycm_gocode_binary_path = "$GOPATH/bin/gocode"
+let g:ycm_godef_binary_path = "$GOPATH/bin/godef"
+let g:ycm_auto_trigger = 0
 
 " CtrlP configuration
 let g:ctrlp_funky_go_types = 1
@@ -599,11 +604,6 @@ let g:gitgutter_eager = 1
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['handlebars'] = 'html'
-
-" YCM
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 " Supertab Configs
 let g:SuperTabDefaultCompletionType = "<C-n>"
