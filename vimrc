@@ -65,6 +65,7 @@ Plug 'elzr/vim-json'
 " Plug 'isRuslan/vim-es6'
 
 " Nav/Move/Format
+Plug 'stephpy/vim-yaml'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-ragtag'
