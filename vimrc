@@ -86,8 +86,8 @@ Plug 'cespare/vim-toml'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'ompugao/uncrustify-vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 " Plug 'vim-scripts/SingleCompile'
 " Plug 'tpope/vim-afterimage'
@@ -144,7 +144,17 @@ set t_ti= t_te=
 " set winfixwidth
 
 " no visual bell
+" No annoying sound on errors
+set belloff=all
 set novb
+set noerrorbells
+set novisualbell
+set errorbells:
+set t_vb=
+set tm=500
+" Disable beep and flash with an autocmdEdit
+" set noerrorbells visualbell t_vb=
+" autocmd GUIEnter * set visualbell t_vb=
 
 " ver/hor/both - where does equalalways apply
 set eadirection=hor
@@ -215,7 +225,7 @@ set showbreak=↪\ \ 		" string to put before wrapped screen lines
 " Terminal settings
 set vb t_vb=		                  " shut off bell entirely; see also .gvimrc
 set title                         " Set the terminal's title
-set visualbell                    " No beeping.
+"set visualbell                    " No beeping.
 
 " Set the vim color schema
 colorscheme mephux
