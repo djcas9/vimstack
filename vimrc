@@ -149,7 +149,6 @@ set belloff=all
 set novb
 set noerrorbells
 set novisualbell
-set errorbells:
 set t_vb=
 set tm=500
 " Disable beep and flash with an autocmdEdit
