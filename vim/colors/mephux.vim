@@ -62,6 +62,22 @@ hi Error            gui=undercurl ctermfg=203 ctermbg=NONE cterm=underline guisp
 hi ErrorMsg         guifg=white guibg=#FF6C60 gui=bold ctermfg=white ctermbg=203 cterm=bold
 " hi LongLineWarning gui=undercurl ctermfg=NONE ctermbg=234 cterm=NONE guisp=#FF6C60
 hi WarningMsg       guifg=white guibg=#FF6C60 gui=bold ctermfg=white ctermbg=203 cterm=bold
+hi Highlight       guifg=white guibg=#FF6C60 gui=bold ctermfg=white ctermbg=203 cterm=bold
+
+hi link CocHighlightText Highlight
+hi link formatSelected Highlight
+hi link showSignatureHelp Pmenu
+hi link Conceal Highlight
+hi link CocSearch Search
+
+hi link CocErrorHighlight Highlight
+hi link CocWarningHighlight Highlight
+hi link CocInfoHighlight Highlight
+hi link CocHintHighlight Highlight
+hi link CocHintSign Highlights
+hi link CocHintVirtualText Highlight
+hi link CocHintLine Highlight
+hi link CocUnusedHighlight Highlights
 
 if version >= 700 " Vim 7.x specific colors
   hi CursorLine     guibg=#121212 ctermbg=233 ctermfg=NONE gui=NONE cterm=NONE
