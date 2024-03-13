@@ -1,12 +1,11 @@
 " __     _____ __  __ ____ _____  _    ____ _  __
 " \ \   / /_ _|  \/  / ___|_   _|/ \  / ___| |/ /
-"  \ \ / / | || |\/| \___ \ | | / _ \| |   | ' / 
-"   \ V /  | || |  | |___) || |/ ___ \ |___| . \ 
+"  \ \ / / | || |\/| \___ \ | | / _ \| |   | ' /
+"   \ V /  | || |  | |___) || |/ ___ \ |___| . \
 "    \_/  |___|_|  |_|____/ |_/_/   \_\____|_|\_\
 "
 " The Mephux Collection - https://github.com/mephux/vimstack
-" 
-
+"
 " The Basics
 set nocompatible
 " set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
@@ -14,21 +13,23 @@ set encoding=utf-8
 
 filetype off
 
+
+
 " vim-plug - Plugin Managment
 call plug#begin('~/.vim/plugged')
 
 " Plug 'scrooloose/syntastic'
 
 " UI
-Plug 'ConradIrwin/vim-bracketed-paste'
+" Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'molok/vim-smartusline'
 Plug 'kana/vim-smartinput'
-Plug 'fidian/hexmode'
+" Plug 'fidian/hexmode'
 Plug 'scrooloose/nerdtree'
 Plug 'zhaocai/GoldenView.Vim'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-scripts/ZoomWin'
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -54,25 +55,25 @@ Plug 'mileszs/ack.vim'
 
 " WebDev HTML/CSS/Javascript
 Plug 'mattn/emmet-vim'
-Plug 'othree/html5.vim'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'mxw/vim-jsx'
+" Plug 'othree/html5.vim'
+" Plug 'mustache/vim-mustache-handlebars'
+" Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'JulesWang/css.vim'
+" Plug 'JulesWang/css.vim'
 Plug 'othree/csscomplete.vim'
-Plug 'mephux/vim-jsfmt'
-Plug 'elzr/vim-json'
+" Plug 'mephux/vim-jsfmt'
+" Plug 'elzr/vim-json'
 " Plug 'isRuslan/vim-es6'
 
 " Nav/Move/Format
 Plug 'stephpy/vim-yaml'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'wellle/targets.vim'
-Plug 'tpope/vim-ragtag'
+" Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'wellle/targets.vim'
+" Plug 'tpope/vim-ragtag'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-abolish'
-Plug 'terryma/vim-expand-region'
+" Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'ervandew/supertab'
@@ -82,19 +83,25 @@ Plug 'bruno-/vim-vertical-move'
 Plug 'scrooloose/nerdcommenter'
 
 " Other
-Plug 'cespare/vim-toml'
+" Plug 'cespare/vim-toml'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'ompugao/uncrustify-vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
+" Plug 'PotatoesMaster/i3-vim-syntax'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['vim', 'rust', 'typescript', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+
+" Plug 'github/copilot.vim'
+
 
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 " Plug 'vim-scripts/SingleCompile'
 " Plug 'tpope/vim-afterimage'
-" Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -108,24 +115,12 @@ filetype plugin indent on
 " syntax highlighting
 syntax on
 
+
 " Update syntax highlighting for more lines increased scrolling performance
 syntax sync minlines=256
 
 " Don't syntax highlight long lines
 set synmaxcol=256"
-
-" Enable VIM mouse support
-set mouse=a
-set ttymouse=xterm2
-map <MiddleMouse> <Nop>
-nmap <MiddleMouse> <Nop>
-imap <MiddleMouse> <Nop>
-map <2-MiddleMouse> <Nop>
-imap <2-MiddleMouse> <Nop>
-map <3-MiddleMouse> <Nop>
-imap <3-MiddleMouse> <Nop>
-map <4-MiddleMouse> <Nop>
-imap <4-MiddleMouse> <Nop>
 
 " Set system shell
 set shell=$SHELL
@@ -267,13 +262,13 @@ set directory=$HOME/.vim/tmp/,.
 set dir=~/.vim/tmp/swap/
 set backupdir=~/.vim/tmp/backup/
 
-" if version >= 703
+if version >= 703
   " Persistent Undo
   set undofile
   set undolevels=10000     " numbers of particular undos to save
   set undoreload=100000    " number of undo lines to save
   set undodir=~/.vim/tmp/undo/
-" endif
+endif
 
 " Don't make a backup before overwriting a file.
 set nobackup
@@ -311,15 +306,11 @@ if exists('+colorcolumn')
 endif
 
 " clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed,unnamedplus
 
 " Don't make a backup before overwriting a file.
 set nobackup
 set nowritebackup
-
-
-" Hide the mouse pointer while typing
-set mousehide
 
 " Without setting this, ZoomWin restores windows in a way that causes
 " equalalways behavior to be triggered the next time CommandT is used.
@@ -355,7 +346,7 @@ set statusline+=%*\%=%#error#
 
 " Display a warning if &paste is set
 set statusline+=%{&paste?'[Paste]':''}
-set statusline+=%* 
+set statusline+=%*
 
 " If you have more room for metadata - uncomment
 " set statusline+=%=\ [%{&ff}]
@@ -377,6 +368,10 @@ set listchars=tab:\┆\ ,eol:¬
 " redraws painfully slow
 set cursorline
 set nocursorcolumn
+
+" Prettier.io
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
 
 " C Stuff
 " path to uncrustify configuration file
@@ -450,9 +445,9 @@ let g:multi_cursor_next_key='<C-n>'
 " let g:multi_cursor_skip_key='<C-s>'
 let g:multi_cursor_quit_key='<Esc>'
 
-" A vim plugin that simplifies the transition 
+" A vim plugin that simplifies the transition
 " between multiline and single-line code
-nmap sj :SplitjoinSplit<cr> 
+nmap sj :SplitjoinSplit<cr>
 nmap sk :SplitjoinJoin<cr>
 
 " Preserve indentation while pasting text from the OS X clipboard
@@ -473,8 +468,6 @@ set selection=exclusive           " Select
 
 " # Window Movment
 map <S-Down> <C-W>j
-map <S-Right> <C-W>l
-map <S-Left> <C-W>h
 map <S-Up> <C-W>k
 
 "map <S-Left> ^
@@ -487,20 +480,21 @@ map <S-Up> <C-W>k
 
 map <Leader>w <ESC>:w<CR>
 
-nmap <silent> <C-Left> b
-nmap <silent> <C-Right> w
-
 " nmap <C-Right> <Plug>(expand_region_expand)
 " nmap <C-Left> <Plug>(expand_region_shrink)
 
 
-vmap <C-Right> w
-vmap <C-Left> b
+map <S-Right> w
+map <S-Left> b
+nmap <silent> <S-Left> b
+nmap <silent> <S-Right> w
+vmap <S-Right> w
+vmap <S-Left> b
+imap <silent> <S-Left> <ESC>b
+imap <silent> <S-Right> <ESC>w
 " vmap <C-Right> <Plug>(expand_region_expand)
 " vmap <C-Left> <Plug>(expand_region_shrink)
 
-imap <silent> <C-Left> <ESC>b
-imap <silent> <C-Right> <ESC>w
 
 nmap <silent> <C-h> b
 nmap <silent> <C-l> w
@@ -512,13 +506,12 @@ nmap <silent> <C-k> {
 vmap <silent> <C-j> {
 vmap <silent> <C-k> }
 
-nmap <silent> <C-Up> :<C-U>call vertical_move#Up('', v:count1)<CR>
-nmap <silent> <C-Down> :<C-U>call vertical_move#Down('', v:count1)<CR>
-vmap <silent> <C-Up> :<C-U>call vertical_move#Up('v', v:count1)<CR>
-vmap <silent> <C-Down> :<C-U>call vertical_move#Down('v', v:count1)<CR>
-
-imap <silent> <C-Up> <ESC> :<C-U>call vertical_move#Down('v', v:count1)<CR>
-imap <silent> <C-Down> <ESC> :<C-U>call vertical_move#Down('', v:count1)<CR>
+nmap <silent> <S-Up> :<C-U>call vertical_move#Up('', v:count1)<CR>
+nmap <silent> <S-Down> :<C-U>call vertical_move#Down('', v:count1)<CR>
+vmap <silent> <S-Up> :<C-U>call vertical_move#Up('v', v:count1)<CR>
+vmap <silent> <S-Down> :<C-U>call vertical_move#Down('v', v:count1)<CR>
+imap <silent> <S-Up> <ESC> :<C-U>call vertical_move#Down('v', v:count1)<CR>
+imap <silent> <S-Down> <ESC> :<C-U>call vertical_move#Down('', v:count1)<CR>
 
 " Default - V Expand
 if !exists('g:expand_region_text_objects')
@@ -548,43 +541,23 @@ let g:NERD_javascript_alt_style = 1
       " \ 'javascript': { 'left': '/*', 'right': '*/', 'leftAlt': '//' }
       " \ }
 " let g:NERDDefaultAlign = 'start'
+
 map <C-c> <plug>NERDCommenterToggle<CR>
-
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
 
 " GoldenView
 let g:goldenview__enable_default_mapping=0
 nmap <Leader><Leader> <plug>GoldenViewResize<CR>
 
-" CtrlP configuration
-let g:ctrlp_funky_go_types = 1
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
-let g:ctrlp_max_files = 20000
-let g:ctrlp_max_depth = 200
-let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
-let g:ctrlp_by_filename = 1
-" set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
-let g:ctrlp_custom_ignore = 'Godeps/*$\|\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|\.swp$\|node_modules/*$\|vendor/*$'
-let g:ctrlp_extensions = ['funky']
 
-nnoremap <Leader>f :CtrlPFunky<Cr>
-nnoremap <Leader>b :CtrlPBuffer<Cr>
-nnoremap <Leader>r :CtrlPRegister<Cr>
+" nmap     <C-F>f <Plug>CtrlSFPrompt
+" vmap     <C-F>f <Plug>CtrlSFVwordPath
+" vmap     <C-F>F <Plug>CtrlSFVwordExec
+" nmap     <C-F>n <Plug>CtrlSFCwordPath
+" nmap     <C-F>p <Plug>CtrlSFPwordPath
+" imap     <C-F>t <Esc>:CtrlSFToggle<CR>
+" nnoremap <C-F>t :CtrlSFToggle<CR>
+" nnoremap <C-F>o :CtrlSFOpen<CR>
 
-nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
-vmap     <C-F>F <Plug>CtrlSFVwordExec
-nmap     <C-F>n <Plug>CtrlSFCwordPath
-nmap     <C-F>p <Plug>CtrlSFPwordPath
-imap     <C-F>t <Esc>:CtrlSFToggle<CR>
-nnoremap <C-F>t :CtrlSFToggle<CR>
-nnoremap <C-F>o :CtrlSFOpen<CR>
-
-let g:ctrlp_use_caching = 0
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -599,10 +572,6 @@ if executable('ag')
 else
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 endif
-
-" :Extradite - Git log viewer
-map <Leader>o :Extradite<CR>
-let g:extradite_resize = 0
 
 " clear the search buffer when hitting return
 :nnoremap <leader>c :nohlsearch<cr>
@@ -628,7 +597,6 @@ let g:SuperTabDefaultCompletionType = "<C-n>"
 let g:SuperTabLongestHighlight = 1
 let g:SuperTabCrMapping = 1
 
-
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -642,8 +610,8 @@ nmap <silent> <leader>v :tabedit $MYVIMRC<CR>
 nmap <silent> <leader>cs :tabedit ~/.vim/colors/mephux.vim<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap <silent> <leader>n :tabedit ~/.notes.md<CR>
-
 nmap <silent> <leader>ac :tabedit ~/.vim/autocorrect.vim<CR>
+
 source ~/.vim/autocorrect.vim
 
 " For quick and dirty snippets
@@ -664,9 +632,6 @@ au BufNewFile,BufRead *.json set ft=javascript
 
 " JSX/React
 let g:jsx_ext_required = 0
-
-" Tagbar
-map <Leader>T :TagbarToggle<Enter>
 
 " Nerdtree settings
 " let g:WebDevIconsUnicodeDecorateFolderNodes = 1
@@ -717,8 +682,8 @@ augroup END
 nmap <Leader>cc <Plug>CapsLockToggle
 
 " QuickFix Navigation
-" map <c-z> :cprevious<CR>
-" map <c-x> :cnext<CR>
+map <c-z> :cprevious<CR>
+map <c-x> :cnext<CR>
 
 " Quickfix (open/close using <leader>f)
 nmap <silent> <leader>q :QFix<CR>
@@ -797,13 +762,13 @@ command! -range MD5 :echo system('echo '.shellescape(join(getline(<line1>, <line
 nmap <Leader>\m :MD5<CR>
 
 " Show syntax highlighting groups for word under cursor
-nmap <Leader>q :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+" nmap <Leader>q :call <SID>SynStack()<CR>
+" function! <SID>SynStack()
+  " if !exists("*synstack")
+    " return
+  " endif
+  " echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+" endfunc
 
 
 " HTML Fix
@@ -868,7 +833,7 @@ endfunction
 "
 " Usage:
 "
-" :Bonly / :BOnly / :Bufonly / :BufOnly [buffer] 
+" :Bonly / :BOnly / :Bufonly / :BufOnly [buffer]
 "
 " Without any arguments the current buffer is kept.  With an argument the
 " buffer name/number supplied is kept.
@@ -1023,9 +988,9 @@ for i in g:qs_enable_char_list
 	execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
 endfor
 
-nnoremap <C-H> :Hexmode<CR>
-inoremap <C-H> <Esc>:Hexmode<CR>
-vnoremap <C-H> :<C-U>Hexmode<CR>
+" nnoremap <C-H> :Hexmode<CR>
+" inoremap <C-H> <Esc>:Hexmode<CR>
+" vnoremap <C-H> :<C-U>Hexmode<CR>
 
 " Auto Syntax
 let g:syntastic_always_populate_loc_list = 1
@@ -1145,15 +1110,6 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
@@ -1191,3 +1147,52 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+
+" Enable VIM mouse support
+set mouse=a
+" set ttymouse=xterm2
+map <MiddleMouse> <Nop>
+nmap <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
+map <2-MiddleMouse> <Nop>
+imap <2-MiddleMouse> <Nop>
+map <3-MiddleMouse> <Nop>
+imap <3-MiddleMouse> <Nop>
+map <4-MiddleMouse> <Nop>
+imap <4-MiddleMouse> <Nop>
+
+
+" CtrlP configuration
+let g:ctrlp_use_caching = 1
+let g:ctrlp_funky_go_types = 1
+let g:ctrlp_funky_matchtype = 'path'
+let g:ctrlp_funky_syntax_highlight = 1
+
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+let g:ctrlp_max_files = 20000
+let g:ctrlp_max_depth = 200
+let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
+let g:ctrlp_by_filename = 1
+" set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
+let g:ctrlp_custom_ignore = 'Godeps/*$\|\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|\.swp$\|node_modules/*$\|vendor/*$'
+
+nnoremap <Leader>f :CtrlPFunky<Cr>
+nnoremap <Leader>u :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+nnoremap <Leader>b :CtrlPBuffer<Cr>
+nnoremap <Leader>r :CtrlPRegister<Cr>
+
+"These are to cancel the default behavior of d, D, c, C
+"  to put the text they delete in the default register.
+"  Note that this means e.g. "ad won't copy the text into
+"  register a anymore.  You have to explicitly yank it.
+xnoremap p "_dP
+" nnoremap d "_d
+" vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
+nnoremap c "_c
+vnoremap c "_c
+nnoremap C "_C
+vnoremap C "_C
