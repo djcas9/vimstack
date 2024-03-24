@@ -93,15 +93,8 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
   \ 'for': ['vim', 'rust', 'typescript', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
-" Plug 'github/copilot.vim'
-
-
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-" Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-" Plug 'vim-scripts/SingleCompile'
-" Plug 'tpope/vim-afterimage'
 Plug 'rust-lang/rust.vim'
+Plug 'ziglang/zig.vim'
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -114,7 +107,6 @@ filetype plugin indent on
 
 " syntax highlighting
 syntax on
-
 
 " Update syntax highlighting for more lines increased scrolling performance
 syntax sync minlines=256
@@ -164,6 +156,12 @@ set tm=500
 " autocmd GUIEnter * set visualbell t_vb=
 
 " ver/hor/both - where does equalalways apply
+
+" Without setting this, ZoomWin restores windows in a way that causes
+" equalalways behavior to be triggered the next time CommandT is used.
+" This is likely a bludgeon to solve some other issue, but it works
+set noequalalways
+
 set eadirection=hor
 set winheight=10
 set winminheight=10
@@ -254,7 +252,6 @@ endif
 " dd wont overwrite the last yank
 " map dd to the black hole register
 " nnoremap d "_d
-" vnoremap d "_d
 
 " Keep swap files in one location
 " +=,$HOME/.vim/tmp/
@@ -269,10 +266,6 @@ if version >= 703
   set undoreload=100000    " number of undo lines to save
   set undodir=~/.vim/tmp/undo/
 endif
-
-" Don't make a backup before overwriting a file.
-set nobackup
-set nowritebackup
 
 " Don't reset cursor to start of line when moving around
 set nostartofline
@@ -293,11 +286,6 @@ set sessionoptions-=buffers
 " Hide the mouse pointer while typing
 set mousehide
 
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
-set noequalalways
-
 " Mark the ideal max text width
 if exists('+colorcolumn')
   set colorcolumn=80
@@ -312,10 +300,6 @@ set clipboard=unnamed,unnamedplus
 set nobackup
 set nowritebackup
 
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
-set noequalalways
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -383,15 +367,12 @@ autocmd FileType c vnoremap <buffer> <c-f> :call uncrustify#UncrustifyAuto()<CR>
 " autocmd FileType go autocmd BufWritePre <buffer> Fmt
 let g:go_bin_path = expand("$GOPATH/bin")
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4"
-let g:go_highlight_extra_types = 1
-let g:go_disable_autoinstall = 1
 " let g:go_metalinter_autosave = 1
-let g:go_fmt_command = "goimports"
 
-" Turn on more syntax sauce
+let g:go_fmt_command = "goimports"
+let g:go_disable_autoinstall = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_functions = 1
-let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_methods = 1
@@ -998,20 +979,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" let g:syntastic_javascript_checkers = ['eslint']
-
-" let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
-" if matchstr(local_eslint, "^\/\\w") == ''
-  " let local_eslint = getcwd() . "/" . local_eslint
-" endif
-" if executable(local_eslint)
-  " let g:syntastic_javascript_eslint_exec = local_eslint
-" endif
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
@@ -1188,8 +1155,6 @@ nnoremap <Leader>r :CtrlPRegister<Cr>
 "  Note that this means e.g. "ad won't copy the text into
 "  register a anymore.  You have to explicitly yank it.
 xnoremap p "_dP
-" nnoremap d "_d
-" vnoremap d "_d
 nnoremap D "_D
 vnoremap D "_D
 nnoremap c "_c
