@@ -91,7 +91,7 @@ Plug 'ompugao/uncrustify-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
-  \ 'for': ['vim', 'rust', 'typescript', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+  \ 'for': ['vim', 'rust', 'typescript', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'html'] }
 
 Plug 'rust-lang/rust.vim'
 Plug 'ziglang/zig.vim'
