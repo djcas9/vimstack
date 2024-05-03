@@ -1,4 +1,4 @@
-# Vim Stack - The Mephux Collection.
+# Vim Stack - The Collection.
 
 ## Why?
 
