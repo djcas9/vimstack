@@ -55,15 +55,9 @@ Plug 'mileszs/ack.vim'
 
 " WebDev HTML/CSS/Javascript
 Plug 'mattn/emmet-vim'
-" Plug 'othree/html5.vim'
-" Plug 'mustache/vim-mustache-handlebars'
 " Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-" Plug 'JulesWang/css.vim'
 Plug 'othree/csscomplete.vim'
-" Plug 'mephux/vim-jsfmt'
-" Plug 'elzr/vim-json'
-" Plug 'isRuslan/vim-es6'
 
 " Nav/Move/Format
 Plug 'stephpy/vim-yaml'
@@ -71,6 +65,7 @@ Plug 'stephpy/vim-yaml'
 " Plug 'wellle/targets.vim'
 " Plug 'tpope/vim-ragtag'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-rails'
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-abolish'
 " Plug 'terryma/vim-expand-region'
@@ -99,6 +94,7 @@ Plug 'ziglang/zig.vim'
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'eslint/eslint'
+Plug 'ruby-formatter/rufo-vim'
 
 call plug#end()
 
@@ -248,6 +244,9 @@ if !isdirectory($HOME . "/.vim/tmp")
   call system("mkdir -p ~/.vim/tmp/backup")
   call system("mkdir -p ~/.vim/tmp/undo")
 endif
+
+" Enable rufo (RUby FOrmat)
+let g:rufo_auto_formatting = 1
 
 " dd wont overwrite the last yank
 " map dd to the black hole register
