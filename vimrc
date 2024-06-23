@@ -43,21 +43,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-register'
 Plug 'tacahiroy/ctrlp-funky'
 
-" Snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'mephux/custom-vim-snippets'
-
 " Search
 Plug 'justinmk/vim-gtfo'
 Plug 'dyng/ctrlsf.vim'
 Plug 'mileszs/ack.vim'
 
-" WebDev HTML/CSS/Javascript
-Plug 'mattn/emmet-vim'
 " Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'othree/csscomplete.vim'
 
 " Nav/Move/Format
 Plug 'stephpy/vim-yaml'
