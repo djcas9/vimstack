@@ -1,5 +1,8 @@
 PWD := $(shell pwd)
 
+push:
+	@git add . && git commit -a -m 'update' && git push origin master
+
 install: clean
 	ln -s -f $(PWD)/vim ~/.vim
 	ln -s -f $(PWD)/vimrc ~/.vimrc
