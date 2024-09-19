@@ -77,9 +77,8 @@ Plug 'ompugao/uncrustify-vim'
 " Plug 'PotatoesMaster/i3-vim-syntax'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install --frozen-lockfile --production',
-  \ 'for': ['vim', 'rust', 'yaml', 'typescript', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'html'] }
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 
 Plug 'rust-lang/rust.vim'
 Plug 'ziglang/zig.vim'
