@@ -559,11 +559,6 @@ let g:gitgutter_diff_args = '-w'
 let g:gitgutter_realtime = 1
 let g:gitgutter_eager = 1
 
-" SnipMate
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {}
-let g:snipMate.scope_aliases['handlebars'] = 'html'
-
 " Supertab Configs
 let g:SuperTabDefaultCompletionType = "<C-n>"
 let g:SuperTabLongestHighlight = 1
