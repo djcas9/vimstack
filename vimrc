@@ -88,6 +88,9 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'eslint/eslint'
 Plug 'ruby-formatter/rufo-vim'
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 " Turn on file type detection.
