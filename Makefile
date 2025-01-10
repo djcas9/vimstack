@@ -4,11 +4,11 @@ push:
 	@git add . && git commit -a -m 'update' && git push origin master
 
 install: clean
-	ln -s -f $(PWD)/vim ~/.vim
-	ln -s -f $(PWD)/vimrc ~/.vimrc
-	mkdir -p ~/.vim/autoload
+	ln -s -f $(PWD)/vim ~/.vim || true
+	ln -s -f $(PWD)/vimrc ~/.vimrc || true
+	mkdir -p ~/.vim/autoload || true
 	curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	vim +PlugInstall +qall
+	vimx +PlugInstall +qall
 	clear
 	@echo "\nDONE - Installation Complete\n"
 
