@@ -38,16 +38,6 @@ Plug 'tpope/vim-git'
 Plug 'int3/vim-extradite'
 Plug 'vim-scripts/gitignore'
 
-" Ctrlp/Plugins
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mattn/ctrlp-register'
-Plug 'tacahiroy/ctrlp-funky'
-
-" Search
-Plug 'justinmk/vim-gtfo'
-Plug 'dyng/ctrlsf.vim'
-Plug 'mileszs/ack.vim'
-
 " Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 
@@ -534,19 +524,8 @@ nmap <Leader><Leader> <plug>GoldenViewResize<CR>
 " nnoremap <C-F>o :CtrlSFOpen<CR>
 
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " let g:ackprg = 'ag --nogroup --nocolor --column'
-  let g:ackprg = 'ag --vimgrep'
-
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = ['ag %s -l --nocolor -g ""']
-else
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-endif
+" FZF SEARCG
+nmap <C-P> :FZF<CR>
 
 " clear the search buffer when hitting return
 :nnoremap <leader>c :nohlsearch<cr>
@@ -1118,26 +1097,6 @@ map <3-MiddleMouse> <Nop>
 imap <3-MiddleMouse> <Nop>
 map <4-MiddleMouse> <Nop>
 imap <4-MiddleMouse> <Nop>
-
-
-" CtrlP configuration
-let g:ctrlp_use_caching = 1
-let g:ctrlp_funky_go_types = 1
-let g:ctrlp_funky_matchtype = 'path'
-let g:ctrlp_funky_syntax_highlight = 1
-
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
-let g:ctrlp_max_files = 20000
-let g:ctrlp_max_depth = 200
-let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
-let g:ctrlp_by_filename = 1
-" set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   " for Linux/MacOSX
-let g:ctrlp_custom_ignore = 'Godeps/*$\|\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|\.swp$\|node_modules/*$\|vendor/*$'
-
-nnoremap <Leader>f :CtrlPFunky<Cr>
-nnoremap <Leader>u :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-nnoremap <Leader>b :CtrlPBuffer<Cr>
-nnoremap <Leader>r :CtrlPRegister<Cr>
 
 "These are to cancel the default behavior of d, D, c, C
 "  to put the text they delete in the default register.
