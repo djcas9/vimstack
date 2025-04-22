@@ -8,7 +8,7 @@ install: clean
 	ln -s -f $(PWD)/vimrc ~/.vimrc || true
 	mkdir -p ~/.vim/autoload || true
 	curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	vimx +PlugInstall +qall
+	vim +PlugInstall +qall
 	clear
 	@echo "\nDONE - Installation Complete\n"
 
