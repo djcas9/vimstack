@@ -20,6 +20,9 @@ call plug#begin('~/.vim/plugged')
 
 " Plug 'scrooloose/syntastic'
 
+" Python - gross
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+
 " UI
 " Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'molok/vim-smartusline'
